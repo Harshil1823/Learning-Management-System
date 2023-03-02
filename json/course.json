@@ -1,0 +1,42 @@
+{
+    "author": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "johndoe@email.com",
+        "phoneNumber": "555-555-5555"
+    },
+    "title": "Introduction to Programming",
+    "description": "This course covers the basics of programming.",
+    "modules": [
+        {
+            "title": "Module 1",
+            "comments": [
+                {
+                    "author": "Jane Smith",
+                    "comment": "Great course so far!"
+                },
+                {
+                    "author": "Bob Johnson",
+                    "comment": "I'm having trouble with the first assignment."
+                }
+            ]
+        },
+        {
+            "title": "Module 2",
+            "comments": [
+                {
+                    "author": "Jane Smith",
+                    "comment": "Another great module!"
+                },
+                {
+                    "author": "Bob Johnson",
+                    "comment": "This one was easier for me."
+                }
+            ]
+        }
+    ],
+    "reviews": 5 
+       ["Great course!",
+        "Not bad, but could be better."]
+}
+

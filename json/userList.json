@@ -1,0 +1,22 @@
+{
+  "userList": {
+    "users": [
+      {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "johndoe@example.com",
+        "phoneNumber": "123-456-7890",
+        "password": "password",
+        "userName": "johndoe123"
+      },
+      {
+        "firstName": "Jane",
+        "lastName": "Doe",
+        "email": "janedoe@example.com",
+        "phoneNumber": "123-456-7890",
+        "password": "password",
+        "userName": "janedoe123"
+      }
+    ]
+  }
+}

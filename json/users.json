@@ -1,0 +1,13 @@
+{
+  "users": 
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "johndoe@example.com",
+      "phoneNumber": "555-123-4567",
+      "password": "password1",
+      "userName": "johndoe1",
+      "type": "user",
+      "type": "author"
+    }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Test 1",
+  "questions": [
+    {
+      "questionText": "What is the most used programming language?",
+      "choices": [
+        "JavaScript",
+        "Python",
+        "Java",
+        "c++"
+      ],
+      "correctChoice": "Java"
+    },
+    {
+      "questionText": "What is JavaScript used for?",
+      "choices": [
+        "Data management",
+        "Web development",
+        "Game development",
+        "useless"
+      ],
+      "correctChoice": "Web development"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "title": "Module 1",
+  "topics": [
+    {
+      "title": "Introduction to Module 1",
+      "description": "This topic covers the basics of Module 1"
+    },
+    {
+      "title": "Topic 1",
+      "description": "This topic covers sub-topic 1 of Module 1"
+    },
+    {
+      "title": "Topic 2",
+      "description": "This topic covers sub-topic 2 of Module 1"
+    }
+  ],
+  "moduleComment": [
+    {
+      "comment": "Great module!",
+      "author": "John",
+      "replies": []
+    },
+    {
+      "comment": "I found this module difficult.",
+      "author": "Jane",
+      "replies": [
+        {
+          "comment": "Try studying more!",
+          "author": "John",
+          "replies": []
+        }
+      ]
+    }
+  ]
+}
