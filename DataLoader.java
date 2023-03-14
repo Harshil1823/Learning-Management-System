@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class DataLoader {
     public ArrayList<User> getUsers(){
         return new ArrayList<User>();
@@ -7,7 +8,7 @@ public class DataLoader {
         return new ArrayList<Author>();
     }
 
-    public getCourses() {
+    public void getCourses() {
 
     }
 }

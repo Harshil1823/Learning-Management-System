@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 public class Module {
     private ArrayList<Module> modules;
     private Topic topics;
-    private ArrayList<Comments> moduleComment;
+    private ArrayList<Comment> moduleComment;
     private String title;
 
-    public addComments(){
+    public void addComments(){
         
     }
 }

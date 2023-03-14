@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class UserList {
     private UserList userList;
     private ArrayList<User> users;
