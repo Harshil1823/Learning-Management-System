@@ -1,4 +1,11 @@
 public class DataConstants {
     protected static final String USER_FILE_NAME = "users.json";
+    protected static final String AUTHOR_FILE_NAME = "authors.json";
+    protected static final String COURSE_FILE_NAME = "courses.json";
+    protected static final String USER_FIRST_NAME = "uFirstName";
+    protected static final String USER_LAST_NAME = "uLastName";
+    protected static final String USER_PHONENUMBER = "uPhoneNumber";
+    protected static final String USER_PASSWORD = "password";
+    protected static final String USER_USERNAME = "uUserName";
 
 }
