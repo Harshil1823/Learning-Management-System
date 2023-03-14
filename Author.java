@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Author implements Account {
     protected String firstName;
     protected String lastName;
@@ -8,6 +10,7 @@ public class Author implements Account {
     public ArrayList<Author> authors;
     public ArrayList<Course> courses;
 
+    
     public boolean validUsername(String userName) {
         return true;
     }

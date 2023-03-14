@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.io.FileReader;
 import java.util.ArrayList;
 import org.json.simple.JSONArray;
@@ -8,6 +9,10 @@ public class DataLoader extends DataConstants {
     public static ArrayList<User> user = new ArrayList<User>();
 
 
+=======
+import java.util.ArrayList;
+public class DataLoader {
+>>>>>>> 22bdecfe5ba81a04d65aafde9b843ee38598072d
     public ArrayList<User> getUsers(){
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
@@ -26,7 +31,7 @@ public class DataLoader extends DataConstants {
         return new ArrayList<Author>();
     }
 
-    public getCourses() {
+    public void getCourses() {
 
     }
 }

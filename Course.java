@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Course {
     private Author author;
     private String title;
