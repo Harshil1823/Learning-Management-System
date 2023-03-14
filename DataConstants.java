@@ -7,5 +7,15 @@ public class DataConstants {
     protected static final String USER_PHONENUMBER = "uPhoneNumber";
     protected static final String USER_PASSWORD = "password";
     protected static final String USER_USERNAME = "uUserName";
+    //Author Constants
+    protected static final String AUTHOR_FIRST_NAME = "aFirstName";
+    protected static final String AUTHOR_LAST_NAME = "aLastName";
+    protected static final String AUTHOR_EMAIL = "aEmail";
+    protected static final String AUTHOR_PHONENUMBER = "aPhoneNumber";
+    protected static final String AUTHOR_PASSWORD = "aPassword";
+    protected static final String AUTHOR_USERNAME = "aUsername";
+    
+
+
 
 }
