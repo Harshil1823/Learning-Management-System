@@ -1,0 +1,16 @@
+{
+    "authors": [
+        {
+            "id": "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.doe@example.com",
+            "phoneNumber": "1234567890",
+            "userName": "johndoe",
+            "password": "hashedpassword",
+            "courses": [
+                "d4b93270-c012-4ca5-bd7d-6e5c6f9979a9"
+            ]
+        }
+    ]
+}

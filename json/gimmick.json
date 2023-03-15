@@ -1,0 +1,68 @@
+{
+    "courses": [
+        {
+            "courseid": "d4b93270-c012-4ca5-bd7d-6e5c6f9979a9",
+            "title": "Introduction to JavaScript",
+            "description": "A course for beginners to learn programming in JavaScript",
+            "author_id": "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e",
+            "modules": [
+                {
+                    "title": "Module 1",
+                    "description": "Introduction to programming",
+                    "topics": [
+                      {
+                        "title": "Variables",
+                        "description": "Learn about variables in programming"
+                      }
+                    ],
+                    "comments": [
+                        {
+                          "user_id": "3c3aeb0e-974f-41e3-b26c-9e2a8a1a1c30",
+                          "text": "Great explanation!"
+                        }
+                    ],
+                    "questions": [
+                        {
+                          "questionText": "What is the most used programming language?",
+                          "choices": [
+                            "JavaScript",
+                            "Python",
+                            "Java",
+                            "c++"
+                          ],
+                          "correctChoice": "Java"
+                        },
+                        {
+                          "questionText": "What is JavaScript used for?",
+                          "choices": [
+                            "Data management",
+                            "Web development",
+                            "Game development",
+                            "useless"
+                          ],
+                          "correctChoice": "Web development"
+                        }
+                    ] 
+                }
+            ],
+            "review": [
+                {
+                  "user_id": "3c3aeb0e-974f-41e3-b26c-9e2a8a1a1c30",
+                  "text": "Great course, this course has helped me become a better developer!",
+                  "rating": 4.5,
+                  "date": "2022-02-20"
+                }
+            ],
+            "courgrade": [
+                {
+                  "user_id": "3c3aeb0e-974f-41e3-b26c-9e2a8a1a1c30",
+                  "totalGrade": 0.0,
+                  "course": "Introduction to JavaScript"
+                }
+            ],
+            "difficulty": "Beginner"
+        }
+    ]
+}
+
+        
