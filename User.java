@@ -43,7 +43,7 @@ public class User {
         return this.lastname;
     }
 
-    public String email() {
+    public String getEmail() {
         if (email == null)
             return null;
         return this.email;
@@ -61,7 +61,7 @@ public class User {
         return false;
     }
 
-    public String userID() {
+    public String getUserID() {
         if (userID == null)
             return null;
         return this.userID;
