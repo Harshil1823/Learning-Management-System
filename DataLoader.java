@@ -32,7 +32,7 @@ public class DataLoader extends DataConstants {
         return user;
     }
 
-    public ArrayList<Author> getAuthors() {
+    /*public ArrayList<Author> getAuthors() {
         try {
             FileReader reader = new FileReader(USER_FILE_NAME);
             JSONParser parser = new JSONParser(); 
@@ -54,7 +54,7 @@ public class DataLoader extends DataConstants {
         }
         return author;
     }
-
+*/
     public void getCourses() {
         try {
         FileReader reader = new FileReader(COURSE_FILE_NAME);
