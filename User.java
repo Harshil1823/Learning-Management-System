@@ -6,8 +6,9 @@ public class User {
     protected String lastname;
     protected String email;
     protected String phoneNumber;
-    private String password;
     private String userName;
+    private String password;
+    
     private ArrayList<Course> grades;
     public ArrayList<User> users;
 
