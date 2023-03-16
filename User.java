@@ -11,9 +11,10 @@ public class User {
     private ArrayList<Course> grades;
     public ArrayList<User> users;
 
-    public boolean addUser(String firstname, String lastname, String email, String phonenumber, String password, String ) {
-        this.userName = username;
-        this.password = password;
+    public boolean addUser(String firstname, String lastname, String email, String phonenumber, String username,
+            String password, String author) {
+        this.firstname = firstname;
+        this.lastname = lastname;
     }
 
     // Might make check for innapropriate phrases.
@@ -23,14 +24,27 @@ public class User {
         return true;
     }
 
+    // Check valid phone number
+    public boolean validPhoneNumber(String phonenumber) {
+
+    }
+
+    // Check valid email
+    public boolean validEmail(String email) {
+
+    }
+
     public boolean validPassword(String password) {
         if (password.length() >= 8 && containsNumber(password) && containsSpecialCharacter(password))
             return true;
         return false;
     }
 
-    public boolean isAuthor() {
-
+    // check if author
+    public boolean isAuthor(String author) {
+        if (author.equalsIgnoreCase("yes"))
+            return true;
+        return false;
     }
 
     private boolean containsNumber(String password) {
