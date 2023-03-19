@@ -25,7 +25,7 @@ public class DataLoader extends DataConstants {
                 String uPhoneNumber = (String) userJSON.get(USER_PHONENUMBER);
                 String userName = (String) userJSON.get(USER_USERNAME);
                 String uPassword = (String) userJSON.get(USER_PASSWORD);
-                String isUser = (String) userJSON.get(IS_USER);
+                String isUser = (String) userJSON.get(IS_AUTHOR);
 
                 
                 user.add(new User());
@@ -49,10 +49,10 @@ public class DataLoader extends DataConstants {
             for(int i = 0; i < coursesArray.size(); i++ ){
                 JSONObject courseJSON = (JSONObject) coursesArray.get(i);
     
-                String courseId = (String) courseJSON.get("courseid");
-                String title = (String) courseJSON.get("title");
-                String description = (String) courseJSON.get("description");
-                String user_Id = (String) courseJSON.get("user_id");
+                String courseId = (String) courseJSON.get(COURSE_ID);
+                String title = (String) courseJSON.get(COURSE_TITLE);
+                String description = (String) courseJSON.get(COURSE_DESCRIPTION);
+                String user_Id = (String) courseJSON.get(USER_ID);
                 String difficulty = (String) courseJSON.get("difficulty");
     
                 JSONArray modulesJSON = (JSONArray) courseJSON.get("modules");
