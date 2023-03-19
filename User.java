@@ -129,4 +129,12 @@ public class User {
         }
         return false;
     }
+
+    public Object getUserName() {
+        return null;
+    }
+
+    public Object getPassword() {
+        return null;
+    }
 }

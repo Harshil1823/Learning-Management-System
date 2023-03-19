@@ -4,7 +4,7 @@
             "courseid": "d4b93270-c012-4ca5-bd7d-6e5c6f9979a9",
             "title": "Introduction to JavaScript",
             "description": "A course for beginners to learn programming in JavaScript",
-            "author_id": "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e",
+            "user_id": "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e",
             "modules": [
                 {
                     "title": "Module 1",

@@ -6,6 +6,9 @@ public class CourseGrade {
         this.course = course;
     }
 
+    public CourseGrade(String userID, String totalGrade2, String course2) {
+    }
+
     public double getTotalGrade() {
         return this.totalGrade;
     }

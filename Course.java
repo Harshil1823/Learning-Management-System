@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 public class Course {
-    private Author author;
     private String title;
     private String description;
     private Module modules;
     private ArrayList<String> reviews;
     private ArrayList<Comment> courseComment;
 
-    public Course(Author author, String title, String description, Difficulty difficulty) {
 
+    public Course(String courseId, String title, String description, String userId, ArrayList<Module> modules,
+            ArrayList<Review> reviews, ArrayList<CourseGrade> courseGrades, String difficulty) {
     }
 
     public void addTopic() {

@@ -6,11 +6,11 @@ public class UserList {
     private UserList(){
 
     }
-    public UserList getInstance(){
+    public static UserList getInstance(){
         return new UserList();
     }
 
-    public User getUser(String userName){
+    public static ArrayList<User> getUser(String userName){
         return new User();
     }
 }

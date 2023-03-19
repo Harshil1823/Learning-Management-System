@@ -5,6 +5,10 @@ public class Module {
     private ArrayList<Comment> moduleComment;
     private String title;
 
+    public Module(String moduleTitle, String moduleDescription, ArrayList<Topic> topics2, ArrayList<Question> questions,
+            ArrayList<Comment> comments) {
+    }
+
     public void addComments(){
         
     }
