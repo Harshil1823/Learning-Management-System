@@ -27,8 +27,9 @@ public class DataLoader extends DataConstants {
                 String uPassword = (String) userJSON.get(USER_PASSWORD);
                 String isUser = (String) userJSON.get(IS_AUTHOR);
 
+                User userObj = new User(userID, uFirstName, uLastName, userEmail, uPhoneNumber, userName, uPassword, isUser);
+                user.add(userObj);
                 
-                user.add(new User());
             }
 
         } catch (Exception e) {

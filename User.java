@@ -13,6 +13,10 @@ public class User {
     public ArrayList<User> users;
     public ArrayList<Course> courses;
 
+    public User(String userID2, String uFirstName, String uLastName, String userEmail, String uPhoneNumber,
+            String userName2, String uPassword, String isUser) {
+    }
+
     public boolean addUser(String firstname, String lastname, String email, String phonenumber, String username,
             String password, String userID) {
         if (validName(username) && validName(lastname) && validEmail(email) && validPhoneNumber(phonenumber)
