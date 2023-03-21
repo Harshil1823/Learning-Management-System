@@ -17,7 +17,7 @@ public class User {
             String userName2, String uPassword, String isUser) {
     }
 
-    public boolean addUser(String firstname, String lastname, String email, String phonenumber, String username,
+    public boolean validUser(String firstname, String lastname, String email, String phonenumber, String username,
             String password, String userID) {
         if (validName(username) && validName(lastname) && validEmail(email) && validPhoneNumber(phonenumber)
                 && validUsername(username) && validPassword(password) && validUserID(userID)) {
@@ -32,6 +32,10 @@ public class User {
             return true;
         }
         return false;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
     }
 
     public String getFirstName() {

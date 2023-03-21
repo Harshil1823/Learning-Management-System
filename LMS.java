@@ -1,6 +1,6 @@
 public class LMS {
-    public Login(){
-
+    public void Login(){
+        
     }
 
     public Logout(){
