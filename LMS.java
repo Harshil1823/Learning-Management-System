@@ -1,4 +1,5 @@
 public class LMS {
+    /* 
     public Login(){
 
     }
@@ -30,5 +31,5 @@ public class LMS {
     public DeleteCourse(){
         
     }
-
+    */
 }
