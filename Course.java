@@ -62,7 +62,8 @@ public class Course {
             System.out.println(grade.toString());
         }
     }
-    public String getAuthor(){
+
+    public String getAuthor() {
         return author;
     }
 

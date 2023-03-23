@@ -13,29 +13,28 @@ public class User {
     public ArrayList<User> users;
     public ArrayList<Course> courses;
 
-    public User(String userID2, String uFirstName, String uLastName, String userEmail, String uPhoneNumber,
-            String userName2, String uPassword, String isUser) {
-    }
-
-    public boolean validUser(String firstname, String lastname, String email, String phonenumber, String username,
-            String password, String userID) {
-        if (validName(username) && validName(lastname) && validEmail(email) && validPhoneNumber(phonenumber)
-                && validUsername(username) && validPassword(password) && validUserID(userID)) {
+    public User(String firstname, String lastname, String email, String phonenumber, String username,
+            String password, String userID, String isAuthor) {
+        if (validUser(firstname, lastname, email, phonenumber, username, password, userID, isAuthor)) {
             this.firstname = firstname;
             this.lastname = lastname;
             this.email = email;
             this.phonenumber = phonenumber;
             this.username = username;
             this.password = password;
-            this.isAuthor = containsSpecialCharacter(password) && containsNumber(password);
+            this.isAuthor = validAuthor(isAuthor);
             this.userID = userID;
+            users.add(this);
+        }
+    }
+
+    public boolean validUser(String firstname, String lastname, String email, String phonenumber, String username,
+            String password, String userID, String isAuthor) {
+        if (validName(username) && validName(lastname) && validEmail(email) && validPhoneNumber(phonenumber)
+                && validUsername(username) && validPassword(password) && validUserID(userID)) {
             return true;
         }
         return false;
-    }
-
-    public void addUser(User user) {
-        users.add(user);
     }
 
     public String getFirstName() {
@@ -84,6 +83,12 @@ public class User {
 
     private boolean validUserID(String userID) {
         return userID != null && !userID.isEmpty();
+    }
+
+    private boolean validAuthor(String isAuthor) {
+        if (isAuthor.equalsIgnoreCase("yes"))
+            return true;
+        return false;
     }
 
     private boolean containsNumber(String password) {
