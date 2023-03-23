@@ -27,9 +27,10 @@ public class DataLoader extends DataConstants {
                 String uPassword = (String) userJSON.get(USER_PASSWORD);
                 String isUser = (String) userJSON.get(IS_AUTHOR);
 
-                User userObj = new User(userID, uFirstName, uLastName, userEmail, uPhoneNumber, userName, uPassword, isUser);
+                User userObj = new User(uFirstName, uLastName, userEmail, uPhoneNumber,userName,uPassword,userID,isUser);
                 user.add(userObj);
-                
+                //public boolean validUser(String firstname, String lastname, String email, String phonenumber, String username,
+                //String password, String userID, String isAuthor)
             }
 
         } catch (Exception e) {
@@ -54,16 +55,17 @@ public class DataLoader extends DataConstants {
                 String title = (String) courseJSON.get(COURSE_TITLE);
                 String description = (String) courseJSON.get(COURSE_DESCRIPTION);
                 String user_Id = (String) courseJSON.get(USER_ID);
-                String difficulty = (String) courseJSON.get("difficulty");
-    
-                JSONArray modulesJSON = (JSONArray) courseJSON.get("modules");
+                String difficulty = (String) courseJSON.get(DIFFICULTY);
+                String author = (String) courseJSON.get(IS_AUTHOR);
+                
+                JSONArray modulesJSON = (JSONArray) courseJSON.get(COURSE_MODULE);
                 ArrayList<Module> modules = new ArrayList<Module>();
                 for(int j = 0; j < modulesJSON.size(); j++) {
                     JSONObject moduleJSON = (JSONObject) modulesJSON.get(j);
                     String moduleTitle = (String) moduleJSON.get("title");
                     String moduleDescription = (String) moduleJSON.get("description");
     
-                    JSONArray topicsJSON = (JSONArray) moduleJSON.get("topics");
+                    JSONArray topicsJSON = (JSONArray) moduleJSON.get(COURSE_TOPIC);
                     ArrayList<Topic> topics = new ArrayList<Topic>();
                     for(int k = 0; k < topicsJSON.size(); k++) {
                         JSONObject topicJSON = (JSONObject) topicsJSON.get(k);
@@ -72,7 +74,7 @@ public class DataLoader extends DataConstants {
                         topics.add(new Topic(topicTitle, topicDescription));
                     }
     
-                    JSONArray questionsJSON = (JSONArray) moduleJSON.get("questions");
+                    JSONArray questionsJSON = (JSONArray) moduleJSON.get(COURSE_QUESTIONS);
                     ArrayList<Question> questions = new ArrayList<Question>();
                     for(int k = 0; k < questionsJSON.size(); k++) {
                         JSONObject questionJSON = (JSONObject) questionsJSON.get(k);
@@ -87,7 +89,7 @@ public class DataLoader extends DataConstants {
                         questions.add(new Question(questionText, choices, correctChoice));
                     }
     
-                    JSONArray commentsJSON = (JSONArray) moduleJSON.get("comments");
+                    JSONArray commentsJSON = (JSONArray) moduleJSON.get(COMMENTS);
                     ArrayList<Comment> comments = new ArrayList<Comment>();
                     for(int k = 0; k < commentsJSON.size(); k++) {
                         JSONObject commentJSON = (JSONObject) commentsJSON.get(k);
@@ -99,7 +101,7 @@ public class DataLoader extends DataConstants {
                     modules.add(new Module(moduleTitle, moduleDescription, topics, questions, comments));
                 }
     
-                JSONArray reviewJSON = (JSONArray) courseJSON.get("review");
+                JSONArray reviewJSON = (JSONArray) courseJSON.get(REVIEW);
                 ArrayList<Review> reviews = new ArrayList<Review>();
                 for(int j = 0; j < reviewJSON.size(); j++) {
                     JSONObject reviewObj = (JSONObject) reviewJSON.get(j);
@@ -119,9 +121,12 @@ public class DataLoader extends DataConstants {
                     String course = (String) courGradObject.get("course");
                     courseGrades.add(new CourseGrade(userID,totalGrade,course));
                 }
-                Course course = new Course(courseId, title, description,user_Id, modules, reviews, courseGrades, difficulty);
+                //Course course = new Course(courseId, title, description,user_Id, modules, reviews, courseGrades, difficulty);
+                Course course = new Course(author, title, description, user_Id, courseId, difficulty, modules, reviews, courseGrades);
                 courses.add(course);
+ 
             }
+
         }catch (Exception e) {
             e.printStackTrace();
         }

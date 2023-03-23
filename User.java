@@ -53,6 +53,10 @@ public class User {
     public String getPhoneNumber() {
         return phonenumber;
     }
+    
+    public String getPassword(){
+        return password;
+    }
 
     public boolean isAuthor() {
         return isAuthor;

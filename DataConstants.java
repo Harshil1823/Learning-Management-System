@@ -16,4 +16,9 @@ protected static final String COURSE_ID = "courseid";
 protected static final String COURSE_TITLE="title";
 protected static final String COURSE_DESCRIPTION="description";
 protected static final String COURSE_MODULE="modules";
+protected static final String DIFFICULTY = "difficulty";
+protected static final String COURSE_TOPIC = "topic";
+protected static final String COURSE_QUESTIONS = "questions";
+protected static final String COMMENTS = "comments";
+protected static final String REVIEW = "review";
 }
