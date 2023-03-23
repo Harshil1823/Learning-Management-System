@@ -13,8 +13,7 @@ public class Course {
     private ArrayList<Comment> courseComments;
 
     public Course(String author, String title, String description, String userID, String courseID, String difficulty,
-            ArrayList<Module> modules, ArrayList<Review> reviews, ArrayList<CourseGrade> courseGrades,
-            ArrayList<Comment> courseComments) {
+            ArrayList<Module> modules, ArrayList<Review> reviews, ArrayList<CourseGrade> courseGrades) {
         this.author = author;
         this.title = title;
         this.description = description;
@@ -24,8 +23,11 @@ public class Course {
         this.modules = modules != null ? modules : new ArrayList<Module>();
         this.reviews = reviews != null ? reviews : new ArrayList<Review>();
         this.courseGrades = courseGrades != null ? courseGrades : new ArrayList<CourseGrade>();
-        this.courseComments = courseComments != null ? courseComments : new ArrayList<Comment>();
+       // this.courseComments = courseComments != null ? courseComments : new ArrayList<Comment>(); treated under review
     }
+
+ 
+    
 
     public void addModule(Module module) {
         modules.add(module);
