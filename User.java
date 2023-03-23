@@ -24,6 +24,7 @@ public class User {
             this.password = password;
             this.isAuthor = validAuthor(isAuthor);
             this.userID = userID;
+            users.add(this);
         }
     }
 
@@ -34,10 +35,6 @@ public class User {
             return true;
         }
         return false;
-    }
-
-    public void addUser(User user) {
-        users.add(user);
     }
 
     public String getFirstName() {
