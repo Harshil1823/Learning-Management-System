@@ -7,9 +7,10 @@ public class Module {
 
     public Module(String moduleTitle, String moduleDescription, ArrayList<Topic> topics2, ArrayList<Question> questions,
             ArrayList<Comment> comments) {
+
     }
 
-    public void addComments(){
-        
+    public void addComments(Comment comment){
+        moduleComment.add(comment);
     }
 }

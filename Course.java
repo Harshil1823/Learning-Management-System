@@ -1,36 +1,34 @@
 import java.util.ArrayList;
 
 public class Course {
-    private String courseId;
+    private String author;
     private String title;
     private String description;
-    private String userID; 
+    private String userID;
+    private String courseID;
+    private String difficulty;
     private ArrayList<Module> modules;
     private ArrayList<Review> reviews;
     private ArrayList<CourseGrade> courseGrades;
-    private String difficulty;
     private ArrayList<Comment> courseComments;
 
-    public Course(String courseId, String title, String description, String userID, ArrayList<Module> modules,
-            ArrayList<Review> reviews, ArrayList<CourseGrade> courseGrades, String difficulty) {
-        this.courseId = courseId;
+    public Course(String author, String title, String description, String userID, String courseID, String difficulty,
+            ArrayList<Module> modules, ArrayList<Review> reviews, ArrayList<CourseGrade> courseGrades,
+            ArrayList<Comment> courseComments) {
+        this.author = author;
         this.title = title;
         this.description = description;
+        this.userID = userID;
+        this.courseID = courseID;
+        this.difficulty = difficulty;
         this.modules = modules != null ? modules : new ArrayList<Module>();
         this.reviews = reviews != null ? reviews : new ArrayList<Review>();
         this.courseGrades = courseGrades != null ? courseGrades : new ArrayList<CourseGrade>();
-        this.difficulty = difficulty;
-        this.courseComments = new ArrayList<Comment>();
+        this.courseComments = courseComments != null ? courseComments : new ArrayList<Comment>();
     }
 
     public void addModule(Module module) {
         modules.add(module);
-    }
-
-    public void viewReviews() {
-        for (Review review : reviews) {
-            System.out.println(review.toString());
-        }
     }
 
     public void addReview(Review review) {
@@ -41,14 +39,30 @@ public class Course {
         courseGrades.add(grade);
     }
 
-    public void showModules() {
+    public void addComment(Comment comment) {
+        courseComments.add(comment);
+    }
+
+    public void viewModules() {
         for (Module module : modules) {
             System.out.println(module.toString());
         }
     }
 
-    public void addComment(Comment comment) {
-        courseComments.add(comment);
+    public void viewReviews() {
+        for (Review review : reviews) {
+            System.out.println(review.toString());
+        }
+    }
+
+    public void viewGrades() {
+        for (CourseGrade grade : courseGrades) {
+            System.out.println(grade.toString());
+        }
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
     public String getTitle() {
@@ -77,7 +91,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course [courseId=" + courseId + ", title=" + title + ", description=" + description + ", modules="
+        return "Course [courseId=" + courseID + ", title=" + title + ", description=" + description + ", modules="
                 + modules + ", reviews=" + reviews + ", courseGrades=" + courseGrades + ", difficulty=" + difficulty
                 + ", courseComments=" + courseComments + "]";
     }

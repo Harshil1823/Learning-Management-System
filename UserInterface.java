@@ -3,15 +3,8 @@ import java.util.Scanner;
 public class UserInterface {
     
     private static Scanner scanner = new Scanner(System.in);
-    private LMS facade;
+    private static LMS facade;
 
-    public UserInterface(){
-        scanner = new Scanner(System.in);
-        facade = new LMS();
-    }
-    /**
-     * This is a welcomeScreen that will printed when user first views our system
-     */
     public static void welcomeScreen() {
         int choice = 0;
         while(choice < 1 || choice > 5){
@@ -47,9 +40,45 @@ public class UserInterface {
         }
     }
 
+public static void displayAuthorMenu() {
+    int choice;
 
-    public static void main (String [] args) {
-        welcomeScreen();
-    }
+    do {
+        System.out.println("Author Menu");
+        System.out.println("1. View Courses");
+        System.out.println("2. Create Course");
+        System.out.println("3. Edit Course");
+        System.out.println("4. Delete Course");
+        System.out.println("5. Logout");
+        System.out.print("Enter your choice: ");
+        choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                // facade.viewCourses();
+                break;
+            case 2:
+                // facade.createCourse();
+                break;
+            case 3:
+                // facade.editCourse();
+                break;
+            case 4:
+                // facade.deleteCourse();
+                break;
+            case 5:
+                // facade.logout();
+                System.out.println("Logged out successfully.");
+                break;
+            default:
+                System.out.println("Invalid choice, please try again.");
+                break;
+        }
+    } while (choice != 5);
 }
 
+    public static void main(String[] args) {
+        welcomeScreen();
+    }
+    
+} // end of class
