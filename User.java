@@ -13,6 +13,7 @@ public class User {
     public ArrayList<User> users;
     public ArrayList<Course> courses;
 
+    // Checks if user valid and adds to user list.
     public User(String firstname, String lastname, String email, String phonenumber, String username,
             String password, String userID, String isAuthor) {
         if (validUser(firstname, lastname, email, phonenumber, username, password, userID, isAuthor)) {
@@ -57,6 +58,10 @@ public class User {
         return isAuthor;
     }
 
+    public String getUserName() {
+        return username;
+    }
+
     public int getUserID() {
         return Integer.parseInt(userID);
     }
@@ -97,13 +102,5 @@ public class User {
 
     private boolean containsSpecialCharacter(String password) {
         return password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
-    }
-
-    public String getUserName() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
     }
 }
