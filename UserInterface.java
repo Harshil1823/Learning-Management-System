@@ -20,16 +20,18 @@ public class UserInterface {
             switch(choice){
                 case 1:
                     //TODO call loginScreen here and verify using facade if user can log in
-                    logIn();
+                    loginUser();
                     break;
                 case 2:
-                    logIn();
+                    loginAuthor();
                     //TODO call loginScreen here and verify using facade if author can log in
                     break;
                 case 3:
+                    RegistrationScreenAuthor();
                     //TODO call register as an author
                     break;
                 case 4:
+                    RegistrationScreenUser();
                     //TODO call register as a user
                     break;
                 case 5:
@@ -42,6 +44,7 @@ public class UserInterface {
             }
         }
     }
+
 
     public static void displayAuthorMenu() {
         int choice;
@@ -80,12 +83,102 @@ public class UserInterface {
         } while (choice != 5);
     }
 
-    public static void logIn() {
+    public static void loginUser() {
         System.out.println("Please enter your username to log in: ");
         String userName = scanner.nextLine();
         System.out.println("Enter your password: ");
         String password = scanner.nextLine();
+
+        //TODO call checkLoginUser method in facade that checks if 
+        // the user is in the database that can login
+        // and if they are not in the database then don't
+        // log them in
     }
+
+    private static void loginAuthor() {
+        System.out.println("Please enter your username to log in: ");
+        String userName = scanner.nextLine();
+
+        System.out.println("Enter your password: ");
+        String password = scanner.nextLine();
+
+        // TODO call checkLoginAuthor method in facade that checks if 
+        // the author is in the database that can login
+        // and if they are not in the database then don't
+        // log them in
+    }
+
+
+    public static void RegistrationScreenUser() {
+        
+        System.out.println("Please enter the provided information below to register as User.");
+        System.out.print("First Name: ");
+        String firstName = scanner.nextLine();
+        
+        System.out.print("Last Name: ");
+        String lastName = scanner.nextLine();
+        
+        System.out.print("Email Address: ");
+        String email = scanner.nextLine();
+        
+        System.out.print("Phone Number: ");
+        String phoneNumber = scanner.nextLine();
+        
+        System.out.print("Username: ");
+        String username = scanner.nextLine();
+        
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+        
+        // TODO: Add method to create new user with the provided information.
+        // You can call a method from your facade class to handle this task.
+    }
+
+    public static void RegistrationScreenAuthor() {
+
+        System.out.println("Please enter the provided information below to register as a Author.");
+        System.out.print("First Name: ");
+        String firstName = scanner.nextLine();
+        
+        System.out.print("Last Name: ");
+        String lastName = scanner.nextLine();
+        
+        System.out.print("Email Address: ");
+        String email = scanner.nextLine();
+        
+        System.out.print("Phone Number: ");
+        String phoneNumber = scanner.nextLine();
+        
+        System.out.print("Username: ");
+        String username = scanner.nextLine();
+        
+        System.out.print("Password: ");
+        String password = scanner.nextLine();
+        
+        // TODO: Add method to create new author with the provided information.
+        // You can call a method from your facde class to handle this task.
+        // Remember to set the isAuthor flag to true for the new author.
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
         welcomeScreen();
