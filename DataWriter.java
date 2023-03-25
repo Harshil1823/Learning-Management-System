@@ -1,4 +1,5 @@
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
@@ -19,7 +20,7 @@ public class DataWriter extends DataConstants {
             userObj.put(USER_PHONENUMBER, user.getPhoneNumber());
             userObj.put(USER_USERNAME, user.getUserName());
             userObj.put(USER_PASSWORD, user.getPassword());
-            userObj.put(IS_AUTHOR, user.getIsAuthor());
+            userObj.put(IS_AUTHOR, user.isAuthor());
             userArray.add(userObj);
         }
         try (FileWriter file = new FileWriter(USER_FILE_NAME)) {
@@ -29,83 +30,85 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
-    public void saveCourses(ArrayList<Course> courses) {
+    public static void saveCourses(ArrayList<Course> courses) {
         JSONArray courseArray = new JSONArray();
         for (Course course : courses) {
             JSONObject courseObj = new JSONObject();
-            courseObj.put(COURSE_ID, course.getCourseId());
-            courseObj.put(COURSE_TITLE, course.getTitle());
-            courseObj.put(COURSE_DESCRIPTION, course.getDescription());
-            courseObj.put(USER_ID, course.getUser_Id());
-            courseObj.put(DIFFICULTY, course.getDifficulty());
-            courseObj.put(IS_AUTHOR, course.getIsAuthor());
-    
+            courseObj.put("courseId", course.getCourseId());
+            courseObj.put("title", course.getTitle());
+            courseObj.put("description", course.getDescription());
+            courseObj.put("userId", course.getUser_Id());
+            courseObj.put("difficulty", course.getDifficulty());
+            
+
             JSONArray moduleArray = new JSONArray();
             for (Module module : course.getModules()) {
                 JSONObject moduleObj = new JSONObject();
-                moduleObj.put(MODULE_TITLE, module.getTitle());
-                moduleObj.put(MODULE_DESCRIPTION, module.getDescription());
-    
+                moduleObj.put("title", module.getTitle());
+                moduleObj.put("description", module.getDescription());
+
                 JSONArray topicArray = new JSONArray();
                 for (Topic topic : module.getTopics()) {
                     JSONObject topicObj = new JSONObject();
-                    topicObj.put(TOPIC_TITLE, topic.getTitle());
-                    topicObj.put(TOPIC_DESCRIPTION, topic.getDescription());
+                    topicObj.put("title", topic.getTitle());
+                    topicObj.put("description", topic.getDescription());
                     topicArray.add(topicObj);
                 }
-                moduleObj.put(MODULE_TOPIC, topicArray);
-    
+                moduleObj.put("topics", topicArray);
+
                 JSONArray questionArray = new JSONArray();
                 for (Question question : module.getQuestions()) {
                     JSONObject questionObj = new JSONObject();
-                    questionObj.put(QUESTION_TEXT, question.getQuestionText());
-    
+                    questionObj.put("questionText", question.getQuestionText());
+
                     JSONArray choicesArray = new JSONArray();
                     for (String choice : question.getChoices()) {
                         choicesArray.add(choice);
                     }
-                    questionObj.put(QUESTION_CHOICES, choicesArray);
-                    questionObj.put(CORRECT_CHOICE, question.getCorrectChoice());
+                    questionObj.put("choices", choicesArray);
+                    questionObj.put("correctChoice", question.getCorrectChoice());
                     questionArray.add(questionObj);
                 }
-                moduleObj.put(MODULE_QUESTIONS, questionArray);
-    
+                moduleObj.put("questions", questionArray);
+
                 JSONArray commentsArray = new JSONArray();
                 for (Comment comment : module.getComments()) {
                     JSONObject commentObj = new JSONObject();
-                    commentObj.put(USER_ID, comment.getUserID());
-                    commentObj.put(COMMENT_TEXT, comment.getText());
+                    commentObj.put("userId", comment.getUserId());
+                    commentObj.put("text", comment.getText());
                     commentsArray.add(commentObj);
                 }
-                moduleObj.put(MODULE_COMMENTS, commentsArray);
-    
+                moduleObj.put("comments", commentsArray);
+
                 JSONArray moduleGradeArray = new JSONArray();
                 for (ModuleGrade moduleGrade : module.getModuleGrades()) {
                     JSONObject moduleGradeObj = new JSONObject();
-                    moduleGradeObj.put(GRADE1, moduleGrade.getGrade1());
-                    moduleGradeObj.put(GRADE2, moduleGrade.getGrade2());
+                    moduleGradeObj.put("grade1", moduleGrade.getGrade1());
+                    moduleGradeObj.put("grade2", moduleGrade.getGrade2());
                     moduleGradeArray.add(moduleGradeObj);
                 }
-                moduleObj.put(MODULE_GRADE, moduleGradeArray);
-    
+                moduleObj.put("moduleGrades", moduleGradeArray);
+
                 moduleArray.add(moduleObj);
             }
-            courseObj.put(COURSE_MODULE, moduleArray);
-    
+            courseObj.put("modules", moduleArray);
+
             JSONArray reviewArray = new JSONArray();
             for (Review review : course.getReviews()) {
                 JSONObject reviewObj = new JSONObject();
-                reviewObj.put(USER_ID, review.getUserID());
-                reviewObj.put(REVIEW_TEXT, review.getText());
-                reviewObj.put(RATING, review.getRating());
+                reviewObj.put("userId", review.getUserId());
+                reviewObj.put("text", review.getText());
+                reviewObj.put("rating", review.getRating());
                 reviewArray.add(reviewObj);
             }
-            courseObj.put(COURSE_REVIEWS, reviewArray);
-    
+            courseObj.put("reviews", reviewArray);
+
             courseArray.add(courseObj);
         }
-        try (FileWriter file = new FileWriter(DATA_FILE)) {
+
+        try (FileWriter file = new FileWriter(COURSE_FILE_NAME)) {
             file.write(courseArray.toJSONString());
+            file.flush();
         } catch (IOException e) {
             e.printStackTrace();
         }

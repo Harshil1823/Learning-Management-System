@@ -12,4 +12,12 @@ public class Comment {
     public boolean checkValidComment(String Comment){
         return true;
     }
+
+    public Object getUserId() {
+        return null;
+    }
+
+    public Object getText() {
+        return null;
+    }
 }

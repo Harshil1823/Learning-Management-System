@@ -90,11 +90,32 @@ public class Course {
     public ArrayList<Comment> getCourseComments() {
         return courseComments;
     }
+    public String getCourseId() {
+        return courseID;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseID = courseId;
+    }
 
     @Override
     public String toString() {
         return "Course [courseId=" + courseID + ", title=" + title + ", description=" + description + ", modules="
                 + modules + ", reviews=" + reviews + ", courseGrades=" + courseGrades + ", difficulty=" + difficulty
                 + ", courseComments=" + courseComments + "]";
+    }
+
+
+
+
+    public Object getUser_Id() {
+        return null;
+    }
+
+
+
+
+    public Module[] getModules() {
+        return null;
     }
 }
