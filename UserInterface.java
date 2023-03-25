@@ -160,6 +160,17 @@ public class UserInterface {
         // Remember to set the isAuthor flag to true for the new author.
     }
 
+    public void displayHomeScreen(User user) {
+        System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() +"!");
+        System.out.println("You are currently enrolled in the following courses:");
+        List<Course> courses = user.getCourses();
+        for (int i = 0; i < courses.size(); i++) {
+            System.out.println("[" + (i+1) + "] " + courses.get(i).getTitle());
+        }
+        System.out.println("[0] Back to main menu");
+        System.out.println("Enter the number of the course you wish to view:");
+    }
+    
 
 
 
