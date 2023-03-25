@@ -42,7 +42,13 @@
                           ],
                           "correctChoice": "Web development"
                         }
-                    ] 
+                    ],
+                    "modulegrade": [
+                      {
+                        "module1":"85",
+                        "module2":"100"
+                      }
+                  ] 
                 }
             ],
             "review": [

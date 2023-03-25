@@ -59,75 +59,89 @@ public class DataLoader extends DataConstants {
                 String author = (String) courseJSON.get(IS_AUTHOR);
                 
                 JSONArray modulesJSON = (JSONArray) courseJSON.get(COURSE_MODULE);
-                ArrayList<Module> modules = new ArrayList<Module>();
-                for(int j = 0; j < modulesJSON.size(); j++) {
-                    JSONObject moduleJSON = (JSONObject) modulesJSON.get(j);
-                    String moduleTitle = (String) moduleJSON.get("title");
-                    String moduleDescription = (String) moduleJSON.get("description");
-    
-                    JSONArray topicsJSON = (JSONArray) moduleJSON.get(COURSE_TOPIC);
-                    ArrayList<Topic> topics = new ArrayList<Topic>();
-                    for(int k = 0; k < topicsJSON.size(); k++) {
-                        JSONObject topicJSON = (JSONObject) topicsJSON.get(k);
-                        String topicTitle = (String) topicJSON.get("title");
-                        String topicDescription = (String) topicJSON.get("description");
-                        topics.add(new Topic(topicTitle, topicDescription));
-                    }
-    
-                    JSONArray questionsJSON = (JSONArray) moduleJSON.get(COURSE_QUESTIONS);
-                    ArrayList<Question> questions = new ArrayList<Question>();
-                    for(int k = 0; k < questionsJSON.size(); k++) {
-                        JSONObject questionJSON = (JSONObject) questionsJSON.get(k);
-                        String questionText = (String) questionJSON.get("questionText");
-                        JSONArray choicesJSON = (JSONArray) questionJSON.get("choices");
-                        ArrayList<String> choices = new ArrayList<String>();
-                        for(int l = 0; l < choicesJSON.size(); l++) {
-                            String choice = (String) choicesJSON.get(l);
-                            choices.add(choice);
+            ArrayList<Module> modules = new ArrayList<Module>();
+            for(int j = 0; j < modulesJSON.size(); j++) {
+                JSONObject moduleJSON = (JSONObject) modulesJSON.get(j);
+                String moduleTitle = (String) moduleJSON.get("title");
+                String moduleDescription = (String) moduleJSON.get("description");
+
+                JSONArray topicsJSON = (JSONArray) moduleJSON.get(COURSE_TOPIC);
+                ArrayList<Topic> topics = new ArrayList<Topic>();
+                for(int k = 0; k < topicsJSON.size(); k++) {
+                    JSONObject topicJSON = (JSONObject) topicsJSON.get(k);
+                    String topicTitle = (String) topicJSON.get("title");
+                    String topicDescription = (String) topicJSON.get("description");
+                    topics.add(new Topic(topicTitle, topicDescription));
+                }
+                JSONArray questionsJSON = (JSONArray) moduleJSON.get(COURSE_QUESTIONS);
+                        ArrayList<Question> questions = new ArrayList<Question>();
+                        for(int k = 0; k < questionsJSON.size(); k++) {
+                            JSONObject questionJSON = (JSONObject) questionsJSON.get(k);
+                            String questionText = (String) questionJSON.get("questionText");
+                            JSONArray choicesJSON = (JSONArray) questionJSON.get("choices");
+                            ArrayList<String> choices = new ArrayList<String>();
+                            for(int l = 0; l < choicesJSON.size(); l++) {
+                                String choice = (String) choicesJSON.get(l);
+                                choices.add(choice);
+                            }
+                            String correctChoice = (String) questionJSON.get("correctChoice");
+                            Question question = new Question(questionText, choices, correctChoice);
+                            questions.add(question);
                         }
-                        String correctChoice = (String) questionJSON.get("correctChoice");
-                        questions.add(new Question(questionText, choices, correctChoice));
-                    }
-    
-                    JSONArray commentsJSON = (JSONArray) moduleJSON.get(COMMENTS);
-                    ArrayList<Comment> comments = new ArrayList<Comment>();
-                    for(int k = 0; k < commentsJSON.size(); k++) {
-                        JSONObject commentJSON = (JSONObject) commentsJSON.get(k);
-                        String userId = (String) commentJSON.get("user_id");
-                        String text = (String) commentJSON.get("text");
-                        comments.add(new Comment(userId, text));
-                    }
-    
-                    modules.add(new Module(moduleTitle, moduleDescription, topics, questions, comments));
-                }
-    
-                JSONArray reviewJSON = (JSONArray) courseJSON.get(REVIEW);
-                ArrayList<Review> reviews = new ArrayList<Review>();
-                for(int j = 0; j < reviewJSON.size(); j++) {
-                    JSONObject reviewObj = (JSONObject) reviewJSON.get(j);
-                    String userId = (String) reviewObj.get("user_id");
-                    String text = (String) reviewObj.get("text");
-                    double rating = (double) reviewObj.get("rating");
-                    String date = (String) reviewObj.get("date");
-                    reviews.add(new Review(userId, text, rating, date));
-                }
-    
-                JSONArray courgradeJSON = (JSONArray) courseJSON.get("courgrade");
+
+            JSONArray commentsJSON = (JSONArray) moduleJSON.get(COMMENTS);
+            ArrayList<Comment> comments = new ArrayList<Comment>();
+            for(int g = 0; g < commentsJSON.size(); g++) {
+                JSONObject commentJSON = (JSONObject) commentsJSON.get(g);
+                String userId = (String) commentJSON.get("user_id");
+                String text = (String) commentJSON.get("text");
+                comments.add(new Comment(userId, text));
+            }
+            
+            JSONArray moduleGradeArray = (JSONArray) moduleJSON.get("modulegrade");
+            ArrayList<ModuleGrade> moduleGrades = new ArrayList<ModuleGrade>();
+            for(int l = 0; l < moduleGradeArray.size(); l++) {
+                JSONObject moduleGradeJSON = (JSONObject) moduleGradeArray.get(l);
+                String grade1 = (String) moduleGradeJSON.get("grade1");
+                String grade2 = (String) moduleGradeJSON.get("grade2");
+                ModuleGrade moduleGrade = new ModuleGrade(grade1, grade2);
+                moduleGrades.add(moduleGrade);
+            }
+            
+            Module module = new Module(moduleTitle, moduleDescription, topics, questions, comments, moduleGrades);
+            module.setModuleGrades(moduleGrades);
+            modules.add(module);
+        
+            
+        }
+        JSONArray reviewJSON = (JSONArray) courseJSON.get(REVIEW);
+        ArrayList<Review> reviews = new ArrayList<Review>();
+        for(int m = 0; m < reviewJSON.size(); m++) {
+            JSONObject reviewObj = (JSONObject) reviewJSON.get(m);
+            String userId = (String) reviewObj.get("user_id");
+            String text = (String) reviewObj.get("text");
+            String rating = (String) reviewObj.get("rating");
+            String date = (String) reviewObj.get("date");
+            reviews.add(new Review(userId, text, rating, date));
+        }
+        JSONArray courgradeJSON = (JSONArray) courseJSON.get("courgrade");
                 ArrayList<CourseGrade> courseGrades = new ArrayList<CourseGrade>();
-                for(int j=0;j<courgradeJSON.size();j++){
-                    JSONObject courGradObject = (JSONObject) courgradeJSON.get(j);
+                for(int n=0;n<courgradeJSON.size();n++){
+                    JSONObject courGradObject = (JSONObject) courgradeJSON.get(n);
                     String userID = (String) courGradObject.get("user_id");
                     String totalGrade = (String) courGradObject.get("totalGrade");
                     String course = (String) courGradObject.get("course");
                     courseGrades.add(new CourseGrade(userID,totalGrade,course));
                 }
+
+
                 //Course course = new Course(courseId, title, description,user_Id, modules, reviews, courseGrades, difficulty);
                 Course course = new Course(author, title, description, user_Id, courseId, difficulty, modules, reviews, courseGrades);
                 courses.add(course);
  
             }
-
-        }catch (Exception e) {
+            
+            }catch (Exception e) {
             e.printStackTrace();
         }
         return courses;

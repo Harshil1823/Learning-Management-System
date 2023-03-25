@@ -6,4 +6,5 @@ public class Topic {
         this.title = topicTitle;
         this.description = topicDescription;
     }
+    
 }
