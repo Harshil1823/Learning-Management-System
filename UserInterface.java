@@ -15,13 +15,16 @@ public class UserInterface {
             System.out.println("Press 4, to register as a user.");
             System.out.println("Press 5, to view all courses available.");
             choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch(choice){
                 case 1:
-                    //TODO call login as a user method in facade
+                    //TODO call loginScreen here and verify using facade if user can log in
+                    logIn();
                     break;
                 case 2:
-                    //TODO call login as a author
+                    logIn();
+                    //TODO call loginScreen here and verify using facade if author can log in
                     break;
                 case 3:
                     //TODO call register as an author
@@ -40,42 +43,49 @@ public class UserInterface {
         }
     }
 
-public static void displayAuthorMenu() {
-    int choice;
+    public static void displayAuthorMenu() {
+        int choice;
 
-    do {
-        System.out.println("Author Menu");
-        System.out.println("1. View Courses");
-        System.out.println("2. Create Course");
-        System.out.println("3. Edit Course");
-        System.out.println("4. Delete Course");
-        System.out.println("5. Logout");
-        System.out.print("Enter your choice: ");
-        choice = scanner.nextInt();
+        do {
+            System.out.println("Author Menu");
+            System.out.println("1. View Courses");
+            System.out.println("2. Create Course");
+            System.out.println("3. Edit Course");
+            System.out.println("4. Delete Course");
+            System.out.println("5. Logout");
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
 
-        switch (choice) {
-            case 1:
-                // facade.viewCourses();
-                break;
-            case 2:
-                // facade.createCourse();
-                break;
-            case 3:
-                // facade.editCourse();
-                break;
-            case 4:
-                // facade.deleteCourse();
-                break;
-            case 5:
-                // facade.logout();
-                System.out.println("Logged out successfully.");
-                break;
-            default:
-                System.out.println("Invalid choice, please try again.");
-                break;
-        }
-    } while (choice != 5);
-}
+            switch (choice) {
+                case 1:
+                    // facade.viewCourses();
+                    break;
+                case 2:
+                    // facade.createCourse();
+                    break;
+                case 3:
+                    // facade.editCourse();
+                    break;
+                case 4:
+                    // facade.deleteCourse();
+                    break;
+                case 5:
+                    // facade.logout();
+                    System.out.println("Logged out successfully.");
+                    break;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+                    break;
+            }
+        } while (choice != 5);
+    }
+
+    public static void logIn() {
+        System.out.println("Please enter your username to log in: ");
+        String userName = scanner.nextLine();
+        System.out.println("Enter your password: ");
+        String password = scanner.nextLine();
+    }
 
     public static void main(String[] args) {
         welcomeScreen();
