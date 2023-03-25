@@ -102,9 +102,9 @@ public class DataLoader extends DataConstants {
             ArrayList<ModuleGrade> moduleGrades = new ArrayList<ModuleGrade>();
             for(int l = 0; l < moduleGradeArray.size(); l++) {
                 JSONObject moduleGradeJSON = (JSONObject) moduleGradeArray.get(l);
-                String grade1 = (String) moduleGradeJSON.get("grade1");
-                String grade2 = (String) moduleGradeJSON.get("grade2");
-                ModuleGrade moduleGrade = new ModuleGrade(grade1, grade2);
+                String quiz = (String) moduleGradeJSON.get("grade1");
+                String finalGrade = (String) moduleGradeJSON.get("grade2");
+                ModuleGrade moduleGrade = new ModuleGrade(quiz, finalGrade);
                 moduleGrades.add(moduleGrade);
             }
             

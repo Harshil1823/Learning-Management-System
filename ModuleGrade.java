@@ -1,25 +1,63 @@
+
+/**
+ * @author JavaDoc
+ * Represents grades for module.
+ */
 public class ModuleGrade {
-    private String grade1;
-    private String grade2;
+    private double quiz;
+    private double finalGrade;
 
-    public ModuleGrade(String grade1, String grade2) {
-        this.grade1 = grade1;
-        this.grade2 = grade2;
+    /**
+     * Constructor to initalize a module grade.
+     * @param quiz       String of quiz grade from module.
+     * @param finalGrade String of final grade from module.
+     */
+    public ModuleGrade(String quiz, String finalGrade) {
+        setQuizGrade(quiz);
+        setFinalGrade(finalGrade);
     }
 
-    public String getGrade1() {
-        return grade1;
+    /**
+     * Returns quiz grade of module.
+     * @return Type double of quize grade.
+     */
+    public double getQuiz() {
+        return this.quiz;
     }
 
-    public String getGrade2() {
-        return grade2;
+    /**
+     * Returns final grade of module.
+     * @return Type double of final grade.
+     */
+    public double getFinalGrade() {
+        return this.finalGrade;
     }
 
-    public void setGrade1(String grade1) {
-        this.grade1 = grade1;
+    /**
+     * Sets quiz grade as type double.
+     * @param quiz String of quiz score.
+     */
+    public void setQuizGrade(String grade) {
+        double tmpGrade = Double.parseDouble(grade);
+        if (tmpGrade >= 0 && tmpGrade <= 100)
+            this.finalGrade = Double.parseDouble(grade);
     }
 
-    public void setGrade2(String grade2) {
-        this.grade2 = grade2;
+    /**
+     * Sets final grade as type double.
+     * @param finalGrade String of final grade.
+     */
+    public void setFinalGrade(String grade) {
+        double tmpGrade = Double.parseDouble(grade);
+        if (tmpGrade >= 0 && tmpGrade <= 100)
+            this.finalGrade = Double.parseDouble(grade);
+    }
+
+    /**
+     * Returns weighted grade of module.
+     * @return double of weighted grade.
+     */
+    public double getTotalGrade() {
+        return (this.quiz * .20) + (this.finalGrade * .80);
     }
 }
