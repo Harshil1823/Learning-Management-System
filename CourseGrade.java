@@ -1,39 +1,70 @@
 import java.util.ArrayList;
 
+/**
+ * @author JavaDoc
+ * Represents grade for course.
+ */
 public class CourseGrade {
 
     private Course course;
     private String userID;
     private double totalGrade;
-    private double finalGrade;
-    private double quizGrade;
-    private ArrayList<Double> moduleGrades;
+    private ArrayList<ModuleGrade> moduleGrades;
 
-    public CourseGrade(Course course, String userID, double finalGrade, double quizGrade) {
+    /**
+     * Constructor to initialize CourseGrade.
+     * @param course Type Course of course.
+     * @param userID Type String of userID.
+     */
+    public CourseGrade(Course course, String userID) {
         this.course = course;
         this.userID = userID;
-        this.totalGrade = (this.finalGrade * .80) + (this.quizGrade * .20);
-        this.moduleGrades = new ArrayList<Double>();
+        if (moduleGrades == null)
+            moduleGrades = new ArrayList<ModuleGrade>();
     }
 
-    public double getTotalGrade() {
-        return this.totalGrade;
-    }
-
+    /**
+     * Returns course.
+     * @return Type Course of course.
+     */
     public Course getCourse() {
         return this.course;
     }
 
+    /**
+     * Returns user id.
+     * @return String of user id.
+     */
     public String getUserID() {
         return this.userID;
     }
 
-    public ArrayList<Double> getModuleGrades() {
+    /**
+     * Calculates total grade and returns it.
+     * @return double of course grade.
+     */
+    public double getTotalGrade() {
+        double total = 0;
+        for(int i = 0; i < moduleGrades.size(); i++)
+            total += moduleGrades.get(i).getTotalGrade();
+        total = total / moduleGrades.size();
+        return total;
+    }
+
+    /**
+     * Returns module grades.
+     * @return Type ArrayList<ModuleGrade> of module grades.
+     */
+    public ArrayList<ModuleGrade> getModuleGrades() {
         return this.moduleGrades;
     }
 
-    public void addModuleGrade(double grade) {
-        if (grade >= 0)
-            moduleGrades.add(grade);
+    /**
+     * Adds modulegrade to list.
+     * @param moduleGrade Type ModuleGrade to add.
+     */
+    public void addModuleGrade(ModuleGrade moduleGrade) {
+        moduleGrades.add(moduleGrade);
     }
+
 }
