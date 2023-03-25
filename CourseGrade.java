@@ -1,31 +1,39 @@
+import java.util.ArrayList;
+
 public class CourseGrade {
-    private double totalGrade;
+
     private Course course;
+    private String userID;
+    private double totalGrade;
+    private double finalGrade;
+    private double quizGrade;
+    private ArrayList<Double> moduleGrades;
 
-    public CourseGrade(Course course){
+    public CourseGrade(Course course, String userID, double finalGrade, double quizGrade) {
         this.course = course;
-    }
-
-    public CourseGrade(String userID, String totalGrade2, String course2) {
+        this.userID = userID;
+        this.totalGrade = (this.finalGrade * .80) + (this.quizGrade * .20);
+        this.moduleGrades = new ArrayList<Double>();
     }
 
     public double getTotalGrade() {
         return this.totalGrade;
     }
 
-    public void setTotalGrade(double totalGrade){
-
+    public Course getCourse() {
+        return this.course;
     }
 
-    public void addCourseGrade(double grade){
-
+    public String getUserID() {
+        return this.userID;
     }
 
-    public void addTestGrade(double grade){
-
+    public ArrayList<Double> getModuleGrades() {
+        return this.moduleGrades;
     }
 
-    public void addModuleGrade(double grade){
-        
+    public void addModuleGrade(double grade) {
+        if (grade >= 0)
+            moduleGrades.add(grade);
     }
 }
