@@ -209,4 +209,11 @@ public class User {
     private boolean containsSpecialCharacter(String password) {
         return password.matches(".*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?].*");
     }
+    /**
+     * accesing this in the UI, and that's why it's public
+     * @return all the courses that user is taking
+     */
+    public ArrayList<Course> getCourses() {
+        return courses;
+    }
 }
