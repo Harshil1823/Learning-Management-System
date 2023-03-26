@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -20,7 +21,9 @@ public class UserInterface {
             switch(choice){
                 case 1:
                     //TODO call loginScreen here and verify using facade if user can log in
-                    loginUser();
+                    User user = loginUser();
+                    // passing in the logged in user
+                    displayHomeScreen(user);
                     break;
                 case 2:
                     loginAuthor();
@@ -83,16 +86,33 @@ public class UserInterface {
         } while (choice != 5);
     }
 
-    public static void loginUser() {
+    public static User loginUser() {
         System.out.println("Please enter your username to log in: ");
         String userName = scanner.nextLine();
         System.out.println("Enter your password: ");
         String password = scanner.nextLine();
 
+        LMS userFacade = new LMS();
+
+        // Call checkLoginUser method in facade that checks 
+        // if the user is in the database and can login
+        boolean isLoggedIn = userFacade.checkLoginUser(userName, password);
+
+        if (isLoggedIn) {
+            System.out.println("You have successfully logged in!");
+            User user = userFacade.getUserByUsername(userName);
+            return user;
+        } else {
+            System.out.println("Invalid username or password. Please try again.");
+            return null;
+        }
+
         //TODO call checkLoginUser method in facade that checks if 
         // the user is in the database that can login
         // and if they are not in the database then don't
         // log them in
+        return null;
+                  
     }
 
     private static void loginAuthor() {
@@ -160,7 +180,7 @@ public class UserInterface {
         // Remember to set the isAuthor flag to true for the new author.
     }
 
-    public void displayHomeScreen(User user) {
+    public static void displayHomeScreen(User user) {
         System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() +"!");
         System.out.println("You are currently enrolled in the following courses:");
         List<Course> courses = user.getCourses();
@@ -169,26 +189,25 @@ public class UserInterface {
         }
         System.out.println("[0] Back to main menu");
         System.out.println("Enter the number of the course you wish to view:");
+        int choice = scanner.nextInt();
+        scanner.nextLine();
+        if (choice == 0) {
+            displayMainMenu();
+        } else if (choice > 0 && choice <= courses.size()) {
+            Course selectedCourse = courses.get(choice);
+            displayCourse(selectedCourse);
+        } else {
+            System.out.println("Invalid choice. Please try again.");
+            displayHomeScreen(user);
+        }
     }
     
+    private static void displayCourse(Course selectedCourse) {
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private static void displayMainMenu() {
+    }
 
 
     public static void main(String[] args) {
