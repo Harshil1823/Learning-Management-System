@@ -34,10 +34,10 @@ public class DataWriter extends DataConstants {
         JSONArray courseArray = new JSONArray();
         for (Course course : courses) {
             JSONObject courseObj = new JSONObject();
-            courseObj.put("courseId", course.getCourseId());
+            courseObj.put("courseId", course.getCourseID());
             courseObj.put("title", course.getTitle());
             courseObj.put("description", course.getDescription());
-            courseObj.put("userId", course.getUser_Id());
+            courseObj.put("userId", course.getUser_ID());
             courseObj.put("difficulty", course.getDifficulty());
             
 
@@ -81,15 +81,16 @@ public class DataWriter extends DataConstants {
                 moduleObj.put("comments", commentsArray);
 
                 JSONArray moduleGradeArray = new JSONArray();
-                for (ModuleGrade moduleGrade : module.getModuleGrades()) {
-                    JSONObject moduleGradeObj = new JSONObject();
-                    moduleGradeObj.put("grade1", moduleGrade.getGrade1());
-                    moduleGradeObj.put("grade2", moduleGrade.getGrade2());
-                    moduleGradeArray.add(moduleGradeObj);
-                }
+                    for (ModuleGrade moduleGrade : module.getModuleGrades()) {
+                        JSONObject moduleGradeObj = new JSONObject();
+                        moduleGradeObj.put("quiz", moduleGrade.getQuiz());
+                        moduleGradeObj.put("finalGrade", moduleGrade.getFinalGrade());
+                        moduleGradeArray.add(moduleGradeObj);
+                    }
                 moduleObj.put("moduleGrades", moduleGradeArray);
 
                 moduleArray.add(moduleObj);
+
             }
             courseObj.put("modules", moduleArray);
 
