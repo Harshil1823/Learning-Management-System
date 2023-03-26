@@ -33,8 +33,17 @@ public class CourseList {
         courses.add(course);
     }
 
-    public void editCourse() {
-        //not sure what this means.
+    /**
+     * Returns course by title. If not found returns null.
+     * @param title Course title to search for.
+     * @return Course with same title. Otherwise null.
+     */
+    public Course getCourseByTitle(String title){
+        for(Course course: courses)
+            if(title.equalsIgnoreCase(course.getTitle()))
+                return course;
+        return null;
+            
     }
 
     /**

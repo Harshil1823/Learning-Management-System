@@ -63,19 +63,19 @@ public class UserInterface {
 
             switch (choice) {
                 case 1:
-                    // facade.viewCourses();
+                    LMS.displayCourses();
                     break;
                 case 2:
-                    // facade.createCourse();
+                    // LMS.createCourse();
                     break;
                 case 3:
-                    // facade.editCourse();
+                    // LMS.editCourse();
                     break;
                 case 4:
-                    // facade.deleteCourse();
+                    LMS.deleteCourse();
                     break;
                 case 5:
-                    // facade.logout();
+                    user = null;
                     System.out.println("Logged out successfully.");
                     break;
                 default:

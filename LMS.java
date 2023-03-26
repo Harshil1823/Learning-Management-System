@@ -1,3 +1,4 @@
+import java.util.Scanner;
 /**
  * @author JavaDoc
  * Used as facade to call methods.
@@ -5,6 +6,7 @@
 public class LMS {
     private static UserList userList;
     private static CourseList courseList;
+    private static Scanner keyboard = new Scanner(System.in);
     public LMS(){
         userList = userList.getInstance();
         courseList = courseList.getInstance();
@@ -46,6 +48,20 @@ public class LMS {
     public static void displayCourses(){
         courseList.viewCourses();
     }
+
+    /**
+     * Finds course by title and deletes from course list.
+     */
+    public static void deleteCourse(){
+        System.out.print("Please enter course to be deleted: ");
+        courseList.deleteCourse(courseList.getCourseByTitle(keyboard.next()));
+        System.out.println();
+    }
+
+    public static void createCrouse(){
+
+    }
+
 
     /*
     public StartCourse(){
