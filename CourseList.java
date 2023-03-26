@@ -53,4 +53,11 @@ public class CourseList {
         writer.saveCourses(courses);
     }
 
+    /**
+     * Displays courses in list.
+     */
+    public void viewCourses(){
+        for(Course course: courses)
+            System.out.println(course.getTitle());
+    }
 }

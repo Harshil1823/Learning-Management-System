@@ -1,28 +1,53 @@
+/**
+ * @author JavaDoc
+ * Used as facade to call methods.
+ */
 public class LMS {
-    /* 
-    public boolean checkLoginUser(String userName, String password) {
-    for (User user : users) {
-        if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
-            return true; // user is found in database and password is correct
-        }
+    private static UserList userList;
+    private static CourseList courseList;
+    public LMS(){
+        userList = userList.getInstance();
+        courseList = courseList.getInstance();
     }
-    return false; // user is not found in database or password is incorrect
+    /**
+     * Calls login in userList class.
+     * @return Returns the user that logged in. If invalid, returns null.
+     */
+    public static User Login(){
+       return userList.login();
+    }
+
+    /**
+     * Call loginAuthor in userList class.
+     * @return newly logged in author if valid. Otherwise null.
+     */
+    public static User LoginAuthor(){
+        return userList.loginAuthor();
     }
     
-    public void Login(){
-
-    public void Login(){
-        
+    /**
+     * Calls registerUser in userList().
+     * @return newly registered User.
+     */
+    public static User registerUser(){
+        return userList.registerUser();
+    }
+    /**
+     * Calls registerAuthor in userList.
+     * @return newly registered Author.
+    */
+    public static User registerAuthor(){
+        return userList.registerAuthor();
+    }
+    
+    /**
+     * Calls viewCourses in courseList.
+     */
+    public static void displayCourses(){
+        courseList.viewCourses();
     }
 
-    public Logout(){
-
-    }
-
-    public newUser(){
-
-    }
-
+    /*
     public StartCourse(){
 
     }

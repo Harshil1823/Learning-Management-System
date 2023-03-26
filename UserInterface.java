@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class UserInterface {
     
     private static Scanner scanner = new Scanner(System.in);
-    private static LMS facade;
-
+    private static LMS facade = new LMS();
+    private static User user;
     public static void welcomeScreen() {
         int choice = 0;
         while(choice < 1 || choice > 5){
@@ -20,25 +20,24 @@ public class UserInterface {
 
             switch(choice){
                 case 1:
-                    //TODO call loginScreen here and verify using facade if user can log in
-                    User user = loginUser();
+                    user = LMS.Login();
                     // passing in the logged in user
                     displayHomeScreen(user);
                     break;
                 case 2:
-                    loginAuthor();
-                    //TODO call loginScreen here and verify using facade if author can log in
+                    user = LMS.LoginAuthor();
                     break;
                 case 3:
-                    RegistrationScreenAuthor();
-                    //TODO call register as an author
+                //sets user to a registered author
+                    user = LMS.registerAuthor();
                     break;
                 case 4:
-                    RegistrationScreenUser();
-                    //TODO call register as a user
+                //sets user to a registered user.
+                    user = LMS.registerUser();
                     break;
                 case 5:
-                    //TODO view all courses avaiable
+                //displays all courses
+                    LMS.displayCourses();
                     break;
                 default:
                     System.out.println("\nInvalid choice");
@@ -86,6 +85,8 @@ public class UserInterface {
         } while (choice != 5);
     }
 
+    //I did all this in facade.
+    /* 
     public static User loginUser() {
         System.out.println("Please enter your username to log in: ");
         String userName = scanner.nextLine();
@@ -127,7 +128,6 @@ public class UserInterface {
         // and if they are not in the database then don't
         // log them in
     }
-
 
     public static void RegistrationScreenUser() {
         
@@ -179,7 +179,7 @@ public class UserInterface {
         // You can call a method from your facde class to handle this task.
         // Remember to set the isAuthor flag to true for the new author.
     }
-
+    */
     public static void displayHomeScreen(User user) {
         System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() +"!");
         System.out.println();
