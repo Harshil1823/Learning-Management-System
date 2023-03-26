@@ -182,6 +182,7 @@ public class UserInterface {
 
     public static void displayHomeScreen(User user) {
         System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() +"!");
+        System.out.println();
         System.out.println("You are currently enrolled in the following courses:");
         List<Course> courses = user.getCourses();
         for (int i = 0; i < courses.size(); i++) {
@@ -194,7 +195,9 @@ public class UserInterface {
         if (choice == 0) {
             displayMainMenu();
         } else if (choice > 0 && choice <= courses.size()) {
-            Course selectedCourse = courses.get(choice);
+            //course list starts at 0
+            //so if user enter 2, in course list it's 1. so choice - 1
+            Course selectedCourse = courses.get(choice - 1);
             displayCourse(selectedCourse);
         } else {
             System.out.println("Invalid choice. Please try again.");
@@ -202,10 +205,15 @@ public class UserInterface {
         }
     }
     
+    /*
+     * From here the user will be going to course that they are already enrolled
+     * in
+     * and finish the current course
+     */
     private static void displayCourse(Course selectedCourse) {
     }
 
-
+    
     private static void displayMainMenu() {
     }
 
