@@ -16,9 +16,10 @@ public class CourseGrade {
      * @param course Type Course of course.
      * @param userID Type String of userID.
      */
-    public CourseGrade(Course course, String userID) {
+    public CourseGrade(Course course,double totGrade, String userID) {
         this.course = course;
         this.userID = userID;
+        this.totalGrade = getTotalGrade();
         if (moduleGrades == null)
             moduleGrades = new ArrayList<ModuleGrade>();
     }

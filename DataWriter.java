@@ -74,7 +74,7 @@ public class DataWriter extends DataConstants {
                 JSONArray commentsArray = new JSONArray();
                 for (Comment comment : module.getComments()) {
                     JSONObject commentObj = new JSONObject();
-                    commentObj.put("userId", comment.getUserId());
+                    commentObj.put("userId", comment.getUserID());
                     commentObj.put("text", comment.getText());
                     commentsArray.add(commentObj);
                 }
@@ -97,7 +97,7 @@ public class DataWriter extends DataConstants {
             JSONArray reviewArray = new JSONArray();
             for (Review review : course.getReviews()) {
                 JSONObject reviewObj = new JSONObject();
-                reviewObj.put("userId", review.getUserId());
+                reviewObj.put("userId", review.getUserID());
                 reviewObj.put("text", review.getText());
                 reviewObj.put("rating", review.getRating());
                 reviewArray.add(reviewObj);
