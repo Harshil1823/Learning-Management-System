@@ -223,3 +223,63 @@ public class UserInterface {
     }
     
 } // end of class
+
+
+//Adding the code here. We can organize after we have everything
+//createAuthorCourse
+/*static void createCourse() {
+        System.out.println("Create a new course screen:");
+        System.out.print("Enter the course title: ");
+        String courseTitle = scanner.nextLine();
+        System.out.print("Enter the course description: ");
+        String courseDescription = scanner.nextLine();
+
+
+        System.out.println("\nCourse created successfully!");
+        System.out.println("\nGo to main menu and press 3, to select the course you created. So, you can add module and topics within your course.");
+        System.out.println("To return to main menu press 0.");
+    }
+}
+ */
+
+ //selectCourse
+
+ /*
+  * static void selectCourse() {
+        System.out.println("Select a course Screen:");
+
+        // Display the list of courses the author has created (you should implement the logic for this)
+
+        System.out.println("\nPress 1, create a new module");
+        System.out.println("Press 2, to view all modules");
+        System.out.println("Press 3, select a module");
+        System.out.println("Press 0, to return to main menu");
+
+        int choice;
+        do {
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline left-over
+
+            switch (choice) {
+                case 1:
+                    // Implement creating a new module
+                    break;
+                case 2:
+                    // Implement viewing all modules
+                    break;
+                case 3:
+                    // Implement selecting a module
+                    break;
+                case 0:
+                    System.out.println("Returning to main menu...");
+                    break;
+                default:
+                    System.out.println("Invalid choice, please try again.");
+                    break;
+            }
+        } while (choice != 0);
+    }
+}
+  */
+
