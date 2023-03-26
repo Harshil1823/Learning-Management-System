@@ -128,9 +128,9 @@ public class DataLoader extends DataConstants {
                 for(int n=0;n<courgradeJSON.size();n++){
                     JSONObject courGradObject = (JSONObject) courgradeJSON.get(n);
                     String userID = (String) courGradObject.get("user_id");
-                    String totalGrade = (String) courGradObject.get("totalGrade");
-                    String course = (String) courGradObject.get("course");
-                    courseGrades.add(new CourseGrade(userID,totalGrade,course));
+                    double totalGrade = (Double) courGradObject.get("totalGrade");
+                    Course course = (Course) courGradObject.get("course");
+                    courseGrades.add(new CourseGrade(course,totalGrade,userID));
                 }
 
 
