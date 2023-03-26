@@ -59,7 +59,7 @@ public class CourseList {
      */
     public void save() {
         DataWriter writer = new DataWriter();
-        writer.saveCourses(courses);
+        DataWriter.saveCourses(courses);
     }
 
     /**
