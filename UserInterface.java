@@ -216,12 +216,9 @@ public class UserInterface {
 
     }
 
-    private static void viewCourse() {
+    public static void viewCourseDetails() {
 
         CourseList courseList = new CourseList();
-
-        System.out.println("Here are the courses that are available:");
-        courseList.getInstance().viewCourses();
         System.out.println("\nWhich course would you like to view details about? Please enter the corresponding number to the course: (Enter 0 to go back to the main menu)");
         int selectedCourseIndex = scanner.nextInt();
         scanner.nextLine();
@@ -241,7 +238,7 @@ public class UserInterface {
     
         ArrayList<Review> reviews = courses.getReviews();
         if (!reviews.isEmpty()) {
-            for (String review : reviews) {
+            for (Review review : reviews) {
                 System.out.println(review);
             }
         } else {
@@ -251,8 +248,8 @@ public class UserInterface {
         ArrayList<Comment> comments = courses.getCourseComments();
         if (!comments.isEmpty()) {
             System.out.println("Comments:");
-            for (String comment : Comment) {
-                System.out.println(comment);
+            for (Comment comment : comments) {
+                System.out.println(comment.getText());
             }
         }
         boolean validInput = false;
@@ -285,6 +282,7 @@ public class UserInterface {
             case 1:
                 //TODO courses that are avialable and there details
                 facade.displayCourses();
+                viewCourseDetails();
                 break;
             case 2:
                 //IDK this might cause issues
