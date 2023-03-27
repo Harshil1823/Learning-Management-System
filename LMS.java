@@ -8,14 +8,14 @@ public class LMS {
     private static CourseList courseList;
     private static Scanner keyboard = new Scanner(System.in);
     public LMS(){
-        userList = userList.getInstance();
-        courseList = courseList.getInstance();
+        this.userList = userList.getInstance();
+        this.courseList = courseList.getInstance();
     }
     /**
      * Calls login in userList class.
      * @return Returns the user that logged in. If invalid, returns null.
      */
-    public static User Login(){
+    public User Login(){
        return userList.login();
     }
 
@@ -23,7 +23,7 @@ public class LMS {
      * Call loginAuthor in userList class.
      * @return newly logged in author if valid. Otherwise null.
      */
-    public static User LoginAuthor(){
+    public User LoginAuthor(){
         return userList.loginAuthor();
     }
     
@@ -31,34 +31,37 @@ public class LMS {
      * Calls registerUser in userList().
      * @return newly registered User.
      */
-    public static User registerUser(){
+    public User registerUser(){
         return userList.registerUser();
     }
     /**
      * Calls registerAuthor in userList.
      * @return newly registered Author.
     */
-    public static User registerAuthor(){
+    public User registerAuthor(){
         return userList.registerAuthor();
     }
     
     /**
      * Calls viewCourses in courseList.
      */
-    public static void displayCourses(){
+    public void displayCourses(){
         courseList.viewCourses();
     }
 
     /**
      * Finds course by title and deletes from course list.
      */
-    public static void deleteCourse(){
+    public void deleteCourse(){
         System.out.print("Please enter course to be deleted: ");
         courseList.deleteCourse(courseList.getCourseByTitle(keyboard.next()));
         System.out.println();
     }
 
-    public static void createCrouse(){
+    /**
+     * 
+     */
+    public void createCourse(){
 
     }
     /**

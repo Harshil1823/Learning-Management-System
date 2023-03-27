@@ -13,7 +13,7 @@ public class User {
     private String username;
     private String password;
     private ArrayList<Course> grades;
-    public ArrayList<User> users;
+    public UserList users;
     public ArrayList<Course> courses;
 
     /**
@@ -39,7 +39,9 @@ public class User {
             this.isAuthor = validAuthor(isAuthor);
             this.userID = userID;
             this.courses = new ArrayList<Course>();
-            users.add(this);
+            users = UserList.getInstance();
+            users.addUser(this);
+            System.out.println("User created");
         }
     }
     /**
@@ -142,7 +144,7 @@ public class User {
      * @return true if valid, false otherwise.
      */
     private boolean validName(String name) {
-        return name.matches("^[a-zA-Z]+$");
+        return name != null;
     }
 
     /**
@@ -151,7 +153,7 @@ public class User {
      * @return true if valid, false otherwise.
      */
     private boolean validUsername(String userName) {
-        return userName != null && userName.length() >= 6 && !userName.isEmpty();
+        return userName != null && userName.length() >= 6;
     }
 
     /**
@@ -160,7 +162,7 @@ public class User {
      * @return true if valid, false otherwise.
      */
     private boolean validPhoneNumber(String phonenumber) {
-        return phonenumber != null && phonenumber.matches("\\d{10}");
+        return phonenumber != null && phonenumber.length() == 10;
     }
 
     /**
@@ -169,7 +171,7 @@ public class User {
      * @return true if valid, false otherwise.
      */
     private boolean validEmail(String email) {
-        return email != null && email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
+        return email != null && email.contains("@");
     }
 
     /**

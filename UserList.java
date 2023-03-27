@@ -8,14 +8,13 @@ import java.util.UUID;
  */
 public class UserList {
     public static Scanner keyboard = new Scanner(System.in);
-    private static ArrayList<User> userList;
-    private static UserList instance;
+    public static ArrayList<User> userList = new ArrayList<>();
+    public static UserList instance;
 
     /**
      * Constructor to create new userList.
      */
     private UserList() {
-        userList = new ArrayList<>();
     }
 
     /**
@@ -77,10 +76,11 @@ public class UserList {
     public User login() {
         User tempUser = null;
         System.out.print("Please enter username: ");
+        String username = keyboard.next();
         System.out.println();
         //Checks to see if user in list.
         for (User user : userList) {
-            if (user.getUserName().equals(keyboard.next())) {
+            if (user.getUserName().equals(username)) {
                 tempUser = user;
             }
         }
