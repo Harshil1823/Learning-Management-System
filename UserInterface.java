@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -215,6 +216,61 @@ public class UserInterface {
 
     }
 
+    private static void viewCourse() {
+
+        CourseList courseList = new CourseList();
+
+        System.out.println("Here are the courses that are available:");
+        courseList.getInstance().viewCourses();
+        System.out.println("\nWhich course would you like to view details about? Please enter the corresponding number to the course: (Enter 0 to go back to the main menu)");
+        int selectedCourseIndex = scanner.nextInt();
+        scanner.nextLine();
+        if (selectedCourseIndex == 0) {
+            return;
+        }
+
+        // Adjusting index to fit ArrayList
+        selectedCourseIndex--;
+        //returns the course User chose in courseList and we store that as a course object
+        Course courses = courseList.getCourse(selectedCourseIndex);
+    
+
+        System.out.println("View Course details:");
+        System.out.println(courses.getTitle());
+        System.out.println(courses.getDescription());
+    
+        ArrayList<Review> reviews = courses.getReviews();
+        if (!reviews.isEmpty()) {
+            for (String review : reviews) {
+                System.out.println(review);
+            }
+        } else {
+            System.out.println("No reviews yet.");
+        }
+    
+        ArrayList<Comment> comments = courses.getCourseComments();
+        if (!comments.isEmpty()) {
+            System.out.println("Comments:");
+            for (String comment : Comment) {
+                System.out.println(comment);
+            }
+        }
+        boolean validInput = false;
+        while(!validInput) {
+            System.out.println("\nEnter any interger to go back to the main menu.");
+            int input = scanner.nextInt();
+            if(input >= 0){
+                displayMainMenu();
+                validInput = true;
+            } else if (input <= 0){
+                displayMainMenu();
+                validInput = true;
+            } else {
+                System.out.println("not a valid Input!");
+            }
+        }
+    }
+
     private static void displayMainMenu() {
         System.out.println("Please select the following option:");
         System.out.println("Press 1, View courses that are available");
@@ -227,6 +283,7 @@ public class UserInterface {
 
         switch(option){
             case 1:
+                //TODO courses that are avialable and there details
                 facade.displayCourses();
                 break;
             case 2:

@@ -11,7 +11,7 @@ public class CourseList {
     /**
      * Constructor to initialize course list.
      */
-    private CourseList() {
+    CourseList() {
         courseList = new CourseList();
     }
 
@@ -60,6 +60,18 @@ public class CourseList {
     public void save() {
         DataWriter writer = new DataWriter();
         DataWriter.saveCourses(courses);
+    }
+    /**
+     * checks if it's in bounds and userCan
+     * choose a couse
+     * @param index
+     * @return
+     */
+    public Course getCourse(int index) {
+        if (index >= 0 && index < courses.size()) {
+            return courses.get(index);
+        }
+        return null;
     }
 
     /**
