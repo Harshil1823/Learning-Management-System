@@ -38,8 +38,17 @@ public class User {
             this.password = password;
             this.isAuthor = validAuthor(isAuthor);
             this.userID = userID;
+            this.courses = new ArrayList<Course>();
             users.add(this);
         }
+    }
+    /**
+     * add a course to a user's list of courses by calling the 
+     * addCourse method on a User object and passing in a Course object.
+     * @param course
+     */
+    public void addCourse(Course course) {
+        courses.add(course);
     }
 
     /**

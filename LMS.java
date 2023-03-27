@@ -61,6 +61,18 @@ public class LMS {
     public static void createCrouse(){
 
     }
+    /**
+     * calls the method in course list that check to see 
+     * if the user is already taking the course,
+     * if not then enroll them in that course
+     * if no such course exists then return false
+     * @param user
+     * @param title
+     * @return
+     */
+    public boolean enrollInCourse(User user, String title) {
+        return courseList.enrollInCourse(user, title);
+    }
 
 
     /*

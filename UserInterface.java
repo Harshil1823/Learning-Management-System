@@ -6,6 +6,7 @@ public class UserInterface {
     private static Scanner scanner = new Scanner(System.in);
     private static LMS facade = new LMS();
     private static User user;
+
     public static void welcomeScreen() {
         int choice = 0;
         while(choice < 1 || choice > 5){
@@ -20,24 +21,24 @@ public class UserInterface {
 
             switch(choice){
                 case 1:
-                    user = LMS.Login();
+                    user = facade.Login();
                     // passing in the logged in user
                     displayHomeScreen(user);
                     break;
                 case 2:
-                    user = LMS.LoginAuthor();
+                    user = facade.LoginAuthor();
                     break;
                 case 3:
                 //sets user to a registered author
-                    user = LMS.registerAuthor();
+                    user = facade.registerAuthor();
                     break;
                 case 4:
                 //sets user to a registered user.
-                    user = LMS.registerUser();
+                    user = facade.registerUser();
                     break;
                 case 5:
                 //displays all courses
-                    LMS.displayCourses();
+                    facade.displayCourses();
                     break;
                 default:
                     System.out.println("\nInvalid choice");
@@ -63,7 +64,7 @@ public class UserInterface {
 
             switch (choice) {
                 case 1:
-                    LMS.displayCourses();
+                    facade.displayCourses();
                     break;
                 case 2:
                     // LMS.createCourse();
@@ -72,7 +73,7 @@ public class UserInterface {
                     // LMS.editCourse();
                     break;
                 case 4:
-                    LMS.deleteCourse();
+                    facade.deleteCourse();
                     break;
                 case 5:
                     user = null;
@@ -211,12 +212,52 @@ public class UserInterface {
      * and finish the current course
      */
     private static void displayCourse(Course selectedCourse) {
+
     }
 
-    
     private static void displayMainMenu() {
+        System.out.println("Please select the following option:");
+        System.out.println("Press 1, View courses that are available");
+        System.out.println("Press 2, to go to the home screen");
+        System.out.println("Press 3, to go to course selection and enroll in a course");
+        System.out.println("Press 4, to logout.");
+
+        int option = scanner.nextInt();
+        scanner.nextLine();
+
+        switch(option){
+            case 1:
+                facade.displayCourses();
+                break;
+            case 2:
+                //IDK this might cause issues
+                // we will check during testing
+                displayHomeScreen(user);
+                break;
+            case 3:
+                courseSelection();                
+                break;
+            case 4:
+                user = null;
+                System.out.println("You have successfully logged out.");
+                welcomeScreen();
+                break;
+        }
     }
 
+    public static void courseSelection(){
+        facade.displayCourses();
+        System.out.println("Enter the name of the course you would like to enroll in.");
+        String courseTitle = scanner.nextLine();
+
+        if (facade.enrollInCourse(user, courseTitle)) {
+            // If successful, display message to user
+            System.out.println("Successfully enrolled in " + courseTitle);
+        } else {
+            // If unsuccessful, display message to user
+            System.out.println("Could not enroll in " + courseTitle);
+        }
+    }
 
     public static void main(String[] args) {
         welcomeScreen();
