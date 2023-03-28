@@ -78,13 +78,13 @@ public class UserInterface {
                     facade.editCourse();
                     break;
                 case 5:
-                    // facade.searchCourse();
+                    facade.enrollInCourse(user);
                     break;
                 case 6:
-
+                    facade.courseComment(user);
                     break;
                 case 7:
-
+                    facade.courseReview(user);
                     break;
                 case 8:
                     user = null;
