@@ -164,6 +164,7 @@ public class UserInterface {
         switch (option) {
             case 1:
                 facade.displayCourses();
+                viewCourseDetails();
                 break;
             case 2:
                 // IDK this might cause issues
