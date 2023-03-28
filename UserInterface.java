@@ -65,7 +65,7 @@ public class UserInterface {
 
             switch (choice) {
                 case 1:
-                    
+
                     break;
                 case 2:
 
@@ -150,6 +150,7 @@ public class UserInterface {
 
     }
 
+    /* 
     private static void displayMainMenu() {
         System.out.println("Please select the following option:");
         System.out.println("Press 1, View courses that are available");
@@ -178,7 +179,7 @@ public class UserInterface {
                 welcomeScreen();
                 break;
         }
-    }
+    }*/
 
     public static void courseSelection() {
         facade.displayCourses();
