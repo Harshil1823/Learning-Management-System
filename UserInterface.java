@@ -230,12 +230,12 @@ public class UserInterface {
         selectedCourseIndex--;
         //returns the course User chose in courseList and we store that as a course object
         Course courses = courseList.getCourse(selectedCourseIndex);
-    
 
+        
         System.out.println("View Course details:");
         System.out.println(courses.getTitle());
         System.out.println(courses.getDescription());
-    
+
         ArrayList<Review> reviews = courses.getReviews();
         if (!reviews.isEmpty()) {
             for (Review review : reviews) {
@@ -244,7 +244,6 @@ public class UserInterface {
         } else {
             System.out.println("No reviews yet.");
         }
-    
         ArrayList<Comment> comments = courses.getCourseComments();
         if (!comments.isEmpty()) {
             System.out.println("Comments:");
