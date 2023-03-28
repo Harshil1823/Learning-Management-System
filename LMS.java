@@ -104,4 +104,64 @@ public class LMS {
         courseList.getCourseDetails();
     }
 
-}
+    public static void animateRocketShip() throws InterruptedException {
+        System.out.println();
+        // Draw rocket ship
+        String[] rocket = new String[] {
+            /* 
+            "         {}               ",
+            "       {}  {}               ",
+            "   >|--------------------------|{}",
+            " > >|                          | {}",
+            " > >|      CONGRATS!!!!        |  {}",
+            " > >|                          | {}",
+            "   >|--------------------------|{}",
+            "       {}  {}               ",
+            "         {}                 ",
+            */
+
+    
+                "   /\\      ",
+                "  /  \\     ",
+                " /    \\    ",
+                "|------|   ",
+                "| NASA |   ",
+                "|      |   ",
+                "|      |   ",
+                "|      |   ",
+                " !!!!!!    "
+        
+        };
+        // Initialize rocket position
+        int rocketY = 20;
+
+        // Animate rocket moving up
+        while (true) {
+            
+            // Clear console
+            System.out.print("\033[H\033[2J");
+            
+            // Move rocket up
+            rocketY--;
+            // Draw rocket at new position
+            for (int i = 0; i < rocketY; i++) {
+                System.out.println();
+            }
+            for (int i = 0; i < rocket.length; i++) {
+                for (int j = 0; j < 40; j++) {
+                    System.out.print(" ");
+                }
+                System.out.println(rocket[i]);
+            }
+            // Wait for a short time
+            Thread.sleep(200);
+            
+            // End animation if rocket has moved off screen
+            if (rocketY <= 0) {
+                break;
+            }
+        }
+        // Print message when animation is complete
+        System.out.println("Rocket ship has reached its destination! Just as you have finished this course!");
+    }
+} // end of class

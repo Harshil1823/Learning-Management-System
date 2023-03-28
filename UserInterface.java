@@ -10,7 +10,14 @@ public class UserInterface {
 
     public static void main(String[] args) {
         facade = new LMS();
-        welcomeScreen();
+        try {
+            facade.animateRocketShip();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        //welcomeScreen();
+
     }
 
     public static void welcomeScreen() {
