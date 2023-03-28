@@ -102,7 +102,7 @@ public class CourseList {
         return true;
     }
 
-    public void createCourse(User user) {
+    public Course createCourse(User user) {
 
         System.out.println("Please enter the title of the course.");
         String title = keyboard.next();
@@ -117,6 +117,7 @@ public class CourseList {
         boolean moduleLoop = true;
         ArrayList<Module> modules = new ArrayList<>();
         ArrayList<Topic> topics;
+        ArrayList<Question> question_arr;
         Module module;
         while (moduleLoop) {
             moduleLoop = false;
@@ -124,38 +125,69 @@ public class CourseList {
             String choice = keyboard.next();
             keyboard.nextLine();
             topics = new ArrayList<>();
+            question_arr = new ArrayList<>();
+            String module_title = "";
+            String module_description = "";
 
             // if creating module
             if (choice.equalsIgnoreCase("y")) {
 
                 System.out.println("Please enter the title of module.");
-                String module_title = keyboard.nextLine();
-                keyboard.nextLine();
+                module_title = keyboard.nextLine();
 
                 System.out.println("Please enter the description of module.");
-                String module_description = keyboard.nextLine();
-                keyboard.nextLine();
+                module_description = keyboard.nextLine();
 
                 System.out.println("How many topic(s) will be in this module?");
                 int topic_count = keyboard.nextInt();
                 keyboard.nextLine();
 
                 // topic creation
-                for (int i = 0; i < topic_count; i++) {
+                for (int i = 1; i <= topic_count; i++) {
                     System.out.println("Please enter the topic title for topic " + i + ".");
                     String topic_title = keyboard.nextLine();
-                    keyboard.nextLine();
 
                     System.out.println("Please enter the topic description for topic " + i + ".");
                     String topic_description = keyboard.nextLine();
-                    keyboard.nextLine();
 
                     Topic topic = new Topic(topic_title, topic_description);
                     topics.add(topic);
                 }
 
                 moduleLoop = true;
-                module = new Module(module_title, module_description, topics, new ArrayList<Question>(),
+
+                System.out.println("How many questions would you like to add to module?");
+                int questions = keyboard.nextInt();
+                keyboard.nextLine();
+
+                String questionText = "";
+                int correct = 0;
+                ArrayList<String> choice_arr = new ArrayList<>();
+
+                for (int i = 1; i <= questions; i++) {
+                    // question creation
+                    System.out.println("Please enter a question " + i + " for module.");
+                    questionText = keyboard.nextLine();
+
+                    System.out.println("How many choices do you want for this question?");
+                    int choices = keyboard.nextInt();
+                    keyboard.nextLine();
+
+                    for (int j = 1; j <= choices; j++) {
+                        System.out.println("Please enter choice " + j);
+                        choice_arr.add(keyboard.nextLine());
+                    }
+
+                    System.out.println("Which number choice is correct choice?");
+                    correct = keyboard.nextInt();
+                    keyboard.nextLine();
+
+                    Question question = new Question(questionText, choice_arr, correct);
+                    question_arr.add(question);
+
+                }
+
+                module = new Module(module_title, module_description, topics, question_arr,
                         new ArrayList<Comment>(), new ArrayList<ModuleGrade>());
                 modules.add(module);
             }
@@ -165,10 +197,9 @@ public class CourseList {
         ArrayList<CourseGrade> courseGrades = new ArrayList<>();
         // module creation!!!
 
-
         // created course
         Course course = new Course(user.getFirstName() + " " + user.getLastName(), title, description, user.getUserID(),
                 UUID.randomUUID().toString(), difficulty, modules, reviews, courseGrades);
-        courseList.addCourse(course);
+        return course;
     }
 }

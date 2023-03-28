@@ -32,10 +32,12 @@ public class UserInterface {
                     break;
                 case 2:
                     user = facade.LoginAuthor();
+                    displayAuthorMenu(user);
                     break;
                 case 3:
                 //sets user to a registered author
                     user = facade.registerAuthor();
+                    displayAuthorMenu(user);
                     break;
                 case 4:
                 //sets user to a registered user.
@@ -55,7 +57,7 @@ public class UserInterface {
     }
 
 
-    public static void displayAuthorMenu() {
+    public static void displayAuthorMenu(User user) {
         int choice;
 
         do {
@@ -73,7 +75,8 @@ public class UserInterface {
                     facade.displayCourses();
                     break;
                 case 2:
-                    LMS.createCourse();
+                    facade.createCourse(user);
+                    displayHomeScreen(user);
                     break;
                 case 3:
                     // LMS.editCourse();

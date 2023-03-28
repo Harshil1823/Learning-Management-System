@@ -176,8 +176,8 @@ public class Module {
      * @param choices ArrayList<String> of choices.
      * @param correctChoice String of the correct choice.
      */
-    public void addQuestion(String questionText, ArrayList<String> choices, String correctChoice) {
-        Question question = new Question(questionText, choices, correctChoice);
+    public void addQuestion(String questionText, ArrayList<String> choices, int correctChoiceIndex) {
+        Question question = new Question(questionText, choices, correctChoiceIndex);
         addQuestion(question);
     }
 
@@ -199,6 +199,21 @@ public class Module {
     public void addTopic(String title, String description) {
         Topic topic = new Topic(title, description);
         addTopic(topic);
+    }
+
+    /**
+     * Allows user to take the module quiz.
+     * @return
+     */
+    public double takeQuiz(){
+        double ret = 0;
+        for(Question question : questions){
+            if(question.answerQuestion()){
+                ret += 1;
+            }
+        }
+        ret = (double)questions.size() / ret;
+        return ret;
     }
 
 }

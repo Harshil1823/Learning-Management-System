@@ -61,8 +61,8 @@ public class LMS {
     /**
      * 
      */
-    public void createCourse(){
-
+    public void createCourse(User user){
+        courseList.addCourse(courseList.createCourse(user));
     }
     /**
      * calls the method in course list that check to see 
