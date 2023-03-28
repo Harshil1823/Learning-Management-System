@@ -185,11 +185,11 @@ public class Module {
      * Creates moduleGrade and adds to list.
      * @param quiz String of quiz grade.
      * @param finalGrade String of final grade.
-     */
+     *//*
     public void addModuleGrade(String quiz, String finalGrade) {
         ModuleGrade moduleGrade = new ModuleGrade(quiz, finalGrade);
         addModuleGrade(moduleGrade);
-    }
+    }*/
 
     /**
      * Creates a topic and adds to list.

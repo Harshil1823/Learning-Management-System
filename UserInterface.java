@@ -43,7 +43,7 @@ public class UserInterface {
                     break;
                 case 0:
                     System.out.println("Goodbye!");
-                    return;
+                    System.exit(0);
                 default:
                     System.out.println("Invalid choice.");
             }
@@ -57,7 +57,7 @@ public class UserInterface {
             System.out.println("Press 2, to view all available courses.");
             System.out.println("Press 3, to create a course.");
             System.out.println("Press 4, to edit a course.");
-            System.out.println("Press 5, to find a course to enroll in.");
+            System.out.println("Press 5, to enroll in course");
             System.out.println("Press 6, to leave a comment on a course.");
             System.out.println("Press 7, to leave a review on a course.");
             System.out.println("Press 8, to logout.");
@@ -66,7 +66,7 @@ public class UserInterface {
 
             switch (choice) {
                 case 1:
-                    facade.displayCourses();
+                    facade.displayEnrolledCourses(user);
                     break;
                 case 2:
                     facade.displayCourses();
@@ -78,7 +78,7 @@ public class UserInterface {
                     facade.editCourse();
                     break;
                 case 5:
-                    //facade.searchCourse();
+                    // facade.searchCourse();
                     break;
                 case 6:
 
@@ -101,8 +101,9 @@ public class UserInterface {
         while (true) {
             System.out.println("User Home Screen");
             System.out.println("Press 1, to view all courses available.");
-            System.out.println("Press 2, to view taken courses.");
+            System.out.println("Press 2, to view enrolled courses.");
             System.out.println("Press 3, to search for a course.");
+            System.out.println("Press 3, to enroll in a course.");
             System.out.println("Press 4, to leave a comment on a course.");
             System.out.println("Press 5, to leave a review on a course.");
             System.out.println("Press 6, to logout.");
@@ -114,26 +115,20 @@ public class UserInterface {
                     facade.displayCourses();
                     break;
                 case 2:
-                    
+                    facade.displayEnrolledCourses(user);
                     break;
                 case 3:
-
+                    facade.enrollInCourse(user);
                     break;
                 case 4:
-
+                    facade.courseComment(user);
                     break;
                 case 5:
-
+                    facade.courseReview(user);
                     break;
                 case 6:
-
-                    break;
-                case 7:
-
-                    break;
-                case 8:
-                user = null;
-                welcomeScreen();
+                    user = null;
+                    welcomeScreen();
                     return;
 
                 default:
@@ -187,20 +182,6 @@ public class UserInterface {
      * }
      */
 
-    public static void courseSelection() {
-        facade.displayCourses();
-        System.out.println("Enter the name of the course you would like to enroll in.");
-        String courseTitle = scanner.nextLine();
-
-        if (facade.enrollInCourse(user, courseTitle)) {
-            // If successful, display message to user
-            System.out.println("Successfully enrolled in " + courseTitle);
-        } else {
-            // If unsuccessful, display message to user
-            System.out.println("Could not enroll in " + courseTitle);
-        }
-    }
-
     public static void viewCourseDetails() {
 
         CourseList courseList = new CourseList();
@@ -242,10 +223,10 @@ public class UserInterface {
             System.out.println("\nEnter any interger to go back to the main menu.");
             int input = scanner.nextInt();
             if (input >= 0) {
-                //displayMainMenu();
+                // displayMainMenu();
                 validInput = true;
             } else if (input <= 0) {
-                //displayMainMenu();
+                // displayMainMenu();
                 validInput = true;
             } else {
                 System.out.println("not a valid Input!");

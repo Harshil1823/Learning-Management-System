@@ -1,63 +1,57 @@
 
+import java.util.ArrayList;
+
 /**
  * @author JavaDoc
- * Represents grades for module.
+ *         Represents grades for module.
  */
 public class ModuleGrade {
-    private double quiz;
+    private ArrayList<Double> quizzes;
     private double finalGrade;
 
     /**
      * Constructor to initalize a module grade.
+     * 
      * @param quiz       String of quiz grade from module.
      * @param finalGrade String of final grade from module.
      */
-    public ModuleGrade(String quiz, String finalGrade) {
-        setQuizGrade(quiz);
-        setFinalGrade(finalGrade);
+    public ModuleGrade() {
+        this.quizzes = new ArrayList<>();
+        this.finalGrade = 0.0;
     }
 
     /**
-     * Returns quiz grade of module.
+     * Returns quiz grades of module.
+     * 
      * @return Type double of quize grade.
      */
-    public double getQuiz() {
-        return this.quiz;
+    public ArrayList<Double> getQuizzes() {
+        return this.quizzes;
     }
 
     /**
-     * Returns final grade of module.
+     * Calculates final grades of module and returns it.
+     * 
      * @return Type double of final grade.
      */
     public double getFinalGrade() {
+        double total = 0;
+        for (double quiz : quizzes)
+            total += quiz;
+        this.finalGrade = total / quizzes.size();
         return this.finalGrade;
     }
 
     /**
-     * Sets quiz grade as type double.
+     * Adds quiz grade to module.
+     * 
      * @param quiz String of quiz score.
      */
-    public void setQuizGrade(String grade) {
+    public void addQuizGrade(String grade) {
         double tmpGrade = Double.parseDouble(grade);
-        if (tmpGrade >= 0 && tmpGrade <= 100)
-            this.finalGrade = Double.parseDouble(grade);
-    }
-
-    /**
-     * Sets final grade as type double.
-     * @param finalGrade String of final grade.
-     */
-    public void setFinalGrade(String grade) {
-        double tmpGrade = Double.parseDouble(grade);
-        if (tmpGrade >= 0 && tmpGrade <= 100)
-            this.finalGrade = Double.parseDouble(grade);
-    }
-
-    /**
-     * Returns weighted grade of module.
-     * @return double of weighted grade.
-     */
-    public double getTotalGrade() {
-        return (this.quiz * .20) + (this.finalGrade * .80);
+        if (tmpGrade >= 0 && tmpGrade <= 100) {
+            quizzes.add(tmpGrade);
+            System.out.println("Quiz added.");
+        }
     }
 }

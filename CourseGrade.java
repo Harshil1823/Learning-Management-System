@@ -16,7 +16,7 @@ public class CourseGrade {
      * @param course Type Course of course.
      * @param userID Type String of userID.
      */
-    public CourseGrade(Course course,double totGrade, String userID) {
+    public CourseGrade(Course course, double totalGrade, String userID) {
         this.course = course;
         this.userID = userID;
         this.totalGrade = getTotalGrade();
@@ -47,7 +47,7 @@ public class CourseGrade {
     public double getTotalGrade() {
         double total = 0;
         for(int i = 0; i < moduleGrades.size(); i++)
-            total += moduleGrades.get(i).getTotalGrade();
+            total += moduleGrades.get(i).getFinalGrade();
         total = total / moduleGrades.size();
         return total;
     }

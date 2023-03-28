@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class Comment {
     private String comment;
     private String author;
-    private ArrayList<Comment> replies;
 
     /**
      * Constructor to initialize a comment.

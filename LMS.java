@@ -55,7 +55,8 @@ public class LMS {
     public void deleteCourse(){
         System.out.print("Please enter course to be deleted: ");
         courseList.deleteCourse(courseList.getCourseByTitle(keyboard.next()));
-        System.out.println();
+        keyboard.nextLine();
+        System.out.println("Course deleted");
     }
 
     public void displayEnrolledCourses(User user){
@@ -80,30 +81,16 @@ public class LMS {
      * @param title
      * @return
      */
-    public boolean enrollInCourse(User user, String title) {
-        return courseList.enrollInCourse(user, title);
+    public boolean enrollInCourse(User user) {
+        return courseList.enrollInCourse(user);
     }
 
-
-    /*
-    public StartCourse(){
-
+    public void courseComment(User user){
+        courseList.courseComment(user);
     }
 
-    public mainMenu(){
-
+    public void courseReview(User user){
+        courseList.courseReview(user);
     }
 
-    public continueCourse(){
-
-    }
-
-    public createCourse(){
-
-    }
-
-    public DeleteCourse(){
-        
-    }
-    */
 }

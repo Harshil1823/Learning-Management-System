@@ -204,6 +204,10 @@ public class Course {
         }
     }
 
+    public void takeCourse(){
+        
+    }
+
     /**
      * Returns string of course attributes.
      * @return String of various course attributes. 

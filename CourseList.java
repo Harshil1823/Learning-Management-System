@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
+import java.time.LocalDate;
 
 /**
  * @author JavaDoc
@@ -86,8 +87,11 @@ public class CourseList {
      * Displays courses in list.
      */
     public void viewCourses() {
-        for (Course course : courses)
+        int i = 1;
+        for (Course course : courses){
+            System.out.println(i + ". ");
             System.out.println(course.getTitle());
+        }
     }
 
     /**
@@ -100,19 +104,22 @@ public class CourseList {
      *              list
      * @return - true if the user is enrolled and false if not
      */
-    public boolean enrollInCourse(User user, String title) {
+    public boolean enrollInCourse(User user) {
+        viewCourses();
+        System.out.println("Please enter course title to enroll in.");
+        String title = keyboard.nextLine();
+        
         Course course = getCourseByTitle(title);
         if (course == null) {
             System.out.println("Course not found.");
             return false;
         }
         if (user.getCourses().contains(course)) {
-            // System.out.println("You are already enrolled in this course.");
+            System.out.println("You are already enrolled in this course.");
             return false;
         }
         user.addCourse(course);
-        // System.out.println("You have successfully enrolled in " + course.getTitle() +
-        // ".");
+        System.out.println("You have successfully enrolled in " + course.getTitle() + ".");
         return true;
     }
 
@@ -396,17 +403,44 @@ public class CourseList {
             for(int i = 1; i <= user.getCourses().size(); i ++){
                 System.out.println(i + ". ");
                 System.out.println(user.getCourses().get(i-1).getTitle());
-            }
-        
-        System.out.println("Would you like to take one of these courses? \"y\" or \"n\"");
-        if(keyboard.next().equalsIgnoreCase("y")){
-            System.out.println("Which course? (Enter number)");
-            int choice = keyboard.nextInt();
-            /// CALL TAKE COURSE METHOD
-        }
-        else {
-            return;
-        }
-            
+            }     
+    }
+
+    //ADDS COMMENT
+    public void courseComment(User user){
+        System.out.println("Which course would you like to comment on?");
+        viewCourses();
+
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+
+        System.out.println("Please enter your comment.");
+        String reply = keyboard.nextLine();
+        Comment comment = new Comment(user.getFirstName() + " " + user.getLastName(), reply);
+        courses.get(choice - 1).addComment(comment);
+        System.out.println("Comment added");
+    }
+
+    //ADDS REVIEW
+    public void courseReview(User user){
+        System.out.println("Which course would you like to leave a review on?");
+        viewCourses();
+
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+
+        System.out.println("Please enter rating 1 - 10 of course.");
+        String rating = keyboard.next();
+        keyboard.nextLine();
+
+        System.out.println("Please enter the reason behind this rating.");
+        String text = keyboard.nextLine();
+
+        Review review = new Review(user.getUserID(), text, rating, LocalDate.now().toString());
+
+        courses.get(choice - 1).addReview(review);
+        System.out.println("Review added");
     }
 }
