@@ -15,6 +15,7 @@ public class User {
     private ArrayList<Course> grades;
     public UserList users;
     public ArrayList<Course> courses;
+    public ArrayList<Course> createdCourses;
 
     /**
      * Constructor to initialize user.
@@ -39,6 +40,7 @@ public class User {
             this.isAuthor = validAuthor(isAuthor);
             this.userID = userID;
             this.courses = new ArrayList<Course>();
+            this.createdCourses = new ArrayList<Course>();
             users = UserList.getInstance();
             users.addUser(this);
             System.out.println("User created");
@@ -53,6 +55,10 @@ public class User {
         courses.add(course);
     }
 
+    //authhor will have created course list.
+    public void addCreatedCourse(Course course){
+        createdCourses.add(course);
+    }
     /**
      * Determines if a user is valid.
      * @param firstname String first name.
@@ -226,5 +232,9 @@ public class User {
      */
     public ArrayList<Course> getCourses() {
         return courses;
+    }
+
+    public ArrayList<Course> getCreatedCourses(){
+        return createdCourses;
     }
 }

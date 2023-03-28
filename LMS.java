@@ -49,6 +49,13 @@ public class LMS {
         courseList.viewCourses();
     }
 
+    public void displayCreatedCourses(User user){
+        for(int i = 1; i <= user.getCreatedCourses().size(); i++){
+            System.out.println(i + ". ");
+            System.out.println(user.getCreatedCourses().get(i-1).getTitle());
+        }
+    }
+
     /**
      * Finds course by title and deletes from course list.
      */
@@ -69,8 +76,8 @@ public class LMS {
         courseList.addCourse(courseList.createCourse(user));
     }
 
-    public void editCourse(){
-        courseList.editCourse();
+    public void editCourse(User user){
+        courseList.editCourse(user);
     }
     /**
      * calls the method in course list that check to see 
@@ -91,6 +98,10 @@ public class LMS {
 
     public void courseReview(User user){
         courseList.courseReview(user);
+    }
+
+    public void viewCourseDetails(){
+        courseList.getCourseDetails();
     }
 
 }

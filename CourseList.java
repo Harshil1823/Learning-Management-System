@@ -88,7 +88,7 @@ public class CourseList {
      */
     public void viewCourses() {
         int i = 1;
-        for (Course course : courses){
+        for (Course course : courses) {
             System.out.println(i + ". ");
             System.out.println(course.getTitle());
         }
@@ -108,7 +108,7 @@ public class CourseList {
         viewCourses();
         System.out.println("Please enter course title to enroll in.");
         String title = keyboard.nextLine();
-        
+
         Course course = getCourseByTitle(title);
         if (course == null) {
             System.out.println("Course not found.");
@@ -221,23 +221,28 @@ public class CourseList {
         // created course
         Course course = new Course(user.getFirstName() + " " + user.getLastName(), title, description, user.getUserID(),
                 UUID.randomUUID().toString(), difficulty, modules, reviews, courseGrades);
+        user.getCreatedCourses().add(course);
         return course;
     }
 
     /**
-     * Allow for user to edit a course.
+     * Allow for user to edit created courses.
      */
-    public void editCourse() {
+    public void editCourse(User user) {
+        if (user.getCreatedCourses().size() == 0) {
+            System.out.println("You haven't created any courses to edit.");
+            return;
+        }
         System.out.println("Which course would you like to edit? (Enter number)");
 
-        for (int i = 1; i <= courses.size(); i++) {
+        for (int i = 1; i <= user.getCreatedCourses().size(); i++) {
             System.out.print(i + ". ");
-            System.out.println(courses.get(i-1).getTitle());
+            System.out.println(user.getCreatedCourses().get(i - 1).getTitle());
         }
 
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-        Course edit_course = courses.get(choice-1);
+        Course edit_course = user.getCreatedCourses().get(choice - 1);
 
         System.out.println("How would you like to edit this course? (Enter number)");
         System.out.println("1. Edit module");
@@ -253,7 +258,7 @@ public class CourseList {
 
             for (int i = 1; i <= edit_course.getModules().size(); i++) {
                 System.out.print(i + ". ");
-                System.out.println(edit_course.getModules().get(i-1).getTitle());
+                System.out.println(edit_course.getModules().get(i - 1).getTitle());
             }
 
             choice = keyboard.nextInt();
@@ -320,13 +325,13 @@ public class CourseList {
 
             for (int i = 1; i <= edit_course.getModules().size(); i++) {
                 System.out.print(i + ". ");
-                System.out.println(edit_course.getModules().get(i-1).getTitle());
+                System.out.println(edit_course.getModules().get(i - 1).getTitle());
             }
 
             int module_choice = keyboard.nextInt();
             keyboard.nextLine();
 
-            edit_course.getModules().remove(module_choice-1);
+            edit_course.getModules().remove(module_choice - 1);
             System.out.println("Module removed");
         }
         // module adding
@@ -389,31 +394,29 @@ public class CourseList {
             Module module = new Module(module_title, module_description, topics, question_arr,
                     new ArrayList<Comment>(), new ArrayList<ModuleGrade>());
             edit_course.getModules().add(module);
-        }
-        else{
+        } else {
             System.out.println("Invalid choice");
             return;
         }
     }
-    
-    public void displayEnrolledCourses(User user){
-        if(user.getCourses().size() <= 0)
+
+    public void displayEnrolledCourses(User user) {
+        if (user.getCourses().size() <= 0)
             System.out.println("You aren't enrolled in any courses");
         else
-            for(int i = 1; i <= user.getCourses().size(); i ++){
+            for (int i = 1; i <= user.getCourses().size(); i++) {
                 System.out.println(i + ". ");
-                System.out.println(user.getCourses().get(i-1).getTitle());
-            }     
+                System.out.println(user.getCourses().get(i - 1).getTitle());
+            }
     }
 
-    //ADDS COMMENT
-    public void courseComment(User user){
+    // ADDS COMMENT
+    public void courseComment(User user) {
         System.out.println("Which course would you like to comment on?");
         viewCourses();
 
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-
 
         System.out.println("Please enter your comment.");
         String reply = keyboard.nextLine();
@@ -422,14 +425,13 @@ public class CourseList {
         System.out.println("Comment added");
     }
 
-    //ADDS REVIEW
-    public void courseReview(User user){
+    // ADDS REVIEW
+    public void courseReview(User user) {
         System.out.println("Which course would you like to leave a review on?");
         viewCourses();
 
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-
 
         System.out.println("Please enter rating 1 - 10 of course.");
         String rating = keyboard.next();
@@ -442,5 +444,17 @@ public class CourseList {
 
         courses.get(choice - 1).addReview(review);
         System.out.println("Review added");
+    }
+
+    public void getCourseDetails() {
+        viewCourses();
+        System.out.println("Which course would you like to learn details about?");
+
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+        
+
+
     }
 }

@@ -4,7 +4,7 @@ import javax.lang.model.util.ElementScanner6;
 
 /**
  * @author JavaDoc
- * Represents a course in the LMS.
+ *         Represents a course in the LMS.
  */
 public class Course {
     private String author;
@@ -20,14 +20,15 @@ public class Course {
 
     /**
      * Constructor to initialize a Course.
-     * @param author String author of course.
-     * @param title String title of course.
-     * @param description String of course description.
-     * @param userID String of user ID.
-     * @param courseID String of course ID.
-     * @param difficulty String of difficulty.
-     * @param modules ArrayList<Module> of modules.
-     * @param reviews ArrayList<Review> of reviews.
+     * 
+     * @param author       String author of course.
+     * @param title        String title of course.
+     * @param description  String of course description.
+     * @param userID       String of user ID.
+     * @param courseID     String of course ID.
+     * @param difficulty   String of difficulty.
+     * @param modules      ArrayList<Module> of modules.
+     * @param reviews      ArrayList<Review> of reviews.
      * @param courseGrades ArrayList<CourseGrade> of grades.
      */
     public Course(String author, String title, String description, String userID, String courseID, String difficulty,
@@ -47,6 +48,7 @@ public class Course {
 
     /**
      * Returns author of the course.
+     * 
      * @return String of author name.
      */
     public String getAuthor() {
@@ -55,6 +57,7 @@ public class Course {
 
     /**
      * Returns title of course.
+     * 
      * @return String of title.
      */
     public String getTitle() {
@@ -63,6 +66,7 @@ public class Course {
 
     /**
      * Returns course description.
+     * 
      * @return String of description.
      */
     public String getDescription() {
@@ -71,6 +75,7 @@ public class Course {
 
     /**
      * Returns difficulty of course.
+     * 
      * @return String of difficulty.
      */
     public Difficulty getDifficulty() {
@@ -79,6 +84,7 @@ public class Course {
 
     /**
      * Returns reviews of course.
+     * 
      * @return ArrayList<Review> of reviews.
      */
     public ArrayList<Review> getReviews() {
@@ -87,6 +93,7 @@ public class Course {
 
     /**
      * Returns course grades.
+     * 
      * @return ArrayList<CourseGrade> of grades.
      */
     public ArrayList<CourseGrade> getCourseGrades() {
@@ -103,6 +110,7 @@ public class Course {
 
     /**
      * Returns course ID.
+     * 
      * @return String of course ID.
      */
     public String getCourseID() {
@@ -111,6 +119,7 @@ public class Course {
 
     /**
      * Returns user id.
+     * 
      * @return String of user id.
      */
     public String getUser_ID() {
@@ -119,7 +128,8 @@ public class Course {
 
     /**
      * Returns modules of course.
-     * @return ArrayList<Module>  of modules.
+     * 
+     * @return ArrayList<Module> of modules.
      */
     public ArrayList<Module> getModules() {
         return this.modules;
@@ -127,6 +137,7 @@ public class Course {
 
     /**
      * Sets course ID.
+     * 
      * @param courseId String of course id.
      */
     public void setCourseID(String courseId) {
@@ -135,28 +146,32 @@ public class Course {
 
     /**
      * Sets to enum difficulty of course.
+     * 
      * @param difficulty String of difficulty.
      */
-    public void setDifficulty(String difficulty){
-        if(difficulty.equalsIgnoreCase("Beginner"))
+    public void setDifficulty(String difficulty) {
+        if (difficulty.equalsIgnoreCase("Beginner"))
             this.difficulty = Difficulty.Beginner;
-        else if(difficulty.equalsIgnoreCase("Intermediate"))
+        else if (difficulty.equalsIgnoreCase("Intermediate"))
             this.difficulty = Difficulty.Intermediate;
-        else if(difficulty.equalsIgnoreCase("Expert"))
+        else if (difficulty.equalsIgnoreCase("Expert"))
             this.difficulty = Difficulty.Expert;
-        else  
+        else
             this.difficulty = null;
     }
 
     /**
      * Adds module to list.
+     * 
      * @param Module Module to add.
      */
     public void addModule(Module module) {
         modules.add(module);
     }
+
     /**
      * Adds review to list.
+     * 
      * @param review Review to add.
      */
     public void addReview(Review review) {
@@ -165,6 +180,7 @@ public class Course {
 
     /**
      * Adds course grade to list.
+     * 
      * @param grade CourseGrade to add.
      */
     public void addCourseGrade(CourseGrade grade) {
@@ -173,6 +189,7 @@ public class Course {
 
     /**
      * Adds comment to course comments.
+     * 
      * @param comment Comment to add.
      */
     public void addComment(Comment comment) {
@@ -183,7 +200,7 @@ public class Course {
      * Displays course modules.
      */
     public void viewModules() {
-        for (Module module : modules) 
+        for (Module module : modules)
             System.out.println(module.toString());
     }
 
@@ -191,7 +208,7 @@ public class Course {
      * Displays course reviews.
      */
     public void viewReviews() {
-        for (Review review : reviews) 
+        for (Review review : reviews)
             System.out.println(review.toString());
     }
 
@@ -204,18 +221,43 @@ public class Course {
         }
     }
 
-    public void takeCourse(){
-        
+    public void takeCourse() {
+        // TODO
     }
 
-    /**
-     * Returns string of course attributes.
-     * @return String of various course attributes. 
-     */
-    @Override
-    public String toString() {
-        return "Course [courseId=" + courseID + ", title=" + title + ", description=" + description + ", modules="
-                + modules + ", reviews=" + reviews + ", courseGrades=" + courseGrades + ", difficulty=" + difficulty
-                + ", courseComments=" + courseComments + "]";
+    public void displayDetails() {
+        System.out.println("Course Details:");
+        System.out.println("Author: " + author);
+        System.out.println("Title: " + title);
+        System.out.println("Description: " + description);
+        System.out.println("Difficulty: " + difficulty);
+        System.out.println("Modules:");
+
+        // iterate through the list of modules and display each module
+        for (Module module : modules) {
+            System.out.println("- " + module.getTitle());
+        }
+
+        System.out.println("Reviews:");
+
+        // iterate through the list of reviews and display each review
+        for (Review review : reviews) {
+            System.out.println("- " + "Rating: " + review.getRating() + "Review: " + review.getText());
+        }
+
+        System.out.println("Course Grades:");
+
+        // iterate through the list of course grades and display each grade
+        for (CourseGrade grade : courseGrades) {
+            System.out.println("- " + grade.getGrade());
+        }
+
+        System.out.println("Course Comments:");
+
+        // iterate through the list of course comments and display each comment
+        for (Comment comment : courseComments) {
+            System.out.println("- " + comment.getText());
+        }
     }
+
 }
