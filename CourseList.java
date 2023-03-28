@@ -14,7 +14,7 @@ public class CourseList {
     /**
      * Constructor to initialize course list.
      */
-    private CourseList() {
+    CourseList() {
     }
 
     /**
@@ -26,6 +26,19 @@ public class CourseList {
         if (courseList == null)
             return new CourseList();
         return courseList;
+    }
+    
+    /**
+     * checks if it's in bounds and userCan
+     * choose a couse
+     * @param index
+     * @return
+     */
+    public Course getCourse(int index) {
+        if (index >= 0 && index < courses.size()) {
+            return courses.get(index);
+        }
+        return null;
     }
 
     /**
