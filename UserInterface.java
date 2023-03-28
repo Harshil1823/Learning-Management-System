@@ -169,6 +169,8 @@ public class UserInterface {
             case 2:
                 // IDK this might cause issues
                 // we will check during testing
+                //Might need to call DISPLAYUserMENU
+                //or DisplayHomeScreen
                 displayHomeScreen(user);
                 break;
             case 3:
