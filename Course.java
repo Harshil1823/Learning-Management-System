@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * @author JavaDoc
@@ -11,6 +12,8 @@ public class Course {
     private String userID;
     private String courseID;
     private Difficulty difficulty;
+    private static Scanner keyboard = new Scanner(System.in);
+    private boolean completed;
     private ArrayList<Module> modules;
     private ArrayList<Review> reviews;
     private ArrayList<CourseGrade> courseGrades;
@@ -36,6 +39,7 @@ public class Course {
         this.description = description;
         this.userID = userID;
         this.courseID = courseID;
+        this.completed = false;
         setDifficulty(difficulty);
         this.modules = modules != null ? modules : new ArrayList<Module>();
         this.reviews = reviews != null ? reviews : new ArrayList<Review>();
@@ -218,8 +222,64 @@ public class Course {
         }
     }
 
+    // taking a course
     public void takeCourse() {
-        // TODO
+        System.out.println();
+        System.out.println("Welcome to this " + title + " course!");
+
+        System.out.println("Please read course description: ");
+        System.out.println(description);
+
+        System.out.println("Please choose a uncompleted module to take. (Enter number)");
+        for (int i = 1; i <= modules.size(); i++) {
+            System.out.print(i + ". ");
+            System.out.print(modules.get(i - 1).getTitle());
+            if ((modules.get(i - 1).getCompleted()))
+                System.out.println(" (Completed) ");
+            else
+                System.out.println();
+        }
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+        if (modules.get(choice - 1).getCompleted()) {
+            System.out.println("Module already completed.");
+            return;
+        }
+
+        System.out.println("Great choice, here is the module description!");
+        System.out.println(modules.get(choice - 1).getDescription());
+
+        // goes through topics and shows title and description.
+        int i = 1;
+        while (true) {
+            System.out.println("Here is topic " + i + " and the description!");
+            System.out.println(modules.get(choice - 1).getTopics().get(i - 1).getTitle());
+            System.out.println(modules.get(choice - 1).getTopics().get(i - 1).getDescription());
+
+            if (modules.get(choice - 1).getTopics().get(i) != null) {
+                System.out.println("Press c to continue to next topic, otherwise press q to quit.");
+                String decision = keyboard.next();
+
+                if (decision.equalsIgnoreCase("q")) {
+                    break;
+                }
+            } else {
+                break;
+            }
+            i++;
+        }
+
+        System.out.println("Now that you have looked at the material, would you like to take the module quiz?");
+        System.out.println("Enter yes or no");
+        String take_quiz = keyboard.next();
+
+        if (take_quiz.equalsIgnoreCase("yes")) {
+            // implement taking quiz and harshil rocket after
+            // implement a completed for course if all modules are compelted
+        } else {
+            System.out.println("Okay come back when your ready!");
+        }
     }
 
     public void displayDetails() {

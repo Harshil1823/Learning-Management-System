@@ -7,10 +7,12 @@ import java.util.ArrayList;
 public class Module {
     private String title;
     private String description;
+    private boolean completed;
     private ArrayList<Topic> topics;
     private ArrayList<Question> questions;
     private ArrayList<Comment> comments;
     private ArrayList<ModuleGrade> moduleGrades;
+
 
     /**
      * Constructor to initalize a module.
@@ -46,6 +48,13 @@ public class Module {
      */
     public String getDescription() {
         return description;
+    }
+
+    public boolean getCompleted(){
+        return completed;
+    }
+    public void setCompleted(boolean t){
+        completed = t;
     }
 
     /**
