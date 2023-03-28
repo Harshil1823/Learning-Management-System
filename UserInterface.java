@@ -59,38 +59,55 @@ public class UserInterface {
             System.out.println("Press 4, to create a course.");
             System.out.println("Press 5, to edit a course.");
             System.out.println("Press 6, to enroll in course");
-            System.out.println("Press 7, to leave a comment on a course.");
-            System.out.println("Press 8, to leave a review on a course.");
-            System.out.println("Press 9, to logout.");
+            System.out.println("Press 7, to take a course");
+            System.out.println("Press 8 to view course details");
+            System.out.println("Press 9, to leave a comment on a course.");
+            System.out.println("Press 10, to leave a review on a course.");
+            System.out.println("Press 11, to logout.");
 
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
                     facade.displayEnrolledCourses(user);
+                    System.out.println();
                     break;
                 case 2:
                     facade.displayCourses();
+                    System.out.println();
                     break;
                 case 3:
                     facade.displayCreatedCourses(user);
+                    System.out.println();
                     break;
                 case 4:
                     facade.createCourse(user);
+                    System.out.println();
                     break;
                 case 5:
                     facade.editCourse(user);
+                    System.out.println();
                     break;
                 case 6:
                     facade.enrollInCourse(user);
+                    System.out.println();
                     break;
                 case 7:
-                    facade.courseComment(user);
+                    /// implement taking a course.
                     break;
                 case 8:
-                    facade.courseReview(user);
+                    facade.viewCourseDetails();
+                    System.out.println();
                     break;
                 case 9:
+                    facade.courseComment(user);
+                    System.out.println();
+                    break;
+                case 10:
+                    facade.courseReview(user);
+                    System.out.println();
+                    break;
+                case 11:
                     user = null;
                     welcomeScreen();
                     break;
@@ -118,24 +135,30 @@ public class UserInterface {
             switch (choice) {
                 case 1:
                     facade.displayCourses();
+                    System.out.println();
                     break;
                 case 2:
                     facade.displayEnrolledCourses(user);
+                    System.out.println();
                     break;
                 case 3:
                     facade.enrollInCourse(user);
+                    System.out.println();
                     break;
                 case 4:
                     /// implement taking a course.
                     break;
                 case 5:
                     facade.viewCourseDetails();
+                    System.out.println();
                     break;
                 case 6:
                     facade.courseComment(user);
+                    System.out.println();
                     break;
                 case 7:
                     facade.courseReview(user);
+                    System.out.println();
                     break;
                 case 8:
                     user = null;

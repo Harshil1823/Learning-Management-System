@@ -130,10 +130,10 @@ public class CourseList {
 
         System.out.println("Please enter the description of the course.");
         String description = keyboard.nextLine();
-        keyboard.nextLine();
 
         System.out.println("Please enter the difficulty of the course.");
         String difficulty = keyboard.next();
+        keyboard.nextLine();
 
         boolean moduleLoop = true;
         ArrayList<Module> modules = new ArrayList<>();
@@ -447,14 +447,13 @@ public class CourseList {
     }
 
     public void getCourseDetails() {
-        viewCourses();
+        System.out.println();
         System.out.println("Which course would you like to learn details about?");
-
+        viewCourses();
         int choice = keyboard.nextInt();
         keyboard.nextLine();
 
-        
-
+        courses.get(choice - 1).displayDetails();
 
     }
 }

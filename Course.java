@@ -42,8 +42,7 @@ public class Course {
         this.modules = modules != null ? modules : new ArrayList<Module>();
         this.reviews = reviews != null ? reviews : new ArrayList<Review>();
         this.courseGrades = courseGrades != null ? courseGrades : new ArrayList<CourseGrade>();
-        // this.courseComments = courseComments != null ? courseComments : new
-        // ArrayList<Comment>(); treated under review
+        this.courseComments = new ArrayList<Comment>();
     }
 
     /**
@@ -226,6 +225,7 @@ public class Course {
     }
 
     public void displayDetails() {
+        System.out.println();
         System.out.println("Course Details:");
         System.out.println("Author: " + author);
         System.out.println("Title: " + title);
@@ -233,30 +233,40 @@ public class Course {
         System.out.println("Difficulty: " + difficulty);
         System.out.println("Modules:");
 
-        // iterate through the list of modules and display each module
-        for (Module module : modules) {
-            System.out.println("- " + module.getTitle());
+        if (modules.size() == 0) {
+            System.out.println("- No modules.");
+        } else {
+            for (Module module : modules) {
+                module.displayDetails();
+            }
         }
 
         System.out.println("Reviews:");
-
-        // iterate through the list of reviews and display each review
-        for (Review review : reviews) {
-            System.out.println("- " + "Rating: " + review.getRating() + "Review: " + review.getText());
+        if (this.reviews.size() == 0) {
+            System.out.println("No reviews.");
+        } else {
+            for (Review review : reviews) {
+                System.out.println("- " + "Rating: " + review.getRating() + " Review: " + review.getText());
+            }
         }
 
         System.out.println("Course Grades:");
 
-        // iterate through the list of course grades and display each grade
-        for (CourseGrade grade : courseGrades) {
-            System.out.println("- " + grade.getGrade());
+        if (courseGrades.size() == 0) {
+            System.out.println("No course grades.");
+        } else {
+            for (CourseGrade grade : courseGrades) {
+                System.out.println("- " + grade.getTotalGrade());
+            }
         }
 
         System.out.println("Course Comments:");
-
-        // iterate through the list of course comments and display each comment
-        for (Comment comment : courseComments) {
-            System.out.println("- " + comment.getText());
+        if (courseComments.size() == 0) {
+            System.out.println("No comments.");
+        } else {
+            for (Comment comment : courseComments) {
+                System.out.println("- " + comment.getText());
+            }
         }
     }
 

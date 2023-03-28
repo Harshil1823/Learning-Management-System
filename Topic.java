@@ -47,4 +47,9 @@ public class Topic {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public void displayDetails(){
+        System.out.println("     -" + title);
+        System.out.println("      -Topic description: " + description);
+    }
 }

@@ -216,4 +216,18 @@ public class Module {
         return ret;
     }
 
+    public void displayDetails(){
+        System.out.println(" -" +title + ":" );
+        System.out.println("   -Description: " + description);
+        System.out.println("    -Topics: ");
+        for(Topic topic : topics)
+            topic.displayDetails();
+        
+        System.out.println("     -Quiz questions: ");
+        for(int i = 1; i <= questions.size(); i++){
+            System.out.print("    -Q" + i + ": ");
+            System.out.println(questions.get(i-1).getQuestionText());
+        }
+    }
+
 }
