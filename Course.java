@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 
-import javax.lang.model.util.ElementScanner6;
-
 /**
  * @author JavaDoc
  *         Represents a course in the LMS.

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.UUID;
 import java.time.LocalDate;
+import java.io.*;
 
 /**
  * @author JavaDoc
@@ -455,5 +456,25 @@ public class CourseList {
 
         courses.get(choice - 1).displayDetails();
 
+    }
+
+    public void printCertificate(User user, Course course) {
+        try {
+            FileWriter fileWriter = new FileWriter("certificate.txt");
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+
+            // Write certificate text to file
+            printWriter.println("Certificate of Completion");
+            printWriter.println("-------------------------");
+            printWriter.println("");
+            printWriter.printf("This is to certify that "+ user.getFirstName() + " " + user.getLastName() + " has completed the course named " + course.getTitle());
+
+            // Close the file
+            printWriter.close();
+            System.out.println("Certificate printed to certificate.txt");
+        } catch (IOException e) {
+            System.out.println("Error: could not print certificate to file");
+            e.printStackTrace();
+        }
     }
 }
