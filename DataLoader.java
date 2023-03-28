@@ -83,7 +83,7 @@ public class DataLoader extends DataConstants {
                                 String choice = (String) choicesJSON.get(l);
                                 choices.add(choice);
                             }
-                            String correctChoice = (String) questionJSON.get("correctChoice");
+                            int correctChoice = (int) questionJSON.get("correctChoice");
                             Question question = new Question(questionText, choices, correctChoice);
                             questions.add(question);
                         }
