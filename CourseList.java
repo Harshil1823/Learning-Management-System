@@ -27,10 +27,11 @@ public class CourseList {
             return new CourseList();
         return courseList;
     }
-    
+
     /**
      * checks if it's in bounds and userCan
      * choose a couse
+     * 
      * @param index
      * @return
      */
@@ -222,14 +223,14 @@ public class CourseList {
     public void editCourse() {
         System.out.println("Which course would you like to edit? (Enter number)");
 
-        for (int i = 0; i < courses.size(); i++) {
+        for (int i = 1; i <= courses.size(); i++) {
             System.out.print(i + ". ");
-            System.out.println(courses.get(i).getTitle());
+            System.out.println(courses.get(i-1).getTitle());
         }
 
         int choice = keyboard.nextInt();
         keyboard.nextLine();
-        Course edit_course = courses.get(choice);
+        Course edit_course = courses.get(choice-1);
 
         System.out.println("How would you like to edit this course? (Enter number)");
         System.out.println("1. Edit module");
@@ -238,55 +239,174 @@ public class CourseList {
 
         Module edit_module;
         choice = keyboard.nextInt();
+
+        // MODULE EDITING CHOICE
         if (choice == 1) {
             System.out.println("Which module would you like to choose from?");
 
             for (int i = 1; i <= edit_course.getModules().size(); i++) {
                 System.out.print(i + ". ");
-                System.out.println(edit_course.getModules().get(i).getTitle());
+                System.out.println(edit_course.getModules().get(i-1).getTitle());
             }
 
             choice = keyboard.nextInt();
             keyboard.nextLine();
-        }
-        //module to edit
-        edit_module = edit_course.getModules().get(choice - 1);
 
+            // module to edit
+            edit_module = edit_course.getModules().get(choice - 1);
 
-        System.out.println("How would you like to edit this module?");
-        System.out.println("1. Add question");
-        System.out.println("2. Add topic");
-        choice = keyboard.nextInt();
-        keyboard.nextLine();
-
-        String questionText = "";
-        int correct = 0;
-        ArrayList<String> choice_arr = new ArrayList<>();
-
-        //add question
-        if (choice == 1) {
-            // question creation
-            System.out.println("Please enter a question for module.");
-            questionText = keyboard.nextLine();
-
-            System.out.println("How many choices do you want for this question?");
-            int choices = keyboard.nextInt();
+            System.out.println("How would you like to edit this module?");
+            System.out.println("1. Add question");
+            System.out.println("2. Add topic");
+            choice = keyboard.nextInt();
             keyboard.nextLine();
 
-            for (int j = 1; j <= choices; j++) {
-                System.out.println("Please enter choice " + j);
-                choice_arr.add(keyboard.nextLine());
+            String questionText = "";
+            int correct = 0;
+            ArrayList<String> choice_arr = new ArrayList<>();
+
+            // add question
+            if (choice == 1) {
+                // question creation
+                System.out.println("Please enter a question for module.");
+                questionText = keyboard.nextLine();
+
+                System.out.println("How many choices do you want for this question?");
+                int choices = keyboard.nextInt();
+                keyboard.nextLine();
+
+                for (int j = 1; j <= choices; j++) {
+                    System.out.println("Please enter choice " + j);
+                    choice_arr.add(keyboard.nextLine());
+                }
+
+                System.out.println("Which number choice is correct choice?");
+                correct = keyboard.nextInt();
+                keyboard.nextLine();
+
+                Question question = new Question(questionText, choice_arr, correct - 1);
+                edit_module.addQuestion(question);
+
+                System.out.println("Question added!");
+
             }
 
-            System.out.println("Which number choice is correct choice?");
-            correct = keyboard.nextInt();
+            else if (choice == 2) {
+                // topic creation
+                ArrayList<Topic> topics = new ArrayList<>();
+                System.out.println("Please enter the topic title for topic.");
+                String topic_title = keyboard.nextLine();
+
+                System.out.println("Please enter the topic description for topic.");
+                String topic_description = keyboard.nextLine();
+
+                Topic topic = new Topic(topic_title, topic_description);
+                topics.add(topic);
+            } else {
+                System.out.println("Invalid choice.");
+                return;
+            }
+        }
+        // module remove
+        else if (choice == 2) {
+            System.out.println("Which module would you like remove? (Enter number)");
+
+            for (int i = 1; i <= edit_course.getModules().size(); i++) {
+                System.out.print(i + ". ");
+                System.out.println(edit_course.getModules().get(i-1).getTitle());
+            }
+
+            int module_choice = keyboard.nextInt();
             keyboard.nextLine();
 
-            Question question = new Question(questionText, choice_arr, correct - 1);
-            edit_module.addQuestion(question);
-
-            System.out.println("Question added!");
+            edit_course.getModules().remove(module_choice-1);
+            System.out.println("Module removed");
         }
+        // module adding
+        else if (choice == 3) {
 
+            System.out.println("Please enter the title of module.");
+            String module_title = keyboard.nextLine();
+
+            System.out.println("Please enter the description of module.");
+            String module_description = keyboard.nextLine();
+
+            System.out.println("How many topic(s) will be in this module?");
+            int topic_count = keyboard.nextInt();
+            keyboard.nextLine();
+
+            ArrayList<Topic> topics = new ArrayList<>();
+            // topic creation
+            for (int i = 1; i <= topic_count; i++) {
+                System.out.println("Please enter the topic title for topic " + i + ".");
+                String topic_title = keyboard.nextLine();
+
+                System.out.println("Please enter the topic description for topic " + i + ".");
+                String topic_description = keyboard.nextLine();
+
+                Topic topic = new Topic(topic_title, topic_description);
+                topics.add(topic);
+            }
+
+            System.out.println("How many questions would you like to add to module?");
+            int questions = keyboard.nextInt();
+            keyboard.nextLine();
+
+            String questionText = "";
+            int correct = 0;
+            ArrayList<String> choice_arr = new ArrayList<>();
+            ArrayList<Question> question_arr = new ArrayList<>();
+            for (int i = 1; i <= questions; i++) {
+                // question creation
+                System.out.println("Please enter a question " + i + " for module.");
+                questionText = keyboard.nextLine();
+
+                System.out.println("How many choices do you want for this question?");
+                int choices = keyboard.nextInt();
+                keyboard.nextLine();
+
+                for (int j = 1; j <= choices; j++) {
+                    System.out.println("Please enter choice " + j);
+                    choice_arr.add(keyboard.nextLine());
+                }
+
+                System.out.println("Which number choice is correct choice?");
+                correct = keyboard.nextInt();
+                keyboard.nextLine();
+
+                Question question = new Question(questionText, choice_arr, correct - 1);
+                question_arr.add(question);
+
+            }
+
+            Module module = new Module(module_title, module_description, topics, question_arr,
+                    new ArrayList<Comment>(), new ArrayList<ModuleGrade>());
+            edit_course.getModules().add(module);
+        }
+        else{
+            System.out.println("Invalid choice");
+            return;
+        }
+    }
+    
+    public void displayEnrolledCourses(User user){
+        if(user.getCourses().size() <= 0)
+            System.out.println("You aren't enrolled in any courses");
+        else
+            for(int i = 1; i <= user.getCourses().size(); i ++){
+                System.out.println(i + ". ");
+                System.out.println(user.getCourses().get(i-1).getTitle());
+            }
+        
+        System.out.println("Would you like to take one of these courses? \"y\" or \"n\"");
+        if(keyboard.next().equalsIgnoreCase("y")){
+            System.out.println("Which course? (Enter number)");
+            int choice = keyboard.nextInt();
+            /// CALL TAKE COURSE METHOD
+        }
+        else {
+            return;
+        }
+            
     }
 }

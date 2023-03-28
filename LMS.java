@@ -58,6 +58,9 @@ public class LMS {
         System.out.println();
     }
 
+    public void displayEnrolledCourses(User user){
+        courseList.displayEnrolledCourses(user);
+    }
     /**
      * 
      */
