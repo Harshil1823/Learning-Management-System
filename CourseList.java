@@ -182,7 +182,7 @@ public class CourseList {
                     correct = keyboard.nextInt();
                     keyboard.nextLine();
 
-                    Question question = new Question(questionText, choice_arr, correct);
+                    Question question = new Question(questionText, choice_arr, correct - 1);
                     question_arr.add(question);
 
                 }
@@ -201,5 +201,79 @@ public class CourseList {
         Course course = new Course(user.getFirstName() + " " + user.getLastName(), title, description, user.getUserID(),
                 UUID.randomUUID().toString(), difficulty, modules, reviews, courseGrades);
         return course;
+    }
+
+    /**
+     * Allow for user to edit a course.
+     */
+    public void editCourse() {
+        System.out.println("Which course would you like to edit? (Enter number)");
+
+        for (int i = 0; i < courses.size(); i++) {
+            System.out.print(i + ". ");
+            System.out.println(courses.get(i).getTitle());
+        }
+
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        Course edit_course = courses.get(choice);
+
+        System.out.println("How would you like to edit this course? (Enter number)");
+        System.out.println("1. Edit module");
+        System.out.println("2. Remove module");
+        System.out.println("3. Add module");
+
+        Module edit_module;
+        choice = keyboard.nextInt();
+        if (choice == 1) {
+            System.out.println("Which module would you like to choose from?");
+
+            for (int i = 1; i <= edit_course.getModules().size(); i++) {
+                System.out.print(i + ". ");
+                System.out.println(edit_course.getModules().get(i).getTitle());
+            }
+
+            choice = keyboard.nextInt();
+            keyboard.nextLine();
+        }
+        //module to edit
+        edit_module = edit_course.getModules().get(choice - 1);
+
+
+        System.out.println("How would you like to edit this module?");
+        System.out.println("1. Add question");
+        System.out.println("2. Add topic");
+        choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+        String questionText = "";
+        int correct = 0;
+        ArrayList<String> choice_arr = new ArrayList<>();
+
+        //add question
+        if (choice == 1) {
+            // question creation
+            System.out.println("Please enter a question for module.");
+            questionText = keyboard.nextLine();
+
+            System.out.println("How many choices do you want for this question?");
+            int choices = keyboard.nextInt();
+            keyboard.nextLine();
+
+            for (int j = 1; j <= choices; j++) {
+                System.out.println("Please enter choice " + j);
+                choice_arr.add(keyboard.nextLine());
+            }
+
+            System.out.println("Which number choice is correct choice?");
+            correct = keyboard.nextInt();
+            keyboard.nextLine();
+
+            Question question = new Question(questionText, choice_arr, correct - 1);
+            edit_module.addQuestion(question);
+
+            System.out.println("Question added!");
+        }
+
     }
 }

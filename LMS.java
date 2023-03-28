@@ -64,6 +64,10 @@ public class LMS {
     public void createCourse(User user){
         courseList.addCourse(courseList.createCourse(user));
     }
+
+    public void editCourse(){
+        courseList.editCourse();
+    }
     /**
      * calls the method in course list that check to see 
      * if the user is already taking the course,

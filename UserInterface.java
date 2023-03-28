@@ -6,216 +6,141 @@ public class UserInterface {
     private static Scanner scanner = new Scanner(System.in);
     private static LMS facade;
     private static User user;
-    
+
     public static void main(String[] args) {
         facade = new LMS();
         welcomeScreen();
     }
-    
+
     public static void welcomeScreen() {
-        int choice = 0;
-        while(choice < 1 || choice > 5){
+        while (true) {
             System.out.println("Welcome to our LMS!");
             System.out.println("Press 1, to log in as a user.");
             System.out.println("Press 2, to log in as an author.");
-            System.out.println("Press 3, to register as an author.");
-            System.out.println("Press 4, to register as a user.");
-            System.out.println("Press 5, to view all courses available.");
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            System.out.println("Press 3, to register as an user.");
+            System.out.println("Press 4, to register as a author.");
+            System.out.println("Press 0, to exit.");
 
-            switch(choice){
+            int choice = scanner.nextInt();
+
+            switch (choice) {
                 case 1:
                     user = facade.Login();
-                    // passing in the logged in user
-                    displayHomeScreen(user);
+                    displayUserMenu(user);
                     break;
                 case 2:
                     user = facade.LoginAuthor();
                     displayAuthorMenu(user);
                     break;
                 case 3:
-                //sets user to a registered author
+                    user = facade.registerUser();
+                    displayUserMenu(user);
+                    break;
+                case 4:
                     user = facade.registerAuthor();
                     displayAuthorMenu(user);
                     break;
-                case 4:
-                //sets user to a registered user.
-                    user = facade.registerUser();
-                    displayHomeScreen(user);
-                    break;
-                case 5:
-                //displays all courses
-                    facade.displayCourses();
-                    break;
+                case 0:
+                    System.out.println("Goodbye!");
+                    return;
                 default:
-                    System.out.println("\nInvalid choice");
-                    System.out.println("\nEnter a valid choice \n");
-                    break;
+                    System.out.println("Invalid choice.");
             }
         }
     }
 
-
     public static void displayAuthorMenu(User user) {
-        int choice;
+        while (true) {
+            System.out.println("Author Home Screen");
+            System.out.println("Press 1, to view all courses available.");
+            System.out.println("Press 2, to view courses.");
+            System.out.println("Press 3, to create a course.");
+            System.out.println("Press 4, to edit a course.");
+            System.out.println("Press 5, to search for a course.");
+            System.out.println("Press 6, to leave a comment on a course.");
+            System.out.println("Press 7, to leave a review on a course.");
+            System.out.println("Press 8, to logout.");
 
-        do {
-            System.out.println("Author Menu");
-            System.out.println("1. View Courses");
-            System.out.println("2. Create Course");
-            System.out.println("3. Edit Course");
-            System.out.println("4. Delete Course");
-            System.out.println("5. Logout");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
+            int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1:
-                    facade.displayCourses();
+                    
                     break;
                 case 2:
-                    facade.createCourse(user);
-                    displayHomeScreen(user);
+
                     break;
                 case 3:
-                    // LMS.editCourse();
+
                     break;
                 case 4:
-                    facade.deleteCourse();
+
                     break;
                 case 5:
-                    user = null;
-                    System.out.println("Logged out successfully.");
+
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+                    welcomeScreen();
                     break;
                 default:
-                    System.out.println("Invalid choice, please try again.");
-                    break;
+                    System.out.println("Invalid choice.");
             }
-        } while (choice != 5);
-    }
-
-    //I did all this in facade.
-    /* 
-    public static User loginUser() {
-        System.out.println("Please enter your username to log in: ");
-        String userName = scanner.nextLine();
-        System.out.println("Enter your password: ");
-        String password = scanner.nextLine();
-
-        LMS userFacade = new LMS();
-
-        // Call checkLoginUser method in facade that checks 
-        // if the user is in the database and can login
-        boolean isLoggedIn = userFacade.checkLoginUser(userName, password);
-
-        if (isLoggedIn) {
-            System.out.println("You have successfully logged in!");
-            User user = userFacade.getUserByUsername(userName);
-            return user;
-        } else {
-            System.out.println("Invalid username or password. Please try again.");
-            return null;
-        }
-
-        //TODO call checkLoginUser method in facade that checks if 
-        // the user is in the database that can login
-        // and if they are not in the database then don't
-        // log them in
-        return null;
-                  
-    }
-
-    private static void loginAuthor() {
-        System.out.println("Please enter your username to log in: ");
-        String userName = scanner.nextLine();
-
-        System.out.println("Enter your password: ");
-        String password = scanner.nextLine();
-
-        // TODO call checkLoginAuthor method in facade that checks if 
-        // the author is in the database that can login
-        // and if they are not in the database then don't
-        // log them in
-    }
-
-    public static void RegistrationScreenUser() {
-        
-        System.out.println("Please enter the provided information below to register as User.");
-        System.out.print("First Name: ");
-        String firstName = scanner.nextLine();
-        
-        System.out.print("Last Name: ");
-        String lastName = scanner.nextLine();
-        
-        System.out.print("Email Address: ");
-        String email = scanner.nextLine();
-        
-        System.out.print("Phone Number: ");
-        String phoneNumber = scanner.nextLine();
-        
-        System.out.print("Username: ");
-        String username = scanner.nextLine();
-        
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-        
-        // TODO: Add method to create new user with the provided information.
-        // You can call a method from your facade class to handle this task.
-    }
-
-    public static void RegistrationScreenAuthor() {
-
-        System.out.println("Please enter the provided information below to register as a Author.");
-        System.out.print("First Name: ");
-        String firstName = scanner.nextLine();
-        
-        System.out.print("Last Name: ");
-        String lastName = scanner.nextLine();
-        
-        System.out.print("Email Address: ");
-        String email = scanner.nextLine();
-        
-        System.out.print("Phone Number: ");
-        String phoneNumber = scanner.nextLine();
-        
-        System.out.print("Username: ");
-        String username = scanner.nextLine();
-        
-        System.out.print("Password: ");
-        String password = scanner.nextLine();
-        
-        // TODO: Add method to create new author with the provided information.
-        // You can call a method from your facde class to handle this task.
-        // Remember to set the isAuthor flag to true for the new author.
-    }
-    */
-    public static void displayHomeScreen(User user) {
-        System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() +"!");
-        System.out.println();
-        System.out.println("You are currently enrolled in the following courses:");
-        List<Course> courses = user.getCourses();
-
-        for (int i = 0; i < courses.size(); i++) {
-            System.out.println("[" + (i+1) + "] " + courses.get(i).getTitle());
-        }
-        System.out.println("[0] Back to main menu");
-        System.out.println("Enter the number of the course you wish to view:");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        if (choice == 0) {
-            displayMainMenu();
-        } else if (choice > 0 && choice <= courses.size()) {
-            //course list starts at 0
-            //so if user enter 2, in course list it's 1. so choice - 1
-            Course selectedCourse = courses.get(choice - 1);
-            displayCourse(selectedCourse);
-        } else {
-            System.out.println("Invalid choice. Please try again.");
-            displayHomeScreen(user);
         }
     }
-    
+
+    public static void displayUserMenu(User user) {
+        System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() + "!");
+        while (true) {
+            System.out.println("User Home Screen");
+            System.out.println("Press 1, to view all courses available.");
+            System.out.println("Press 2, to view taken courses.");
+            System.out.println("Press 3, to search for a course.");
+            System.out.println("Press 4, to leave a comment on a course.");
+            System.out.println("Press 5, to leave a review on a course.");
+            System.out.println("Press 6, to logout.");
+            System.out.println("Press 0, to return to main menu.");
+
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                case 4:
+
+                    break;
+                case 5:
+
+                    break;
+                case 6:
+
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+
+                    return;
+                case 0:
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+    }
+
     /*
      * From here the user will be going to course that they are already enrolled
      * in
@@ -235,17 +160,17 @@ public class UserInterface {
         int option = scanner.nextInt();
         scanner.nextLine();
 
-        switch(option){
+        switch (option) {
             case 1:
                 facade.displayCourses();
                 break;
             case 2:
-                //IDK this might cause issues
+                // IDK this might cause issues
                 // we will check during testing
                 displayHomeScreen(user);
                 break;
             case 3:
-                courseSelection();                
+                courseSelection();
                 break;
             case 4:
                 user = null;
@@ -255,7 +180,7 @@ public class UserInterface {
         }
     }
 
-    public static void courseSelection(){
+    public static void courseSelection() {
         facade.displayCourses();
         System.out.println("Enter the name of the course you would like to enroll in.");
         String courseTitle = scanner.nextLine();
@@ -269,67 +194,4 @@ public class UserInterface {
         }
     }
 
-
-} // end of class
-
-// Adding the code here. We can organize after we have everything
-// createAuthorCourse
-/*
- * static void createCourse() {
- * System.out.println("Create a new course screen:");
- * System.out.print("Enter the course title: ");
- * String courseTitle = scanner.nextLine();
- * System.out.print("Enter the course description: ");
- * String courseDescription = scanner.nextLine();
- * 
- * 
- * System.out.println("\nCourse created successfully!");
- * System.out.
- * println("\nGo to main menu and press 3, to select the course you created. So, you can add module and topics within your course."
- * );
- * System.out.println("To return to main menu press 0.");
- * }
- * }
- */
-
-// selectCourse
-
-/*
- * static void selectCourse() {
- * System.out.println("Select a course Screen:");
- * 
- * // Display the list of courses the author has created (you should implement
- * the logic for this)
- * 
- * System.out.println("\nPress 1, create a new module");
- * System.out.println("Press 2, to view all modules");
- * System.out.println("Press 3, select a module");
- * System.out.println("Press 0, to return to main menu");
- * 
- * int choice;
- * do {
- * System.out.print("Enter your choice: ");
- * choice = scanner.nextInt();
- * scanner.nextLine(); // Consume newline left-over
- * 
- * switch (choice) {
- * case 1:
- * // Implement creating a new module
- * break;
- * case 2:
- * // Implement viewing all modules
- * break;
- * case 3:
- * // Implement selecting a module
- * break;
- * case 0:
- * System.out.println("Returning to main menu...");
- * break;
- * default:
- * System.out.println("Invalid choice, please try again.");
- * break;
- * }
- * } while (choice != 0);
- * }
- * }
- */
+}
