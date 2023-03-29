@@ -227,7 +227,7 @@ public class CourseList {
     }
 
     /**
-     * Allow for user to edit created courses.
+     * Allow for author to edit created courses.
      */
     public void editCourse(User user) {
         if (user.getCreatedCourses().size() == 0) {

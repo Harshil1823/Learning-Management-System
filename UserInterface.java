@@ -12,7 +12,10 @@ public class UserInterface {
         facade = new LMS();
         welcomeScreen();
     }
-
+    /**
+     * WelcomeSCreen that asks the user for options such as
+     * log in, register, and to exit from our system
+     */
     public static void welcomeScreen() {
         while (true) {
             System.out.println("Welcome to our LMS!");
@@ -49,7 +52,12 @@ public class UserInterface {
             }
         }
     }
-
+    /**
+     * This method has the full functionality of author 
+     * main menu, author can see enroled courses, available courses,
+     * which courrses they created, edit courses, and things of that nature
+     * @param user - passes in the user which is author
+     */
     public static void displayAuthorMenu(User user) {
         while (true) {
             System.out.println("Author Home Screen");
@@ -116,7 +124,13 @@ public class UserInterface {
             }
         }
     }
-
+    /**
+     * This method has all the functionality that is given to the user
+     * User can enroll in a course, view all the courses, take course, 
+     * view course details, leave a comment on a course, leave a review on a course
+     * log out thing of that nature
+     * @param user - passes in the user that is logged in
+     */
     public static void displayUserMenu(User user) {
         System.out.println("Welcome, " + user.getFirstName() + " " + user.getLastName() + "!");
         while (true) {
