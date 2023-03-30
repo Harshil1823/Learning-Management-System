@@ -92,18 +92,7 @@ public class LMS {
     public void editCourse(User user){
         courseList.editCourse(user);
     }
-    /**
-     * calls the method in course list that check to see 
-     * if the user is already taking the course,
-     * if not then enroll them in that course
-     * if no such course exists then return false
-     * @param user
-     * @param title
-     * @return
-     */
-    public boolean enrollInCourse(User user) {
-        return courseList.enrollInCourse(user);
-    }
+
     /**
      * lets the user comment on a course
      * @param user - passes in user as a object (user)
@@ -125,6 +114,19 @@ public class LMS {
      */
     public void viewCourseDetails(){
         courseList.getCourseDetails();
+    }
+
+    public void takeCourse(User user) throws InterruptedException{
+        
+        courseList.takeCourse(user);
+    }
+
+    public void printToFile(){
+        courseList.printCourseToFile();
+    }
+
+    public void courseReply(User user){
+        courseList.courseReply(user);
     }
 
 }

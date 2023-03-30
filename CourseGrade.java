@@ -9,7 +9,7 @@ public class CourseGrade {
     private Course course;
     private String userID;
     private double totalGrade;
-    private ArrayList<ModuleGrade> moduleGrades;
+    private ArrayList<Module> modules;
 
     /**
      * Constructor to initialize CourseGrade.
@@ -20,8 +20,7 @@ public class CourseGrade {
         this.course = course;
         this.userID = userID;
         this.totalGrade = getTotalGrade();
-        if (moduleGrades == null)
-            moduleGrades = new ArrayList<ModuleGrade>();
+        this.modules = course.getModules();
     }
 
     /**
@@ -46,9 +45,9 @@ public class CourseGrade {
      */
     public double getTotalGrade() {
         double total = 0;
-        for(int i = 0; i < moduleGrades.size(); i++)
-            total += moduleGrades.get(i).getFinalGrade();
-        total = total / moduleGrades.size();
+        for(int i = 0; i < modules.size(); i++)
+            total += modules.get(i).getModuleGrade();
+        total = total / modules.size();
         return total;
     }
 
@@ -56,16 +55,9 @@ public class CourseGrade {
      * Returns module grades.
      * @return Type ArrayList<ModuleGrade> of module grades.
      */
-    public ArrayList<ModuleGrade> getModuleGrades() {
-        return this.moduleGrades;
+    public ArrayList<Module> getModules() {
+        return this.modules;
     }
 
-    /**
-     * Adds modulegrade to list.
-     * @param moduleGrade Type ModuleGrade to add.
-     */
-    public void addModuleGrade(ModuleGrade moduleGrade) {
-        moduleGrades.add(moduleGrade);
-    }
 
 }

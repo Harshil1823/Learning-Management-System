@@ -88,10 +88,9 @@ public class CourseList {
      * Displays courses in list.
      */
     public void viewCourses() {
-        int i = 1;
-        for (Course course : courses) {
-            System.out.println(i + ". ");
-            System.out.println(course.getTitle());
+        for (int i = 1; i <= courses.size(); i++) {
+            System.out.print(i + ". ");
+            System.out.println(courses.get(i - 1).getTitle());
         }
     }
 
@@ -105,29 +104,33 @@ public class CourseList {
      *              list
      * @return - true if the user is enrolled and false if not
      */
-    public boolean enrollInCourse(User user) {
-        viewCourses();
-        System.out.println("Please enter course title to enroll in.");
-        String title = keyboard.nextLine();
-
-        Course course = getCourseByTitle(title);
-        if (course == null) {
-            System.out.println("Course not found.");
-            return false;
-        }
-        if (user.getCourses().contains(course)) {
-            System.out.println("You are already enrolled in this course.");
-            return false;
-        }
-        user.addCourse(course);
-        System.out.println("You have successfully enrolled in " + course.getTitle() + ".");
-        return true;
-    }
+    /*
+     * public boolean enrollInCourse(User user) {
+     * viewCourses();
+     * System.out.println("Please enter course title to enroll in.");
+     * String title = keyboard.nextLine();
+     * 
+     * Course course = getCourseByTitle(title);
+     * if (course == null) {
+     * System.out.println("Course not found.");
+     * return false;
+     * }
+     * if (user.getCourses().contains(course)) {
+     * System.out.println("You are already enrolled in this course.");
+     * return false;
+     * }
+     * user.addCourse(course);
+     * System.out.println("You have successfully enrolled in " + course.getTitle() +
+     * ".");
+     * return true;
+     * }
+     */
 
     public Course createCourse(User user) {
 
         System.out.println("Please enter the title of the course.");
         String title = keyboard.next();
+        keyboard.nextLine();
 
         System.out.println("Please enter the description of the course.");
         String description = keyboard.nextLine();
@@ -184,9 +187,10 @@ public class CourseList {
 
                 String questionText = "";
                 int correct = 0;
-                ArrayList<String> choice_arr = new ArrayList<>();
+                ArrayList<String> choice_arr;
 
                 for (int i = 1; i <= questions; i++) {
+                    choice_arr = new ArrayList<>();
                     // question creation
                     System.out.println("Please enter a question " + i + " for module.");
                     questionText = keyboard.nextLine();
@@ -210,18 +214,17 @@ public class CourseList {
                 }
 
                 module = new Module(module_title, module_description, topics, question_arr,
-                        new ArrayList<Comment>(), new ArrayList<ModuleGrade>());
+                        new ArrayList<Comment>(), new ModuleGrade());
                 modules.add(module);
             }
 
         }
         ArrayList<Review> reviews = new ArrayList<>();
-        ArrayList<CourseGrade> courseGrades = new ArrayList<>();
         // module creation!!!
 
         // created course
         Course course = new Course(user.getFirstName() + " " + user.getLastName(), title, description, user.getUserID(),
-                UUID.randomUUID().toString(), difficulty, modules, reviews, courseGrades);
+                UUID.randomUUID().toString(), difficulty, modules, reviews);
         user.getCreatedCourses().add(course);
         return course;
     }
@@ -393,7 +396,7 @@ public class CourseList {
             }
 
             Module module = new Module(module_title, module_description, topics, question_arr,
-                    new ArrayList<Comment>(), new ArrayList<ModuleGrade>());
+                    new ArrayList<Comment>(), new ModuleGrade());
             edit_course.getModules().add(module);
         } else {
             System.out.println("Invalid choice");
@@ -402,28 +405,81 @@ public class CourseList {
     }
 
     public void displayEnrolledCourses(User user) {
-        if (user.getCourses().size() <= 0)
+        if (user.getCourses().size() <= 0) {
             System.out.println("You aren't enrolled in any courses");
-        else
+            return;
+        } else {
             for (int i = 1; i <= user.getCourses().size(); i++) {
-                System.out.println(i + ". ");
-                System.out.println(user.getCourses().get(i - 1).getTitle());
+                System.out.print(i + ". ");
+                System.out.print(user.getCourses().get(i - 1).getTitle());
+                if (user.getCourses().get(i - 1).getCompletion()) {
+                    System.out.println(" (Completed) ");
+                } else {
+                    System.out.println(" (Enrolled) ");
+                }
             }
+        }
+
+        System.out.println();
+        System.out.println("Would you like to print a certificate of completion for a course? ");
+        System.out.println("Enter yes or no");
+
+        String choice = keyboard.next();
+        keyboard.nextLine();
+        System.out.println();
+
+        if (choice.equalsIgnoreCase("yes")) {
+            System.out.println("Please enter course number to print.");
+            int number = keyboard.nextInt();
+            if (user.getCourses().get(number - 1).getCompletion()) {
+                printCertificate(user, user.getCourses().get(number - 1));
+            } else {
+                System.out.println("You haven't completed this course.");
+            }
+        }
     }
 
     // ADDS COMMENT
     public void courseComment(User user) {
-        System.out.println("Which course would you like to comment on?");
-        viewCourses();
-
-        int choice = keyboard.nextInt();
+        System.out.println("Would you like to leave a module or course comment?");
+        System.out.println("Enter module or course");
+        String choice = keyboard.next();
         keyboard.nextLine();
 
-        System.out.println("Please enter your comment.");
-        String reply = keyboard.nextLine();
-        Comment comment = new Comment(user.getFirstName() + " " + user.getLastName(), reply);
-        courses.get(choice - 1).addComment(comment);
-        System.out.println("Comment added");
+        if (choice.equalsIgnoreCase("course")) {
+            viewCourses();
+            System.out.println("Choose course to comment on. (Enter number)");
+
+            int pick = keyboard.nextInt();
+            keyboard.nextLine();
+
+            System.out.println("Please enter your comment.");
+            String reply = keyboard.nextLine();
+            Comment comment = new Comment(user.getFirstName() + " " + user.getLastName(), reply);
+            courses.get(pick - 1).addComment(comment);
+            System.out.println("Comment added");
+        } else if (choice.equalsIgnoreCase("module")) {
+            viewCourses();
+            System.out.println("Choose course to view modules on. (Enter number)");
+            int pick = keyboard.nextInt();
+            keyboard.nextLine();
+
+            System.out.println("Choose module to comment on. (Enter number");
+            for (int i = 1; i <= courses.get(pick - 1).getModules().size(); i++) {
+                System.out.print(i + ". ");
+                System.out.println(courses.get(pick - 1).getModules().get(i - 1).getTitle());
+            }
+
+            int module_comment = keyboard.nextInt();
+            keyboard.nextLine();
+
+            System.out.println("Please enter your comment.");
+            String reply = keyboard.nextLine();
+            Comment comment = new Comment(user.getFirstName() + " " + user.getLastName(), reply);
+            courses.get(pick - 1).getModules().get(module_comment - 1).addComment(comment);
+            System.out.println("Comment added");
+
+        }
     }
 
     // ADDS REVIEW
@@ -459,6 +515,8 @@ public class CourseList {
     }
 
     public void printCertificate(User user, Course course) {
+        if (!course.getCompletion())
+            return;
         try {
             FileWriter fileWriter = new FileWriter("certificate.txt");
             PrintWriter printWriter = new PrintWriter(fileWriter);
@@ -467,7 +525,8 @@ public class CourseList {
             printWriter.println("Certificate of Completion");
             printWriter.println("-------------------------");
             printWriter.println("");
-            printWriter.printf("This is to certify that "+ user.getFirstName() + " " + user.getLastName() + " has completed the course named " + course.getTitle());
+            printWriter.printf("This is to certify that " + user.getFirstName() + " " + user.getLastName()
+                    + " has completed the course named " + course.getTitle());
 
             // Close the file
             printWriter.close();
@@ -476,5 +535,63 @@ public class CourseList {
             System.out.println("Error: could not print certificate to file");
             e.printStackTrace();
         }
+    }
+
+    public void takeCourse(User user) throws InterruptedException {
+        System.out.println("Which course would you like to take?");
+        viewCourses();
+
+        int choice = keyboard.nextInt();
+        user.getCourses().add(courses.get(choice - 1)); // enroll user in course
+        courses.get(choice - 1).takeCourse();
+    }
+
+    public void printCourseToFile() {
+        System.out.println("Please choose a course to print material from. (Enter number) ");
+        viewCourses();
+        int number = keyboard.nextInt();
+        keyboard.nextLine();
+        for (int i = 1; i <= courses.get(number - 1).getModules().size(); i++) {
+            System.out.print(i + ". ");
+            System.out.println(courses.get(number - 1).getModules().get(i - 1).getTitle());
+        }
+        System.out.println();
+        System.out.println("Please choose a module to print material from. (Enter number) ");
+        int module_choice = keyboard.nextInt();
+        keyboard.nextLine();
+        courses.get(number - 1).getModules().get(module_choice - 1).printModuleToFile();
+
+    }
+
+    public void courseReply(User user) {
+        System.out.println("Which course do you want to leave a reply to comment on?");
+        viewCourses();
+
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+
+        ArrayList<Module> modules = courses.get(choice - 1).getModules();
+        System.out.println("Which module comments do you want to look at?");
+        for (int i = 1; i <= modules.size(); i++) {
+            System.out.print(i + ". ");
+            System.out.println(modules.get(i - 1).getTitle());
+        }
+
+        int module = keyboard.nextInt();
+        keyboard.nextLine();
+
+        Module mod = modules.get(module - 1);
+        System.out.println("Which comment do you want to reply too?");
+        for (int i = 1; i <= mod.getComments().size(); i++) {
+            System.out.print(i + ". ");
+            System.out.println(mod.getComments().get(i - 1).getText());
+        }
+
+        int reply = keyboard.nextInt();
+        keyboard.nextLine();
+
+        Comment comment = mod.getComments().get(reply - 1);
+
+        comment.reply();
     }
 }

@@ -16,7 +16,7 @@ public class Course {
     private boolean completed;
     private ArrayList<Module> modules;
     private ArrayList<Review> reviews;
-    private ArrayList<CourseGrade> courseGrades;
+    private CourseGrade courseGrade;
     private ArrayList<Comment> courseComments;
 
     /**
@@ -33,7 +33,7 @@ public class Course {
      * @param courseGrades ArrayList<CourseGrade> of grades.
      */
     public Course(String author, String title, String description, String userID, String courseID, String difficulty,
-            ArrayList<Module> modules, ArrayList<Review> reviews, ArrayList<CourseGrade> courseGrades) {
+            ArrayList<Module> modules, ArrayList<Review> reviews) {
         this.author = author;
         this.title = title;
         this.description = description;
@@ -43,7 +43,6 @@ public class Course {
         setDifficulty(difficulty);
         this.modules = modules != null ? modules : new ArrayList<Module>();
         this.reviews = reviews != null ? reviews : new ArrayList<Review>();
-        this.courseGrades = courseGrades != null ? courseGrades : new ArrayList<CourseGrade>();
         this.courseComments = new ArrayList<Comment>();
     }
 
@@ -97,8 +96,12 @@ public class Course {
      * 
      * @return ArrayList<CourseGrade> of grades.
      */
-    public ArrayList<CourseGrade> getCourseGrades() {
-        return courseGrades;
+    public double getCourseGrade() {
+        double total = 0;
+        for(Module module : modules){
+            total += module.getModuleGrade();
+        }
+        return total / (double)modules.size();
     }
 
     /**
@@ -179,14 +182,6 @@ public class Course {
         reviews.add(review);
     }
 
-    /**
-     * Adds course grade to list.
-     * 
-     * @param grade CourseGrade to add.
-     */
-    public void addCourseGrade(CourseGrade grade) {
-        courseGrades.add(grade);
-    }
 
     /**
      * Adds comment to course comments.
@@ -213,17 +208,22 @@ public class Course {
             System.out.println(review.toString());
     }
 
-    /**
-     * Displays course grades.
-     */
-    public void viewGrades() {
-        for (CourseGrade grade : courseGrades) {
-            System.out.println(grade.toString());
-        }
+    //IF all modules are not completed then course isnt completed, otherwise it is.
+    public boolean getCompletion(){
+        boolean completed = true;
+
+        for(Module module : modules)
+            if(!module.getCompleted())
+                completed = false;
+
+        return completed;
     }
 
     // taking a course
-    public void takeCourse() {
+    public void takeCourse() throws InterruptedException {
+        if(getCompletion())
+            System.out.println("You have already completed this course!");
+
         System.out.println();
         System.out.println("Welcome to this " + title + " course!");
 
@@ -257,9 +257,10 @@ public class Course {
             System.out.println(modules.get(choice - 1).getTopics().get(i - 1).getTitle());
             System.out.println(modules.get(choice - 1).getTopics().get(i - 1).getDescription());
 
-            if (modules.get(choice - 1).getTopics().get(i) != null) {
+            if (modules.get(choice - 1).getTopics().size() != i) {
                 System.out.println("Press c to continue to next topic, otherwise press q to quit.");
                 String decision = keyboard.next();
+                keyboard.nextLine();
 
                 if (decision.equalsIgnoreCase("q")) {
                     break;
@@ -275,8 +276,7 @@ public class Course {
         String take_quiz = keyboard.next();
 
         if (take_quiz.equalsIgnoreCase("yes")) {
-            // implement taking quiz and harshil rocket after
-            // implement a completed for course if all modules are compelted
+            modules.get(choice - 1).takeQuiz();
         } else {
             System.out.println("Okay come back when your ready!");
         }
@@ -285,6 +285,11 @@ public class Course {
     public void displayDetails() {
         System.out.println();
         System.out.println("Course Details:");
+        System.out.print("Completion status: ");
+        if(getCompletion())
+            System.out.println("Complete.");
+        else    
+            System.out.println("Incomplete");
         System.out.println("Author: " + author);
         System.out.println("Title: " + title);
         System.out.println("Description: " + description);
@@ -308,15 +313,8 @@ public class Course {
             }
         }
 
-        System.out.println("Course Grades:");
-
-        if (courseGrades.size() == 0) {
-            System.out.println("No course grades.");
-        } else {
-            for (CourseGrade grade : courseGrades) {
-                System.out.println("- " + grade.getTotalGrade());
-            }
-        }
+        System.out.print("Course Grade: ");
+        System.out.println(getCourseGrade());
 
         System.out.println("Course Comments:");
         if (courseComments.size() == 0) {

@@ -9,6 +9,7 @@ public class DataWriter extends DataConstants {
 
     private static final Object MODULE_QUESTIONS = null;
     private static final Object MODULE_TITLE = null;
+
     public void saveUsers(ArrayList<User> users) {
         JSONArray userArray = new JSONArray();
         for (User user : users) {
@@ -30,6 +31,7 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
+
     public static void saveCourses(ArrayList<Course> courses) {
         JSONArray courseArray = new JSONArray();
         for (Course course : courses) {
@@ -39,7 +41,6 @@ public class DataWriter extends DataConstants {
             courseObj.put("description", course.getDescription());
             courseObj.put("userId", course.getUser_ID());
             courseObj.put("difficulty", course.getDifficulty());
-            
 
             JSONArray moduleArray = new JSONArray();
             for (Module module : course.getModules()) {
@@ -81,12 +82,12 @@ public class DataWriter extends DataConstants {
                 moduleObj.put("comments", commentsArray);
 
                 JSONArray moduleGradeArray = new JSONArray();
-                    for (ModuleGrade moduleGrade : module.getModuleGrades()) {
-                        JSONObject moduleGradeObj = new JSONObject();
-                        moduleGradeObj.put("quiz", moduleGrade.getQuiz());
-                        moduleGradeObj.put("finalGrade", moduleGrade.getFinalGrade());
-                        moduleGradeArray.add(moduleGradeObj);
-                    }
+                for (ModuleGrade moduleGrade : module.getModuleGrade()) {
+                    JSONObject moduleGradeObj = new JSONObject();
+                    moduleGradeObj.put("quiz", moduleGrade.getQuiz());
+                    moduleGradeObj.put("finalGrade", moduleGrade.getFinalGrade());
+                    moduleGradeArray.add(moduleGradeObj);
+                }
                 moduleObj.put("moduleGrades", moduleGradeArray);
 
                 moduleArray.add(moduleObj);
@@ -114,6 +115,5 @@ public class DataWriter extends DataConstants {
             e.printStackTrace();
         }
     }
-    
 
 }

@@ -120,27 +120,27 @@ public class UserList {
         System.out.println("Please enter the provided information below to register as User.");
         System.out.print("First Name: ");
         String firstName = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Last Name: ");
         String lastName = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Email Address: ");
         String email = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Phone Number: ");
         String phoneNumber = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
         
         System.out.print("Username: ");
         String username = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Password: ");
         String password = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
         
         User user = new User(firstName, lastName, email, phoneNumber, username, password, UUID.randomUUID().toString(), "no");
         userList.add(user);
@@ -155,27 +155,27 @@ public class UserList {
         System.out.println("Please enter the provided information below to register as User.");
         System.out.print("First Name: ");
         String firstName = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Last Name: ");
         String lastName = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Email Address: ");
         String email = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Phone Number: ");
         String phoneNumber = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
         
         System.out.print("Username: ");
         String username = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
 
         System.out.print("Password: ");
         String password = keyboard.next();
-        System.out.println();
+        keyboard.nextLine();
         
         User user = new User(firstName, lastName, email, phoneNumber, username, password, UUID.randomUUID().toString(), "yes");
         userList.add(user);

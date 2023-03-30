@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.*;
 
 /**
  * @author JavaDoc
- * Represents a course module.
+ *         Represents a course module.
  */
 public class Module {
     private String title;
@@ -11,11 +13,13 @@ public class Module {
     private ArrayList<Topic> topics;
     private ArrayList<Question> questions;
     private ArrayList<Comment> comments;
-    private ArrayList<ModuleGrade> moduleGrades;
+    private ModuleGrade moduleGrade;
 
+    private static Scanner keyboard = new Scanner(System.in);
 
     /**
      * Constructor to initalize a module.
+     * 
      * @param title        String of module title.
      * @param description  String of module description.
      * @param topics       ArrayList<Topic> of topics that module contains.
@@ -25,17 +29,18 @@ public class Module {
      *                     modules.
      */
     public Module(String title, String description, ArrayList<Topic> topics, ArrayList<Question> questions,
-            ArrayList<Comment> comments, ArrayList<ModuleGrade> moduleGrades) {
+            ArrayList<Comment> comments, ModuleGrade moduleGrade) {
         this.title = title;
         this.description = description;
         this.topics = topics;
         this.questions = questions;
         this.comments = comments;
-        this.moduleGrades = moduleGrades;
+        this.moduleGrade = moduleGrade;
     }
 
     /**
      * Returns title of module.
+     * 
      * @return String of module title.
      */
     public String getTitle() {
@@ -44,21 +49,30 @@ public class Module {
 
     /**
      * Returns description of module.
+     * 
      * @return String of module description.
      */
     public String getDescription() {
         return description;
     }
 
-    public boolean getCompleted(){
+    public boolean getCompleted() {
+        completed = true;
+
+        for (Question question : questions) {
+            if (!question.getCompleted())
+                completed = false;
+        }
         return completed;
     }
-    public void setCompleted(boolean t){
+
+    public void setCompleted(boolean t) {
         completed = t;
     }
 
     /**
      * Returns module topics.
+     * 
      * @return ArrayList<Topic> of module topics.
      */
     public ArrayList<Topic> getTopics() {
@@ -67,6 +81,7 @@ public class Module {
 
     /**
      * Returns module questions.
+     * 
      * @return ArrayList<Question> of module questions.
      */
     public ArrayList<Question> getQuestions() {
@@ -75,6 +90,7 @@ public class Module {
 
     /**
      * Returns module comments.
+     * 
      * @return ArrayList<Comment> of module comments.
      */
     public ArrayList<Comment> getComments() {
@@ -83,14 +99,16 @@ public class Module {
 
     /**
      * Returns module grades.
+     * 
      * @return ArrayList<ModuleGrade> of module grades.
      */
-    public ArrayList<ModuleGrade> getModuleGrades() {
-        return moduleGrades;
+    public double getModuleGrade() {
+        return moduleGrade.getFinalGrade();
     }
 
     /**
      * Sets module title.
+     * 
      * @param title String of module title.
      */
     public void setTitle(String title) {
@@ -99,6 +117,7 @@ public class Module {
 
     /**
      * Sets module description.
+     * 
      * @param description String of module description.
      */
     public void setDescription(String description) {
@@ -107,6 +126,7 @@ public class Module {
 
     /**
      * Sets module topics.
+     * 
      * @param topics ArrayList<Topic> of module topics.
      */
     public void setTopics(ArrayList<Topic> topics) {
@@ -115,6 +135,7 @@ public class Module {
 
     /**
      * Sets module questions.
+     * 
      * @param questions ArrayList<Question> of module questions.
      */
     public void setQuestions(ArrayList<Question> questions) {
@@ -123,6 +144,7 @@ public class Module {
 
     /**
      * Sets module comments.
+     * 
      * @param comments ArrayList<Comment> of module coments.
      */
     public void setComments(ArrayList<Comment> comments) {
@@ -131,14 +153,16 @@ public class Module {
 
     /**
      * Sets module grades.
+     * 
      * @param moduleGrades ArrayList<ModuleGrade> of module grades.
      */
-    public void setModuleGrades(ArrayList<ModuleGrade> moduleGrades) {
-        this.moduleGrades = moduleGrades;
+    public void setModuleGrades(ModuleGrade moduleGrades) {
+        this.moduleGrade = moduleGrades;
     }
 
     /**
      * Adds comment to comment list.
+     * 
      * @param comment Type Comment.
      */
     public void addComment(Comment comment) {
@@ -147,6 +171,7 @@ public class Module {
 
     /**
      * Adds topic to topic list.
+     * 
      * @param topic Type Topic.
      */
     public void addTopic(Topic topic) {
@@ -155,6 +180,7 @@ public class Module {
 
     /**
      * Adds question to questions list.
+     * 
      * @param question Type Question.
      */
     public void addQuestion(Question question) {
@@ -162,17 +188,10 @@ public class Module {
     }
 
     /**
-     * Adds module grade to moduleGrades list.
-     * @param moduleGrade Type ModuleGrade
-     */
-    public void addModuleGrade(ModuleGrade moduleGrade) {
-        moduleGrades.add(moduleGrade);
-    }
-
-    /**
      * Creates comment and adds to list.
+     * 
      * @param userID String of user ID.
-     * @param text String of the comment text.
+     * @param text   String of the comment text.
      */
     public void addComment(String userID, String text) {
         Comment comment = new Comment(userID, text);
@@ -181,8 +200,9 @@ public class Module {
 
     /**
      * Creatss question and adds to list.
-     * @param questionText String of question.
-     * @param choices ArrayList<String> of choices.
+     * 
+     * @param questionText  String of question.
+     * @param choices       ArrayList<String> of choices.
      * @param correctChoice String of the correct choice.
      */
     public void addQuestion(String questionText, ArrayList<String> choices, int correctChoiceIndex) {
@@ -191,18 +211,9 @@ public class Module {
     }
 
     /**
-     * Creates moduleGrade and adds to list.
-     * @param quiz String of quiz grade.
-     * @param finalGrade String of final grade.
-     *//*
-    public void addModuleGrade(String quiz, String finalGrade) {
-        ModuleGrade moduleGrade = new ModuleGrade(quiz, finalGrade);
-        addModuleGrade(moduleGrade);
-    }*/
-
-    /**
      * Creates a topic and adds to list.
-     * @param title String of topic title.
+     * 
+     * @param title       String of topic title.
      * @param description String of topic description.
      */
     public void addTopic(String title, String description) {
@@ -212,31 +223,130 @@ public class Module {
 
     /**
      * Allows user to take the module quiz.
+     * 
      * @return
+     * @throws InterruptedException
      */
-    public double takeQuiz(){
+    public double takeQuiz() throws InterruptedException {
         double ret = 0;
-        for(Question question : questions){
-            if(question.answerQuestion()){
+        for (Question question : questions) {
+            if (question.answerQuestion()) {
                 ret += 1;
             }
         }
-        ret = (double)questions.size() / ret;
+
+        System.out.println("You got " + (int) ret + " / " + questions.size() + " questions correct.");
+
+        animateRocketShip();
+        ret = ret / (double) questions.size();
+        ret = (int)(ret * 100);
+        moduleGrade.addQuizGrade(ret);
         return ret;
     }
 
-    public void displayDetails(){
-        System.out.println(" -" +title + ":" );
+    public void displayDetails() {
+        System.out.println(" -" + title + ":");
         System.out.println("   -Description: " + description);
         System.out.println("    -Topics: ");
-        for(Topic topic : topics)
+        for (Topic topic : topics)
             topic.displayDetails();
-        
+
         System.out.println("     -Quiz questions: ");
-        for(int i = 1; i <= questions.size(); i++){
-            System.out.print("    -Q" + i + ": ");
-            System.out.println(questions.get(i-1).getQuestionText());
+        for (int i = 1; i <= questions.size(); i++) {
+            System.out.print("    Q" + i + ": ");
+            System.out.println(questions.get(i - 1).getQuestionText());
         }
+
+        System.out.println("      -Comments: ");
+        for (Comment comment : comments)
+            comment.display();
+        
+        System.out.println("      -Module Grade: " + moduleGrade.getFinalGrade());
     }
 
+    public void moduleCommentReply() {
+        System.out.println("Which comment would you like to reply to? (Enter number) ");
+
+        for (int i = 1; i <= comments.size(); i++) {
+            System.out.println(i + ". ");
+            System.out.println(comments.get(i - 1).getText());
+        }
+
+        int choice = keyboard.nextInt();
+        keyboard.nextLine();
+        comments.get(choice - 1).reply();
+    }
+
+    public void animateRocketShip() throws InterruptedException {
+        System.out.println();
+        // Draw rocket ship
+        String[] rocket = new String[] {
+                /*
+                 * "         {}               ",
+                 * "       {}  {}               ",
+                 * "   >|--------------------------|{}",
+                 * " > >|                          | {}",
+                 * " > >|      CONGRATS!!!!        |  {}",
+                 * " > >|                          | {}",
+                 * "   >|--------------------------|{}",
+                 * "       {}  {}               ",
+                 * "         {}                 ",
+                 */
+
+                "   /\\      ",
+                "  /  \\     ",
+                " /    \\    ",
+                "|------|   ",
+                "| NASA |   ",
+                "|      |   ",
+                "|      |   ",
+                "|      |   ",
+                " !!!!!!    "
+
+        };
+        // Initialize rocket position
+        int rocketY = 20;
+
+        // Animate rocket moving up
+        while (true) {
+
+            // Clear console
+            System.out.print("\033[H\033[2J");
+
+            // Move rocket up
+            rocketY--;
+            // Draw rocket at new position
+            for (int i = 0; i < rocketY; i++) {
+                System.out.println();
+            }
+            for (int i = 0; i < rocket.length; i++) {
+                for (int j = 0; j < 40; j++) {
+                    System.out.print(" ");
+                }
+                System.out.println(rocket[i]);
+            }
+            // Wait for a short time
+            Thread.sleep(200);
+
+            // End animation if rocket has moved off screen
+            if (rocketY <= 0) {
+                break;
+            }
+        }
+        // Print message when animation is complete
+        System.out.println("Rocket ship has reached its destination! Just as you have finished this quiz!");
+    }
+
+    public void printModuleToFile() {
+        String fileName = title + ".txt";
+        try (PrintWriter out = new PrintWriter(fileName)) {
+            out.println(" -" + title + ":");
+            out.println("   -Description: " + description);
+            out.println("    -Topics: ");
+            for (Topic topic : topics)
+                topic.displayDetailsToFile(out);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

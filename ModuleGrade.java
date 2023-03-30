@@ -38,7 +38,7 @@ public class ModuleGrade {
         double total = 0;
         for (double quiz : quizzes)
             total += quiz;
-        this.finalGrade = total / quizzes.size();
+        this.finalGrade = total / (double) quizzes.size();
         return this.finalGrade;
     }
 
@@ -47,8 +47,8 @@ public class ModuleGrade {
      * 
      * @param quiz String of quiz score.
      */
-    public void addQuizGrade(String grade) {
-        double tmpGrade = Double.parseDouble(grade);
+    public void addQuizGrade(double grade) {
+        double tmpGrade = grade;
         if (tmpGrade >= 0 && tmpGrade <= 100) {
             quizzes.add(tmpGrade);
             System.out.println("Quiz added.");

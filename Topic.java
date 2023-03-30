@@ -1,3 +1,4 @@
+import java.io.*;
 /**
  * @author JavaDoc
  * Represents a module topic
@@ -49,7 +50,12 @@ public class Topic {
     }
 
     public void displayDetails(){
-        System.out.println("     -" + title);
-        System.out.println("      -Topic description: " + description);
+        System.out.println("     Title" + title);
+        System.out.println("       Topic description: " + description);
+    }
+
+    public void displayDetailsToFile(PrintWriter out){
+        out.println("     Title" + title);
+        out.println("       Topic description: " + description);
     }
 }
