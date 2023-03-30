@@ -115,16 +115,28 @@ public class LMS {
     public void viewCourseDetails(){
         courseList.getCourseDetails();
     }
-
+    /**
+     * 
+     * @param user - enters the user and checks which course they are enrolled in 
+     * and they take the course
+     * @throws InterruptedException
+     */
     public void takeCourse(User user) throws InterruptedException{
-        
         courseList.takeCourse(user);
     }
-
+    /**
+     * Calls the functions in CourseList class
+     * which prints the course to the file
+     */
     public void printToFile(){
         courseList.printCourseToFile();
     }
-
+    /**
+     * Prints the comments from a course 
+     * so user can see what comments they would like to 
+     * reply on
+     * @param user
+     */
     public void courseReply(User user){
         courseList.courseReply(user);
     }
