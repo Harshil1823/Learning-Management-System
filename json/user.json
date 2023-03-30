@@ -3,28 +3,41 @@
         {
             "id": "3c3aeb0e-974f-41e3-b26c-9e2a8a1a1c30",
             "firstName": "John",
-            "lastName": "Doe",
-            "email": "johndoe@gmail.com",
+            "lastName": "Wisdom",
+            "email": "JWisdom@gmail.com",
             "phoneNumber": "555-123-4567",
             "password": "password1",
-            "userName": "johndoe1",
+            "userName": "FullOfWisdom",
             "courses": [
                 "d4b93270-c012-4ca5-bd7d-6e5c6f9979a9"
             ],
-            "isAuthor": "no""
+            "isAuthor": "Yes"
         },
         {
             "id": "957bb7c8-54da-474e-b2ef-a7bb4c45441d",
-            "firstName": "Beta",
-            "lastName": "Whatup",
-            "email": "beta@gmail.com",
-            "phoneNumber": "234-453-2345",
+            "firstName": "Scout",
+            "lastName": "Solace",
+            "email": "SScolace@gmail.com",
+            "phoneNumber": "234-453-2333",
             "password": "password2",
-            "userName": "betagoat23",
+            "userName": "ScoutsHonor",
             "courses": [
-                "d4b93270-c012-4ca5-bd7d-6e5c6f9979a9"
+                "d4b93270-c012-4ca5-bd7d-6e5c6f9979a9","f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e"
             ],
-            "isAuthor": "yes"
+            "isAuthor": "no"
+        },
+        {
+            "id": "3c3aeb0e-974f-41e3-b26c-9e2a8a1a1c30",
+            "firstName": "Allie",
+            "lastName": "Anderson",
+            "email": "AAnderson@gmail.com",
+            "phoneNumber": "234-453-2347",
+            "password": "password3",
+            "userName": "AsForDays",
+            "courses": [
+                "d4b93270-c012-4ca5-bd7d-6e5c6f9979a9","f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e"
+            ],
+            "isAuthor": "no"
         }
     ]
 }
