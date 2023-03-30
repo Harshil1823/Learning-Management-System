@@ -80,18 +80,19 @@ public class DataWriter extends DataConstants {
                     commentsArray.add(commentObj);
                 }
                 moduleObj.put("comments", commentsArray);
-
+                /* 
                 JSONArray moduleGradeArray = new JSONArray();
+                moduleGradeArray = module.getModuleGrade()
                 for (ModuleGrade moduleGrade : module.getModuleGrade()) {
                     JSONObject moduleGradeObj = new JSONObject();
-                    moduleGradeObj.put("quiz", moduleGrade.getQuiz());
+                    moduleGradeObj.put("quiz", moduleGrade.getQuizzes());
                     moduleGradeObj.put("finalGrade", moduleGrade.getFinalGrade());
                     moduleGradeArray.add(moduleGradeObj);
                 }
                 moduleObj.put("moduleGrades", moduleGradeArray);
 
                 moduleArray.add(moduleObj);
-
+                */
             }
             courseObj.put("modules", moduleArray);
 

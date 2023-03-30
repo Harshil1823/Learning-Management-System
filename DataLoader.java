@@ -56,6 +56,7 @@ public class DataLoader extends DataConstants {
                 String user_Id = (String) courseJSON.get(USER_ID);
                 String difficulty = (String) courseJSON.get(DIFFICULTY);
                 String author = (String) courseJSON.get(IS_AUTHOR);
+                ModuleGrade moduleGrades = (ModuleGrade) courseJSON.get("modulegrade");
                 
                 JSONArray modulesJSON = (JSONArray) courseJSON.get(COURSE_MODULE);
             ArrayList<Module> modules = new ArrayList<Module>();
@@ -97,18 +98,10 @@ public class DataLoader extends DataConstants {
                 comments.add(new Comment(userId, text));
             }
             
-            JSONArray moduleGradeArray = (JSONArray) moduleJSON.get("modulegrade");
-            ArrayList<ModuleGrade> moduleGrades = new ArrayList<ModuleGrade>();
-            for(int l = 0; l < moduleGradeArray.size(); l++) {
-                JSONObject moduleGradeJSON = (JSONObject) moduleGradeArray.get(l);
-                String quiz = (String) moduleGradeJSON.get("grade1");
-                String finalGrade = (String) moduleGradeJSON.get("grade2");
-                ModuleGrade moduleGrade = new ModuleGrade(quiz, finalGrade);
-                moduleGrades.add(moduleGrade);
-            }
+
             
             Module module = new Module(moduleTitle, moduleDescription, topics, questions, comments, moduleGrades);
-            module.setModuleGrades(moduleGrades);
+           
             modules.add(module);
         
             
@@ -135,7 +128,7 @@ public class DataLoader extends DataConstants {
 
 
                 //Course course = new Course(courseId, title, description,user_Id, modules, reviews, courseGrades, difficulty);
-                Course course = new Course(author, title, description, user_Id, courseId, difficulty, modules, reviews, courseGrades);
+                Course course = new Course(author, title, description, user_Id, courseId, difficulty, modules, reviews);
                 courses.add(course);
  
             }
