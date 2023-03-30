@@ -126,6 +126,12 @@ public class CourseList {
      * }
      */
 
+    /**
+     * Can do things such as creating module,
+     * topics, quiz, and tests
+     * @param user (author is the user in this case and has the ability to create a course)
+     * @return - returns the course that Author just created
+     */
     public Course createCourse(User user) {
 
         System.out.println("Please enter the title of the course.");
@@ -228,9 +234,10 @@ public class CourseList {
         user.getCreatedCourses().add(course);
         return course;
     }
-
     /**
-     * Allow for author to edit created courses.
+     * lets the author go back to the course they created 
+     * and then asks them what would you like you edit, add, and remove
+     * @param user - Author can edit the course that they created
      */
     public void editCourse(User user) {
         if (user.getCreatedCourses().size() == 0) {
@@ -403,7 +410,12 @@ public class CourseList {
             return;
         }
     }
-
+    /**
+     * 
+     * @param user (student) checks if they are enrolled in any course
+     * and if so then it prints out which courses they are enrolled in 
+     * if not then it prints you aren't enrolled in any courses
+     */
     public void displayEnrolledCourses(User user) {
         if (user.getCourses().size() <= 0) {
             System.out.println("You aren't enrolled in any courses");
@@ -438,8 +450,11 @@ public class CourseList {
             }
         }
     }
-
-    // ADDS COMMENT
+    /**
+     * student can comment on moudles and 
+     * courses
+     * @param user (student can comment on a course)
+     */
     public void courseComment(User user) {
         System.out.println("Would you like to leave a module or course comment?");
         System.out.println("Enter module or course");
@@ -481,8 +496,11 @@ public class CourseList {
 
         }
     }
-
-    // ADDS REVIEW
+    /**
+     * @param user (student) can review a course
+     * asks what would you like to give from  1 - 10
+     * and asks user behind the rating they gave
+     */
     public void courseReview(User user) {
         System.out.println("Which course would you like to leave a review on?");
         viewCourses();
@@ -502,7 +520,10 @@ public class CourseList {
         courses.get(choice - 1).addReview(review);
         System.out.println("Review added");
     }
-
+    /**
+     * Prints Title, descirpiton, course details
+     * reviews, and comments about the course
+     */
     public void getCourseDetails() {
         System.out.println();
         System.out.println("Which course would you like to learn details about?");
@@ -513,7 +534,7 @@ public class CourseList {
         courses.get(choice - 1).displayDetails();
 
     }
-
+    
     public void printCertificate(User user, Course course) {
         if (!course.getCompletion())
             return;
