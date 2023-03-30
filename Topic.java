@@ -48,12 +48,19 @@ public class Topic {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    /**
+     * prints out detials reagrding to the topic title 
+     * and topic's description
+     */
     public void displayDetails(){
         System.out.println("     Title" + title);
         System.out.println("       Topic description: " + description);
     }
-
+    /**
+     * writes out detail to the filr such as title 
+     * and it's descrption
+     * @param out
+     */
     public void displayDetailsToFile(PrintWriter out){
         out.println("     Title" + title);
         out.println("       Topic description: " + description);

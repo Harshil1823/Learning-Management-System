@@ -48,7 +48,11 @@ public class Comment {
     public String getText() {
         return comment;
     }
-
+    /**
+     * prints out the comment 
+     * and then user can reply to the comment 
+     * comment is stored on reply arraylist
+     */
     public void reply(){
         System.out.print("What would you like to reply to this comment: ");
         System.out.println(comment);
@@ -57,7 +61,10 @@ public class Comment {
         replies.add(reply);
         System.out.println("Reply added.");
     }
-
+    /**
+     * probably could've been in the UI
+     * but it displays comment and then relies to it
+     */
     public void display(){
 
         System.out.println("       -Comment:");

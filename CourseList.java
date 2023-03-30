@@ -534,7 +534,11 @@ public class CourseList {
         courses.get(choice - 1).displayDetails();
 
     }
-    
+    /**
+     * prints certificate signed by the author that user has completed the course
+     * @param user - student
+     * @param course - passes in the course that they are taking
+     */
     public void printCertificate(User user, Course course) {
         if (!course.getCompletion())
             return;
@@ -557,7 +561,11 @@ public class CourseList {
             e.printStackTrace();
         }
     }
-
+    /**
+     * enrolls the user in which course they would like to take
+     * @param user
+     * @throws InterruptedException
+     */
     public void takeCourse(User user) throws InterruptedException {
         System.out.println("Which course would you like to take?");
         viewCourses();
@@ -566,7 +574,9 @@ public class CourseList {
         user.getCourses().add(courses.get(choice - 1)); // enroll user in course
         courses.get(choice - 1).takeCourse();
     }
-
+    /**
+     * Prints the course material and modules to a file
+     */
     public void printCourseToFile() {
         System.out.println("Please choose a course to print material from. (Enter number) ");
         viewCourses();
@@ -583,7 +593,12 @@ public class CourseList {
         courses.get(number - 1).getModules().get(module_choice - 1).printModuleToFile();
 
     }
-
+    /**
+     * 
+     * @param user - has to be student
+     * asks user to reply on a comment
+     * and then stores the comment
+     */
     public void courseReply(User user) {
         System.out.println("Which course do you want to leave a reply to comment on?");
         viewCourses();

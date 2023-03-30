@@ -55,7 +55,10 @@ public class Module {
     public String getDescription() {
         return description;
     }
-
+    /**
+     * Returns whether all questions in this instance of the quiz have been completed.
+     * @return true if all questions have been completed, false otherwise
+     */
     public boolean getCompleted() {
         completed = true;
 
@@ -65,7 +68,11 @@ public class Module {
         }
         return completed;
     }
-
+    /**
+     * sets completed to whatever boolean value
+     * you pass in
+     * @param t
+     */
     public void setCompleted(boolean t) {
         completed = t;
     }
@@ -243,7 +250,11 @@ public class Module {
         moduleGrade.addQuizGrade(ret);
         return ret;
     }
-
+    /**
+     * prints out detials about 
+     * course such as description, module, quiz, and 
+     * comments, etc..
+     */
     public void displayDetails() {
         System.out.println(" -" + title + ":");
         System.out.println("   -Description: " + description);
@@ -263,7 +274,10 @@ public class Module {
         
         System.out.println("      -Module Grade: " + moduleGrade.getFinalGrade());
     }
-
+    /**
+     * let's the user comment reply on a module
+     * comment
+     */
     public void moduleCommentReply() {
         System.out.println("Which comment would you like to reply to? (Enter number) ");
 
@@ -276,7 +290,12 @@ public class Module {
         keyboard.nextLine();
         comments.get(choice - 1).reply();
     }
-
+    /**
+     * Prints out animated rocketShip that blasts up
+     * ONLY TO BE USED IF USER HAS ACHEIVED SOMETHING 
+     * SPECIAL
+     * @throws InterruptedException
+     */
     public void animateRocketShip() throws InterruptedException {
         System.out.println();
         // Draw rocket ship
@@ -336,7 +355,12 @@ public class Module {
         // Print message when animation is complete
         System.out.println("Rocket ship has reached its destination! Just as you have finished this quiz!");
     }
-
+    /**
+     * Writes the details of this module to a text file with the same name as the module's title.
+    * The file contains the module's title, description, and a list of topics, along with their details.
+    * If the file already exists, it will be overwritten.
+    * @throws FileNotFoundException if the file cannot be created or written to
+     */
     public void printModuleToFile() {
         String fileName = title + ".txt";
         try (PrintWriter out = new PrintWriter(fileName)) {

@@ -233,7 +233,10 @@ public class User {
     public ArrayList<Course> getCourses() {
         return courses;
     }
-
+    /**
+     * 
+     * @returns createdCourses
+     */
     public ArrayList<Course> getCreatedCourses(){
         return createdCourses;
     }

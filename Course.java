@@ -207,8 +207,10 @@ public class Course {
         for (Review review : reviews)
             System.out.println(review.toString());
     }
-
-    //IF all modules are not completed then course isnt completed, otherwise it is.
+    /**
+     * IF all modules are not completed then course isnt completed, otherwise it is.
+     * @return
+     */
     public boolean getCompletion(){
         boolean completed = true;
 
@@ -218,8 +220,11 @@ public class Course {
 
         return completed;
     }
-
-    // taking a course
+    /**
+     * User can take the course
+     * view modules and topics 
+     * @throws InterruptedException
+     */
     public void takeCourse() throws InterruptedException {
         if(getCompletion())
             System.out.println("You have already completed this course!");
@@ -281,7 +286,13 @@ public class Course {
             System.out.println("Okay come back when your ready!");
         }
     }
-
+    /**
+     * shows user course detials 
+     * completion status
+     * if it's completed or not
+     * and then title, author, descritpion,
+     * difficulty of the course
+     */
     public void displayDetails() {
         System.out.println();
         System.out.println("Course Details:");
