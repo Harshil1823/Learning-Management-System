@@ -75,7 +75,12 @@ public class CourseList {
     public void deleteCourse(Course course) {
         courses.remove(course);
     }
-
+    /**
+     *returns courses
+     */
+    public ArrayList<Course> getCourses(){
+        return courses;
+    }
     /**
      * Save course list to datawriter.
      */
