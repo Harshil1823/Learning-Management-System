@@ -1,10 +1,4 @@
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
@@ -249,7 +243,6 @@ public class CourseListTest {
 
         User user = new User("tFirstName", "tLastName", "BlahBLah@email.com", "1234567890", "password123!",
                 UUID.randomUUID().toString(), UUID.randomUUID().toString(), "yes");
-        CourseList courseList = new CourseList();
         courseList.displayEnrolledCourses(user);
 
         String output = outContent.toString().trim();
@@ -286,5 +279,6 @@ public class CourseListTest {
 
         System.setOut(System.out);
     }
+
 
 }
