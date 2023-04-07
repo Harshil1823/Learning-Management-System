@@ -1,5 +1,7 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.AfterEach;
@@ -163,5 +165,28 @@ public class UserListTest {
         userList.removeUser(null);
         assertEquals(2, userList.size());
     }
-    
+    @Test
+    public void testLogin() {
+    // Add test users to the user list
+    User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+    User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+    userList.addUser(user1);
+    userList.addUser(user2);
+
+    // Test logging in with a valid username and password
+    System.setIn(new ByteArrayInputStream("johndoe\nhashedpassword\n".getBytes()));
+    User loggedInUser = userList.login();
+    assertEquals("John", loggedInUser.getFirstName());
+
+    // Test logging in with an invalid password
+    System.setIn(new ByteArrayInputStream("johndoe\ninvalidpassword\n".getBytes()));
+    loggedInUser = userList.login();
+    assertNull(loggedInUser);
+
+    // Test logging in with an invalid username
+    System.setIn(new ByteArrayInputStream("invalidusername\ninvalidpassword\n".getBytes()));
+    loggedInUser = userList.login();
+    assertNull(loggedInUser);
+}
+   
 }
