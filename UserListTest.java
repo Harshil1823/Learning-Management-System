@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class UserListTest {
+    private UserList userList;
 
     @BeforeClass
 	public void oneTimeSetup() {
@@ -21,6 +22,8 @@ public class UserListTest {
 	@BeforeEach
 	public void setup() {
 		//runs before each test
+        userList = UserList.getInstance();
+        userList.clear();
 	}
 	
 	@AfterEach
@@ -47,5 +50,39 @@ public class UserListTest {
         UserList instance1 = UserList.getInstance();
         UserList instance2 = UserList.getInstance();
         assertEquals(instance1, instance2);
+    }
+    @Test
+    public void testAddUser() {
+        // Create a new user to add to the list
+        User user = new User("John", "Doe", "john.doe@example.com", null, null, null, null, null);
+        userList.addUser(user);
+
+        // Ensure that the user was added to the list
+        assertTrue(userList.contains(user));
+    }
+    @Test
+    public void testAddUserDoesNotAddDuplicate() {
+        // Create a new user to add to the list
+        User user = new User("John", "Doe", "john.doe@example.com", null, null, null, null, null);
+        userList.addUser(user);
+
+        // Add the same user again
+        userList.addUser(user);
+
+        // Ensure that the user was not added to the list twice
+        assertEquals(1, userList.size());
+    }
+    @Test
+    public void testAddUserAddsToEmptyList() {
+        // Ensure that the list is initially empty
+        assertEquals(0, userList.size());
+
+        // Create a new user to add to the list
+        User user = new User("John", "Doe", "john.doe@example.com", null, null, null, null, null);
+        userList.addUser(user);
+
+        // Ensure that the user was added to the list
+        assertEquals(1, userList.size());
+        assertTrue(userList.contains(user));
     }
 }

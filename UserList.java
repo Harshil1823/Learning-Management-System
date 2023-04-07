@@ -181,4 +181,16 @@ public class UserList {
         userList.add(user);
         return user;
     }
+
+    public void clear() {
+        userList.clear();
+    }
+
+    public boolean contains(User user) {
+        return userList.contains(user);
+    }
+    
+    public int size() {
+        return userList.size();
+    }
 }
