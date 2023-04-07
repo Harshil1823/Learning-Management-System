@@ -202,4 +202,21 @@ public class UserListTest {
         // check that the list does not contain the new user
         assertFalse(userList.contains(user2));
     }
+    @Test
+    public void testSize() {
+        // add some users to the list
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+        
+        // check that the list size is 2
+        assertEquals(2, userList.size());
+        
+        // remove a user from the list
+        userList.removeUser(user1);
+        
+        // check that the list size is now 1
+        assertEquals(1, userList.size());
+    }
 }
