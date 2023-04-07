@@ -87,15 +87,15 @@ public class UserListTest {
     }
     @Test
     public void testGetUser() {
-
         User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
         User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
         userList.addUser(user1);
         userList.addUser(user2);
+    
         // Test getting a user with a valid username
         User user = userList.getUser("johndoe");
+        assertNotNull(user);
         assertEquals("John", user.getFirstName());
-
     }
     @Test
     public void testGetUserNullUserName(){
@@ -104,7 +104,9 @@ public class UserListTest {
         userList.addUser(user1);
         userList.addUser(user2);
         // Test getting a user with a null username
-        assertNull(userList.getUser(null));
+        User user = userList.getUser("null");
+        // Test getting a user with a null username
+        assertNull(user);
     }
     @Test
     public void testGetUserWithInvalidUserName(){
@@ -112,7 +114,54 @@ public class UserListTest {
         User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
         userList.addUser(user1);
         userList.addUser(user2);
+        // Test getting a user with a null username
+        User user = userList.getUser("kdlsjflkds");
         // Test getting a user with an invalid username
-        assertNull(userList.getUser("BobSmith"));
+        assertNull(user);
     }
+    @Test
+    public void testRemoveUser(){
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+
+        userList.removeUser(user1);
+        assertEquals(1, userList.size());
+    }
+    @Test
+    public void testRemoveUserSameUser(){
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+
+        userList.removeUser(user1);
+        assertEquals(1, userList.size());
+        //removing the same user again
+        userList.removeUser(user1);
+        assertEquals(1, userList.size());
+    }
+    @Test
+    public void testRemoveUserMutiple(){
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+
+        userList.removeUser(user1);
+        userList.removeUser(user2);
+        assertEquals(0, userList.size());
+    }
+    @Test
+    public void testRemoveUserNull(){
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+
+        userList.removeUser(null);
+        assertEquals(2, userList.size());
+    }
+    
 }
