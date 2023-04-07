@@ -85,4 +85,34 @@ public class UserListTest {
         assertEquals(1, userList.size());
         assertTrue(userList.contains(user));
     }
+    @Test
+    public void testGetUser() {
+
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+        // Test getting a user with a valid username
+        User user = userList.getUser("johndoe");
+        assertEquals("John", user.getFirstName());
+
+    }
+    @Test
+    public void testGetUserNullUserName(){
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+        // Test getting a user with a null username
+        assertNull(userList.getUser(null));
+    }
+    @Test
+    public void testGetUserWithInvalidUserName(){
+        User user1 = new User("John", "Doe", "john.doe@example.com", "1234567890", "johndoe", "hashedpassword", "f558ac43-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        User user2 = new User("Jane", "Smith", "jane.smith@example.com", "0123456789", "jamessmith", "adsfadsf", "f558ac44-cc7a-4dcb-86ce-8720a3cf3d8e", null);
+        userList.addUser(user1);
+        userList.addUser(user2);
+        // Test getting a user with an invalid username
+        assertNull(userList.getUser("BobSmith"));
+    }
 }

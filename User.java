@@ -85,6 +85,9 @@ public class User {
      * @return String of first name.
      */
     public String getFirstName() {
+        if (username == null) {
+            return "";
+        }
         return firstname;
     }
 
@@ -93,6 +96,9 @@ public class User {
      * @return String of last name.
      */
     public String getLastName() {
+        if (username == null) {
+            return "";
+        }
         return lastname;
     }
 
@@ -133,6 +139,9 @@ public class User {
      * @return String of username.
      */
     public String getUserName() {
+        if (username == null) {
+            return "";
+        }
         return username;
     }
 
